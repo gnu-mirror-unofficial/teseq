@@ -1,0 +1,1640 @@
+<html lang="en">
+<head>
+<title>GNU Teseq 1.0-devel Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="top" href="#Top">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for GNU Teseq, version 1.0-devel.
+
+Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.2 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts, and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<h1 class="settitle">GNU Teseq 1.0-devel Manual</h1>
+<div class="contents">
+<h2>Table of Contents</h2>
+<ul>
+<li><a name="toc_Top" href="#Top">Teseq</a>
+<li><a name="toc_Overview" href="#Overview">1 Overview</a>
+<ul>
+<li><a href="#Overview">A Quick Example</a>
+</li></ul>
+<li><a name="toc_Invoking-Teseq" href="#Invoking-Teseq">2 Invoking Teseq</a>
+<li><a name="toc_Output-Format" href="#Output-Format">3 Output Format</a>
+<ul>
+<li><a href="#Text-Lines">3.1 Text Lines</a>
+<li><a href="#Control_002dCharacter-Lines">3.2 Control-Character Lines</a>
+<li><a href="#Escape_002dSequence-Lines">3.3 Escape-Sequence Lines</a>
+<ul>
+<li><a href="#Escape-Sequence-Recognition">Recognizing Escape Sequences</a>
+</li></ul>
+<li><a href="#Label-Lines">3.4 Label Lines</a>
+<li><a href="#Description-Lines">3.5 Description Lines</a>
+<li><a href="#Delay-Lines">3.6 Delay Lines</a>
+</li></ul>
+<li><a name="toc_Standards" href="#Standards">4 Standards</a>
+<li><a name="toc_Reseq" href="#Reseq">5 The Reseq Command</a>
+<li><a name="toc_Future-Directions" href="#Future-Directions">6 Future Directions</a>
+<ul>
+<li><a href="#Future-Directions">Unicode Output</a>
+<li><a href="#Future-Directions">Terminal Database Awareness</a>
+</li></ul>
+<li><a name="toc_Copying" href="#Copying">Appendix A Copying</a>
+<li><a name="toc_Index" href="#Index">Index</a>
+</li></ul>
+</div>
+
+
+
+<div class="node">
+<p><hr>
+<a name="Top"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Overview">Overview</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#dir">(dir)</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#dir">(dir)</a>
+
+</div>
+
+<h2 class="unnumbered">Teseq</h2>
+
+<p>This manual is for GNU Teseq, version 1.0-devel.
+
+<p class="noindent">Copyright &copy; 2008 Micah Cowan <a href="mailto:micah@cowan.name">micah@cowan.name</a>
+
+<ul class="menu">
+<li><a accesskey="1" href="#Overview">Overview</a>:                     What does Teseq do? (with example)
+<li><a accesskey="2" href="#Invoking-Teseq">Invoking Teseq</a>:               How to run Teseq, with options 'n' stuff. 
+<li><a accesskey="3" href="#Output-Format">Output Format</a>:                How Teseq's output looks. 
+<li><a accesskey="4" href="#Standards">Standards</a>:                    The official word on control functions.
+
+<li><a accesskey="5" href="#Reseq">Reseq</a>:                        Reversing Teseq's output.
+
+<li><a accesskey="6" href="#Future-Directions">Future Directions</a>:            Future features under consideration.
+
+<li><a accesskey="7" href="#Copying">Copying</a>:                      Copying and sharing this manual. 
+<li><a accesskey="8" href="#Index">Index</a>:                        Index of concepts. 
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="Overview"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Invoking-Teseq">Invoking Teseq</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Top">Top</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">1 Overview</h2>
+
+<p><a name="index-control-character-1"></a><a name="index-control-sequence-2"></a><a name="index-terminal-3"></a><a name="index-terminal-emulator-4"></a>
+GNU Teseq is a tool for translating files that contain control
+characters and terminal control sequences, into human-understandable
+text. It is intended to aid in debugging problems in terminal
+emulators, software that makes use of special terminal features, and
+interactions between the two.
+
+<p>It is primarily targeted at individuals who possess a basic
+understanding of terminal control sequences, especially
+<a name="index-g_t_0040sc_007bcsi_007d-5"></a><a name="index-Control-Sequence-Introducer-6"></a><acronym><span class="sc">csi</span></acronym> sequences; however, by default Teseq will try to
+identify and describe the sequences that it encounters, and the
+behavior they might produce in a terminal.
+
+<p>Teseq describes control functions as they are interpreted by
+VT100-compatible terminals, and/or terminals compliant with the
+<a name="index-standards-7"></a><a name="index-Ecma_002d48-8"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-9"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 standard. Teseq does <em>not</em> support describing
+control functions according to terminal-specific definitions in a
+database such as
+<a name="index-termcap-10"></a>termcap or
+<a name="index-terminfo-11"></a>terminfo, though future versions may
+include limited support for that (see <a href="#Future-Directions">Future Directions</a>). 
+Therefore, the descriptions Teseq uses for control functions may not
+necessarily match their actual interpretation by whatever terminal
+device the characters were actually intended for.
+
+<p>GNU Teseq is <a href="http://www.gnu.org/philosophy/free-sw.html">free software</a>. See <a href="#Copying">Copying</a>, for copying conditions.
+
+<h3 class="unnumberedsec">A Quick Example</h3>
+
+<p><a name="index-examples-12"></a><a name="index-terminal-13"></a><a name="index-Hello_002c-world_0021-14"></a>
+You can't beat a short example to demonstrate what a program does, so
+here goes. Suppose you've got a program that writes the following
+output to a terminal.
+
+<pre class="example">     <strong>Hi</strong> <span class="roman">there, world</span>
+</pre>
+<p class="noindent">A simple text string, using a boldface font to render the first word.
+
+<p>Suppose that, after a moment or two, the program then replaced the
+final word &ldquo;world&rdquo; with the word &ldquo;earth&rdquo;.
+
+<p>In order to achieve this effect, the program would have to send
+special controls to the terminal to ask it to start writing in bold
+text, and then to revert back to normal text for the rest. To replace
+the final word, it might have to issue a series of backspaces before
+issuing the replacement word. All of this will be handled
+transparently by the terminal, and you wouldn't see any of the special
+characters the program sent to the terminal&mdash;unless perhaps you
+convinced the program to write to a text file as if it were writing to
+a terminal, or ran the program under a terminal capture utility such
+as the
+<a name="index-g_t_0040command_007bscript_007d-15"></a><samp><span class="command">script</span></samp> command.
+
+<p>You may be able to produce this effect yourself with the following
+shell command.
+
+<pre class="example">     $ printf '\033[1mHi\033[m there, world'; sleep 1; \
+         printf '\b\b\b\b\bearth\n'
+</pre>
+<p class="noindent">If you were to examine the output from such a command with a text
+editor, it might look something like this.
+
+<pre class="example">     ^[[1mHi^[[m there, world^H^H^H^H^Hearth
+</pre>
+<p class="noindent">Not very readable, is it? That's where Teseq comes in! When you run
+that gibberish through the <samp><span class="command">teseq</span></samp> command with the default
+settings, you'll get the following output.
+
+<pre class="example">     : Esc [ 1 m
+     &amp; SGR: SELECT GRAPHIC RENDITION
+     " Set bold text.
+     |Hi|
+     : Esc [ 0 m
+     &amp; SGR: SELECT GRAPHIC RENDITION
+     " Clear graphic rendition to defaults.
+     | there, world|
+     . BS/^H BS/^H BS/^H BS/^H BS/^H
+     |earth|.
+</pre>
+<p><a name="index-line-prefixes-16"></a><a name="index-prefixes-17"></a>Note that the special control sequences that tell the terminal to start
+and stop writing in boldface text are separated out on their own lines
+(prefixed with a colon &lsquo;<samp><span class="samp">:</span></samp>&rsquo;), and followed by an identification
+(prefixed with an ampersand &lsquo;<samp><span class="samp">&amp;</span></samp>&rsquo;) and a description of what it
+does (prefixed with a quote character &lsquo;<samp><span class="samp">"</span></samp>&rsquo;).
+
+<p>The actual text appears in lines bracketed by pipe &lsquo;<samp><span class="samp">|</span></samp>&rsquo;
+characters.
+
+<p>The series of single-character backspace controls appear on a line
+prefixed with a period &lsquo;<samp><span class="samp">.</span></samp>&rsquo;, identified by its identifying acronym
+(<span class="sc">bs</span> for <span class="sc">backspace</span>), and its control-key representation
+(Control-H).
+
+<p>The final word, &ldquo;earth&rdquo;, is followed by a period just
+after the closing pipe symbol; this indicates a following linefeed (or
+&ldquo;newline&rdquo;) character.
+
+<p><a name="index-g_t_0040command_007breseq_007d-18"></a>The <samp><span class="command">reseq</span></samp> command may be used to reverse the procedure,
+accepting the above input and printing out the original set of escape
+sequences that produced it. See <a href="#Reseq">Reseq</a>.
+
+<div class="node">
+<p><hr>
+<a name="Invoking-Teseq"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Output-Format">Output Format</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Overview">Overview</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">2 Invoking Teseq</h2>
+
+<p><a name="index-invoking-19"></a><a name="index-options-20"></a><a name="index-usage-21"></a><a name="index-help-22"></a>
+The format for running the <code>teseq</code> program is:
+
+<pre class="example">     teseq <var>options</var> [<var>input-file</var>] [<var>output-file</var>]
+     teseq -h | --help
+     teseq -V | --version
+</pre>
+<p class="noindent">If <var>input-file</var> or <var>output-file</var> is unspecified, or specified
+as &lsquo;<samp><span class="samp">-</span></samp>&rsquo;, standard input/output is used. Output is written to
+standard output by default, but see the <samp><span class="option">-o</span></samp> option.
+
+     <dl>
+<dt><samp><span class="option">--help</span></samp><dt><samp><span class="option">-h</span></samp><dd><a name="index-g_t_002d_002dhelp-23"></a><a name="index-g_t_002dh-24"></a>Print usage information on standard output and exit successfully.
+
+     <br><dt><samp><span class="option">-C</span></samp><dd><a name="index-g_t_002dC-25"></a><a name="index-control-character-26"></a>For control characters from the C0 set of <a name="index-standards-27"></a><a name="index-Ecma_002d48-28"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-29"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429, don't write
+the control-key representation, only the identifying acronym. For
+example, write the carriage-return/line-feed combination as
+     <pre class="example">          . CR LF
+</pre>
+     <p class="noindent">rather than
+     <pre class="example">          . CR/^M LF/^J
+</pre>
+     <br><dt><samp><span class="option">-D</span></samp><dd><a name="index-g_t_002dD-30"></a><a name="index-description-line-31"></a>Don't print description lines (those beginning with &lsquo;<samp><span class="samp">"</span></samp>&rsquo;).
+
+     <br><dt><samp><span class="option">-E</span></samp><dd><a name="index-g_t_002dE-32"></a><a name="index-escape_002dsequence-line-33"></a>Don't print escape-sequence lines (beginning with
+&lsquo;<samp><span class="samp">:</span></samp>&rsquo;). <strong>Warning:</strong> this results in loss of information, and in
+particular means that running the output through the
+<a name="index-g_t_0040command_007breseq_007d-34"></a><samp><span class="command">reseq</span></samp> command won't reproduce the input.
+
+     <p>Still, this option can be useful (in combination with <samp><span class="option">-L</span></samp>) for
+those that don't care about the exact sequence of characters, or what
+their function is called, but just what their effects in the terminal
+are (those that Teseq understands). The output produced
+
+     <br><dt><samp><span class="option">-L</span></samp><dd><a name="index-g_t_002dL-35"></a><a name="index-label-line-36"></a>Don't print identifying labels (lines beginning with &lsquo;<samp><span class="samp">&amp;</span></samp>&rsquo;) for
+escape sequences.
+
+     <br><dt><samp><span class="option">--version</span></samp><dt><samp><span class="option">-V</span></samp><dd><a name="index-g_t_002d_002dversion-37"></a><a name="index-g_t_002dV-38"></a>Print the version number and licensing information of <code>hello</code> on
+standard output and then exit successfully.
+
+     <br><dt><samp><span class="option">-t </span><var>timings</var></samp><dd><a name="index-g_t_002dt-39"></a>Read timing information from <var>timings</var> and emit
+<a name="index-delay-line-40"></a>delay lines. This file must be formatted as if generated by
+<a name="index-g_t_0040command_007bscript_007d-41"></a>&lsquo;<samp><span class="samp">script -t</span></samp>&rsquo; (for the <samp><span class="command">script</span></samp> command from
+util-linux).
+
+     <br><dt><samp><span class="option">-x</span></samp><dd><a name="index-g_t_002dx-42"></a>Allow <samp><span class="command">teseq</span></samp> to recognize some additional, non-standard
+sequences, such as extensions from VT100 or Xterm. Without this
+option, <samp><span class="command">teseq</span></samp> will only interpret functions standardized by
+<a name="index-standards-43"></a><a name="index-Ecma_002d35-44"></a><a name="index-ISO_002fIEC_0040tie_007b_007d2200-45"></a>Ecma-35&nbsp;/ ISO/IEC&nbsp;2200 and <a name="index-standards-46"></a><a name="index-Ecma_002d48-47"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-48"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429. 
+</dl>
+
+<p class="noindent">Note that there are no options for suppressing
+<a name="index-text-line-49"></a>text lines (&lsquo;<samp><span class="samp">|</span></samp>&rsquo;)
+or
+<a name="index-control_002dcharacter-line-50"></a>control-character lines (&lsquo;<samp><span class="samp">.</span></samp>&rsquo;),
+as there are for description or
+escape-sequence lines.
+
+<p>The <samp><span class="option">-L</span></samp>, <samp><span class="option">-D</span></samp> and <samp><span class="option">-E</span></samp> options also have
+mnemonic equivalents of
+<a name="index-g_t_002d_0026-51"></a><samp><span class="option">-&amp;</span></samp>,
+<a name="index-g_t_002d_0022-52"></a><samp><span class="option">-"</span></samp> and
+<a name="index-g_t_002d_003a-53"></a><samp><span class="option">-:</span></samp>
+respectively, corresponding to the
+<a name="index-line-prefix-54"></a><a name="index-prefix_002c-line-55"></a>character prefixes for the lines they suppress; and <samp><span class="option">-C</span></samp> has an
+<a name="index-g_t_002d_005e-56"></a><samp><span class="option">-^</span></samp> equivalent, for the &lsquo;<samp><span class="samp">^X</span></samp>&rsquo;-style control
+representations it suppresses. However, while they may be more practical to remember, they
+will be less practical to type, since both <samp><span class="option">-&amp;</span></samp> and <samp><span class="option">-"</span></samp>
+are apt to be interpreted as special by the shell, and must be quoted
+in order to pass them to the <samp><span class="command">teseq</span></samp> command.
+
+<div class="node">
+<p><hr>
+<a name="Output-Format"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Standards">Standards</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Invoking-Teseq">Invoking Teseq</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">3 Output Format</h2>
+
+<p>Teseq produces output that is primarily intended to be read by humans
+(from input that is usually not). For this reason, Teseq output
+follows the following principles:
+
+     <ul>
+<li>Displays for different sorts of characters and sequences are displayed
+on distinct lines, and are easily distinguished by
+<a name="index-line-prefix-57"></a><a name="index-prefix_002c-line-58"></a>the initial character. 
+<li>Every input character should be unambiguously visible to the user in
+the output (except, of course, when the user explicitly asks not to
+see them, as with the <samp><span class="option">-E</span></samp> option). In particular, trailing
+space should be visible. 
+<li>Line lengths are limited to a maximum of 78 characters, so as to fit
+comfortably on most terminal displays. 
+<li>The output makes clear distinction between line breaks that occur due
+to line limits or intermixed character types, and those that actually
+occurred in the input. 
+</ul>
+
+<p class="noindent">See <a href="#Overview">Overview</a>, for an output example.
+
+<ul class="menu">
+<li><a accesskey="1" href="#Text-Lines">Text Lines</a>
+<li><a accesskey="2" href="#Control_002dCharacter-Lines">Control-Character Lines</a>
+<li><a accesskey="3" href="#Escape_002dSequence-Lines">Escape-Sequence Lines</a>
+<li><a accesskey="4" href="#Label-Lines">Label Lines</a>
+<li><a accesskey="5" href="#Description-Lines">Description Lines</a>
+<li><a accesskey="6" href="#Delay-Lines">Delay Lines</a>
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="Text-Lines"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Control_002dCharacter-Lines">Control-Character Lines</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Output-Format">Output Format</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Output-Format">Output Format</a>
+
+</div>
+
+<h3 class="section">3.1 Text Lines</h3>
+
+<p><a name="index-g_t_007c-59"></a>Lines of plain text input, are output between a pair of pipe characters
+&lsquo;<samp><span class="samp">|</span></samp>&rsquo;, with a final period to indicate the linefeed character. 
+Input:
+
+<pre class="example">     Hello there
+</pre>
+<p class="noindent">Output:
+
+<pre class="example">     |Hello there|.
+</pre>
+<p class="noindent">Trailing whitespace is thus made plainly visible to the reader.
+
+<pre class="example">     |Trailing space:    |.
+</pre>
+<p class="noindent">A blank line is represented as empty content between the pipes.
+
+<pre class="example">     ||.
+</pre>
+<p class="noindent">If the input line is too long to display as one line of output, it
+will be displayed as follows, with dash characters, &lsquo;<samp><span class="samp">-</span></samp>&rsquo;, to
+mark continuity at the beginnings and ends of the lines (outside the
+pipe characters).
+
+<pre class="example">     |This input line |-
+     -|was too long to|-
+     -| fit|.
+</pre>
+<p>You might wonder whether pipe characters themselves might have to be
+escaped, so as to avoid confusion with the surrounding pipes. After
+all, in a C string literal, denoted by double-quotes, &lsquo;<samp><span class="samp">"</span></samp>&rsquo;, one
+must escape literal double-quote characters by preceding them with a
+backslash (and must then also escape literal backslashes): <code>"She
+said \"no\""</code>. However, no such escaping mechanism is needed in Teseq. 
+Input:
+
+<pre class="example">     A line with a pipe | in it, and a line with just a pipe
+     |
+</pre>
+<p class="noindent">Output:
+
+<pre class="example">     |A line with a pipe | in it, and a line with just a pipe|.
+     |||.
+</pre>
+<p class="noindent">No special treatment whatsoever!
+
+<p>The reason Teseq can get away with this is that the pipe character only
+has its special &ldquo;mark the enclosed as normal text&rdquo; meaning, when it
+is the first and the last character on a line of output (aside from a
+possible prefacing dash to indicate a wrapped line, or a trailing dash
+or period).
+
+<p>A lot of the output lines you've seen so far have all ended with a
+period, denoting the linefeed character. However, this isn't always
+the case. For instance, if the input line contains a control
+character, Teseq will close the text line (with just a pipe, no
+period), print a control-character line with the control characters,
+and then finish up the rest of the text line. The following sample
+output represents a single line which contains a delete character and
+a null character:
+
+<pre class="example">     |Fee fi|
+     . DEL/^?
+     |fo|
+     . NUL/^@
+     |fum|.
+</pre>
+<p class="noindent">And here's a line that's terminated with a carriage-return/line-feed
+combination, rather than just a linefeed.
+
+<pre class="example">     |The promised line|
+     . CR/^M LF/^J
+</pre>
+<p class="noindent">The linefeed character is special: when it's preceded by control
+characters or escape sequence, it's printed as a control character;
+when it's preceded by text characters (or by nothing at all), it's
+printed as that final dot thing. This behavior is designed to make a
+newline look like the end of a line or a blank line when it should,
+and to look like a control character when it should.
+
+<p>And of course, if the final line in the file is missing a newline, the
+dot won't appear there either.
+
+<p>Currently, the only characters included in text lines, are those from
+the printable range of characters from US
+<a name="index-standards-60"></a><a name="index-ASCII-61"></a>ASCII (<a name="index-standards-62"></a><a name="index-Ecma_002d6-63"></a><a name="index-ISO-646-64"></a>Ecma-6&nbsp;/ ISO&nbsp;646)&mdash;and sometimes linefeed, represented by the special
+final-dot notation. This means that if the terminal was using a
+character set that high-value code points, all high-valued bytes will
+be represented in hexadecimal on control-character lines, and not
+displayed on a text line. Future versions of Teseq may provide options
+allowing for these characters to be represented properly in text
+lines, but for now, the output format is ASCII characters only. 
+See <a href="#Future-Directions">Future Directions</a>.
+
+<p>Note that even characters falling in the normal range of ASCII
+printable characters may not necessarily be represented correctly: for
+instance, if escape codes are present in the input that would switch
+the terminal to a different national variant of <a name="index-standards-65"></a><a name="index-Ecma_002d6-66"></a><a name="index-ISO-646-67"></a>Ecma-6&nbsp;/ ISO&nbsp;646, then the real
+terminal might display (say, for ISO-646ES)
+&lsquo;<samp><span class="samp">&Ntilde;</span></samp>&rsquo;
+instead of
+&lsquo;<samp><span class="samp">[</span></samp>&rsquo;; but the output from Teseq will not change based on this (even
+though it will recognize and identify the control sequences that
+invoke that character set for use).
+
+<div class="node">
+<p><hr>
+<a name="Control-Character-Lines"></a>
+<a name="Control_002dCharacter-Lines"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Escape_002dSequence-Lines">Escape-Sequence Lines</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Text-Lines">Text Lines</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Output-Format">Output Format</a>
+
+</div>
+
+<h3 class="section">3.2 Control-Character Lines</h3>
+
+<p><a name="index-control-character-68"></a><a name="index-control_002dcharacter-line-69"></a>
+Control-character lines are used to display characters whose code
+values fall outside the range of printable characters from US
+<a name="index-standards-70"></a><a name="index-ASCII-71"></a>ASCII
+(<a name="index-standards-72"></a><a name="index-Ecma_002d6-73"></a><a name="index-ISO-646-74"></a>Ecma-6&nbsp;/ ISO&nbsp;646). That
+is, those characters whose code values fall below below 32 decimal
+(those from the C0 set of control characters from
+<a name="index-standards-75"></a><a name="index-Ecma_002d48-76"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-77"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429); and those whose values are at or above 127 decimal
+(the &ldquo;delete&rdquo; character, and character byte values with the high bit
+set).
+
+<p><a name="index-g_t_002e-78"></a>Control-character lines begin with an initial dot, &lsquo;<samp><span class="samp">.</span></samp>&rsquo;, followed by the
+control characters or high-value bytes being represented.
+
+<pre class="example">     . BEL/^G NUL/^ CR/^M LF/^J DEL/^? xA0 xFF
+</pre>
+<p class="noindent">Control characters (whose numeric codes fall below decimal 32, plus
+the delete character at decimal 127) are represented by a mnemonic
+acronym identifying the character's function. Unless the
+<a name="index-g_t_002dC-79"></a><samp><span class="option">-C</span></samp> was given, this acronym is followed by a slash, and the
+control-key combination that would produce the corresponding character
+(control characters are usually much more recognizable from one or the
+other of their name or their control-character representation, than
+they are by their hexadecimal code value). The &ldquo;control-key
+combination&rdquo; representation consists of a &ldquo;hat&rdquo; or &ldquo;circumflex
+accent&rdquo; character, followed by a character with a value in the range
+of 63 through 95 decimal.
+
+<p><a name="index-delete-character-80"></a>Note that the delete character, designated as
+&lsquo;<samp><span class="samp">DEL/^?</span></samp>&rsquo;, is a special case, in that one can not generally
+reproduce that key by holding down the control key and typing a
+question mark; it is simply used as an identification of the
+key.
+
+<p>Other values (high-value bytes) are represented by the lowercase
+letter &lsquo;<samp><span class="samp">x</span></samp>&rsquo; followed by the two-digit hexadecimal code value for
+the character.
+
+<p>For reference, here's a table of the control characters (plus
+<span class="sc">del</span>). It is based on the information from Table 1 of
+<a name="index-standards-81"></a><a name="index-Ecma_002d48-82"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-83"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 (the control-key representation has been added).
+
+<p><a name="index-control-characters-table-84"></a><a name="index-table-of-control-characters-85"></a>
+<p><table summary=""><tr align="left"><th valign="top" width="10%">Hex </th><th valign="top" width="10%">Key </th><th valign="top" width="20%">Name
+</th><th valign="top" width="10%">Hex </th><th valign="top" width="10%">Key </th><th valign="top" width="20%">Name
+<br></th></tr><tr align="left"><td valign="top" width="10%">x00 </td><td valign="top" width="10%">^@ </td><td valign="top" width="20%">NUL
+</td><td valign="top" width="10%">x10 </td><td valign="top" width="10%">^P </td><td valign="top" width="20%">DLE
+<br></td></tr><tr align="left"><td valign="top" width="10%">x01 </td><td valign="top" width="10%">^A </td><td valign="top" width="20%">SOH
+</td><td valign="top" width="10%">x11 </td><td valign="top" width="10%">^Q </td><td valign="top" width="20%">DC1
+<br></td></tr><tr align="left"><td valign="top" width="10%">x02 </td><td valign="top" width="10%">^B </td><td valign="top" width="20%">STX
+</td><td valign="top" width="10%">x12 </td><td valign="top" width="10%">^R </td><td valign="top" width="20%">DC2
+<br></td></tr><tr align="left"><td valign="top" width="10%">x03 </td><td valign="top" width="10%">^C </td><td valign="top" width="20%">ETX
+</td><td valign="top" width="10%">x13 </td><td valign="top" width="10%">^S </td><td valign="top" width="20%">DC3
+<br></td></tr><tr align="left"><td valign="top" width="10%">x04 </td><td valign="top" width="10%">^D </td><td valign="top" width="20%">EOT
+</td><td valign="top" width="10%">x14 </td><td valign="top" width="10%">^T </td><td valign="top" width="20%">DC4
+<br></td></tr><tr align="left"><td valign="top" width="10%">x05 </td><td valign="top" width="10%">^E </td><td valign="top" width="20%">ENQ
+</td><td valign="top" width="10%">x15 </td><td valign="top" width="10%">^U </td><td valign="top" width="20%">NAK
+<br></td></tr><tr align="left"><td valign="top" width="10%">x06 </td><td valign="top" width="10%">^F </td><td valign="top" width="20%">ACK
+</td><td valign="top" width="10%">x16 </td><td valign="top" width="10%">^V </td><td valign="top" width="20%">SYN
+<br></td></tr><tr align="left"><td valign="top" width="10%">x07 </td><td valign="top" width="10%">^G </td><td valign="top" width="20%">BEL
+</td><td valign="top" width="10%">x17 </td><td valign="top" width="10%">^W </td><td valign="top" width="20%">ETB
+<br></td></tr><tr align="left"><td valign="top" width="10%">x08 </td><td valign="top" width="10%">^H </td><td valign="top" width="20%">BS
+</td><td valign="top" width="10%">x18 </td><td valign="top" width="10%">^X </td><td valign="top" width="20%">CAN
+<br></td></tr><tr align="left"><td valign="top" width="10%">x09 </td><td valign="top" width="10%">^I </td><td valign="top" width="20%">TAB
+</td><td valign="top" width="10%">x19 </td><td valign="top" width="10%">^Y </td><td valign="top" width="20%">EM
+<br></td></tr><tr align="left"><td valign="top" width="10%">x0A </td><td valign="top" width="10%">^J </td><td valign="top" width="20%">LF
+</td><td valign="top" width="10%">x1A </td><td valign="top" width="10%">^Z </td><td valign="top" width="20%">SUB
+<br></td></tr><tr align="left"><td valign="top" width="10%">x0B </td><td valign="top" width="10%">^K </td><td valign="top" width="20%">VT
+</td><td valign="top" width="10%">x1B </td><td valign="top" width="10%">^[ </td><td valign="top" width="20%">ESC
+<br></td></tr><tr align="left"><td valign="top" width="10%">x0C </td><td valign="top" width="10%">^L </td><td valign="top" width="20%">FF
+</td><td valign="top" width="10%">x1C </td><td valign="top" width="10%">^\ </td><td valign="top" width="20%">IS4
+<br></td></tr><tr align="left"><td valign="top" width="10%">x0D </td><td valign="top" width="10%">^M </td><td valign="top" width="20%">CR
+</td><td valign="top" width="10%">x1D </td><td valign="top" width="10%">^] </td><td valign="top" width="20%">IS3
+<br></td></tr><tr align="left"><td valign="top" width="10%">x0E </td><td valign="top" width="10%">^N </td><td valign="top" width="20%">SO
+</td><td valign="top" width="10%">x1E </td><td valign="top" width="10%">^^ </td><td valign="top" width="20%">IS2
+<br></td></tr><tr align="left"><td valign="top" width="10%">x0F </td><td valign="top" width="10%">^O </td><td valign="top" width="20%">SI
+</td><td valign="top" width="10%">x1F </td><td valign="top" width="10%">^_ </td><td valign="top" width="20%">IS1
+<br></td></tr><tr align="left"><td valign="top" width="10%">x7F </td><td valign="top" width="10%">^? </td><td valign="top" width="20%">DEL
+</td><td valign="top" width="10%"></td><td valign="top" width="10%"></td><td valign="top" width="20%">
+<br></td></tr></table>
+
+<div class="node">
+<p><hr>
+<a name="Escape-Sequence-Lines"></a>
+<a name="Escape_002dSequence-Lines"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Label-Lines">Label Lines</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Control_002dCharacter-Lines">Control-Character Lines</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Output-Format">Output Format</a>
+
+</div>
+
+<h3 class="section">3.3 Escape-Sequence Lines</h3>
+
+<p><a name="index-escape_002dsequence-lines-86"></a>
+Escape-sequence lines, which begin with the colon, &lsquo;<samp><span class="samp">:</span></samp>&rsquo;, don't add
+any new semantics&mdash;any characters in an escape-sequence line could be
+represented on control-character and text lines (and, with just a
+one-character change in the escape sequence, would be). But they
+serve to set escape sequences apart from normal control-character or
+text lines, making it easier to see on one line all the characters
+that contribute to a single control function, rather than splitting
+them between control-character and text lines. 
+Here's an example with some intermixed escape-sequence and text lines
+(without the usual label and description lines, which are described in
+later sections):
+
+<pre class="example">     |Well |
+     : Esc [ 3 ; 31 m
+     |Daniel|
+     : Esc [ 23 ; 39 m
+     | didn't do it...|.
+</pre>
+<p class="noindent">The two escape-sequence lines represent, respectively, controls that
+set text rendering to use italics in the color red, and to set normal
+font rendering in the default color (the actual interpretation of
+these controls may vary by application).
+
+<p>Note that the escape-sequence lines include control characters (well,
+character, namely &lsquo;<samp><span class="samp">Esc</span></samp>&rsquo;) intermixed with normal text
+characters. So the above could have been written like:
+
+<pre class="example">     |Well |
+     . ESC
+     |[3;31mDaniel|
+     . ESC
+     |[23;39m didn't do it...|.
+</pre>
+<p class="noindent">But this loses the separation between characters that, yes, happen to
+be text characters, but really just contribute to some terminal
+control function invocation, and characters that are, really and
+truly, text.
+
+<pre class="example">     : Esc [ 3 ; 31 m
+</pre>
+<p class="noindent">Some things to note. First, the escape key is noted as &lsquo;<samp><span class="samp">Esc</span></samp>&rsquo;, and
+not &lsquo;<samp><span class="samp">ESC</span></samp>&rsquo; as it would be in a control-character line. Don't ask
+me why; maybe I just felt it was one more thing to dilineate between
+escape-sequence lines and control-character lines.
+
+<p>Also, each character is separated from its neighbors by a single
+space, except that strings of digits are lumped all together.
+
+<p>Each character is represented by itself (including colon, as long as
+it's not at the start of the line), except the escape character, and
+the space character (represented as &lsquo;<samp><span class="samp">Spc</span></samp>&rsquo;). Control characters
+and high-value bytes are not currently represented on escape-sequence
+lines (they are not part of any escape sequences Teseq recognizes), but
+if they are in the future (say, as part of non-standardized escape
+sequences), they will most likely be represented as &lsquo;<samp><span class="samp">xXX</span></samp>&rsquo;
+hexadecimal strings (as high-value bytes are represented in
+control-character lines.
+
+<p>If an escape sequence requires more than one output line, the
+continuing lines will also begin with a colon, followed by two spaces
+(instead of one). Lines will not be split in the middle of a number.
+
+<pre class="example">     : Esc [ 1 ; 2 ; 3 ; 4
+     :  ; 5 ; 6 ; 7 m
+</pre>
+<ul class="menu">
+<li><a accesskey="1" href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a>
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="Escape-Sequence-Recognition"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Escape_002dSequence-Lines">Escape-Sequence Lines</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Escape_002dSequence-Lines">Escape-Sequence Lines</a>
+
+</div>
+
+<h4 class="unnumberedsubsec">Recognizing Escape Sequences</h4>
+
+<p><a name="index-escape-sequence_002c-defined-87"></a>
+Okay, great, so escape-sequence lines help distinguish
+control-characters and text characters that make up an escape sequence
+from those that don't. But what exactly makes up an escape sequence,
+anyway?
+
+<p>The <a name="index-standards-88"></a><a name="index-Ecma_002d35-89"></a><a name="index-ISO_002fIEC_0040tie_007b_007d2200-90"></a>Ecma-35&nbsp;/ ISO/IEC&nbsp;2200 standard defines an escape sequence to be a sequence
+of characters beginning with <span class="sc">esc</span>, with a
+<a name="index-final-byte-91"></a><a name="index-escape-sequence_002c-final-byte-92"></a>final byte in the range
+<code>x30</code>&ndash;<code>x7E</code>, and any number (including zero) of
+<a name="index-intermediate-byte-93"></a><a name="index-escape-sequence_002c-intermediate-byte-94"></a>intermediate bytes in the range <code>x20</code>-<code>x2F</code>. 
+<a href="#ascii">ascii</a>
+has been provided as a reference for finding which characters match
+which codes.
+
+<div class="float">
+<a name="ascii"></a><a name="index-table-of-printable-ASCII-characters-95"></a>
+<p><table summary=""><tr align="left"><th valign="top"></th><th valign="top">x2X </th><th valign="top">x3X </th><th valign="top">x4X </th><th valign="top">x5X
+</th><th valign="top">x6X </th><th valign="top">x7X
+<br></th></tr><tr align="left"><td valign="top"><strong>xX0</strong> </td><td valign="top"><span class="sc">spc</span> </td><td valign="top">0 </td><td valign="top">@ </td><td valign="top">P
+</td><td valign="top">` </td><td valign="top">p
+<br></td></tr><tr align="left"><td valign="top"><strong>xX1</strong> </td><td valign="top">! </td><td valign="top">1 </td><td valign="top">A </td><td valign="top">Q </td><td valign="top">a </td><td valign="top">q
+<br></td></tr><tr align="left"><td valign="top"><strong>xX2</strong> </td><td valign="top">" </td><td valign="top">2 </td><td valign="top">B </td><td valign="top">R </td><td valign="top">b </td><td valign="top">r
+<br></td></tr><tr align="left"><td valign="top"><strong>xX3</strong> </td><td valign="top"># </td><td valign="top">3 </td><td valign="top">C </td><td valign="top">S </td><td valign="top">c </td><td valign="top">s
+<br></td></tr><tr align="left"><td valign="top"><strong>xX4</strong> </td><td valign="top">$ </td><td valign="top">4 </td><td valign="top">D </td><td valign="top">T </td><td valign="top">d </td><td valign="top">t
+<br></td></tr><tr align="left"><td valign="top"><strong>xX5</strong> </td><td valign="top">% </td><td valign="top">5 </td><td valign="top">E </td><td valign="top">U </td><td valign="top">e </td><td valign="top">u
+<br></td></tr><tr align="left"><td valign="top"><strong>xX6</strong> </td><td valign="top">&amp; </td><td valign="top">6 </td><td valign="top">F </td><td valign="top">V </td><td valign="top">f </td><td valign="top">v
+<br></td></tr><tr align="left"><td valign="top"><strong>xX7</strong> </td><td valign="top">' </td><td valign="top">7 </td><td valign="top">G </td><td valign="top">W </td><td valign="top">g </td><td valign="top">w
+<br></td></tr><tr align="left"><td valign="top"><strong>xX8</strong> </td><td valign="top">( </td><td valign="top">8 </td><td valign="top">H </td><td valign="top">X </td><td valign="top">h </td><td valign="top">x
+<br></td></tr><tr align="left"><td valign="top"><strong>xX9</strong> </td><td valign="top">) </td><td valign="top">9 </td><td valign="top">I </td><td valign="top">Y </td><td valign="top">i </td><td valign="top">y
+<br></td></tr><tr align="left"><td valign="top"><strong>xXA</strong> </td><td valign="top">* </td><td valign="top">: </td><td valign="top">J </td><td valign="top">Z </td><td valign="top">j </td><td valign="top">z
+<br></td></tr><tr align="left"><td valign="top"><strong>xXB</strong> </td><td valign="top">+ </td><td valign="top">; </td><td valign="top">K </td><td valign="top">[ </td><td valign="top">k </td><td valign="top">{
+<br></td></tr><tr align="left"><td valign="top"><strong>xXC</strong> </td><td valign="top">, </td><td valign="top">&lt; </td><td valign="top">L </td><td valign="top">\ </td><td valign="top">l </td><td valign="top">|
+<br></td></tr><tr align="left"><td valign="top"><strong>xXD</strong> </td><td valign="top">- </td><td valign="top">= </td><td valign="top">M </td><td valign="top">] </td><td valign="top">m </td><td valign="top">}
+<br></td></tr><tr align="left"><td valign="top"><strong>xXE</strong> </td><td valign="top">. </td><td valign="top">&gt; </td><td valign="top">N </td><td valign="top">^ </td><td valign="top">n </td><td valign="top">~
+<br></td></tr><tr align="left"><td valign="top"><strong>xXF</strong> </td><td valign="top">/ </td><td valign="top">? </td><td valign="top">O </td><td valign="top">_ </td><td valign="top">o </td><td valign="top"><span class="sc">del</span>
+<br></td></tr></table>
+<p><strong class="float-caption">Table 3.1</strong></p></div>
+
+<p class="noindent">So, for instance, the following is a valid escape sequence.
+
+<pre class="example">     : Esc $ ( C
+</pre>
+<p class="noindent">&lsquo;<samp><span class="samp">$</span></samp>&rsquo; and &lsquo;<samp><span class="samp">(</span></samp>&rsquo; have code values <code>x24</code> and <code>x28</code>, and
+so are valid intermediate bytes; &lsquo;<samp><span class="samp">C</span></samp>&rsquo; has the value <code>x43</code>,
+and so terminates the escape sequence.
+
+<p>You may have noticed that a lot of the examples of escape sequences in
+this document don't actually follow this format. For instance,
+
+<pre class="example">     : Esc [ 3 ; 31 m
+</pre>
+<p class="noindent">According to the definition we just gave, &lsquo;<samp><span class="samp">[</span></samp>&rsquo; should be the final
+byte of an escape sequence. So why does Teseq keep going until it
+reaches the &lsquo;<samp><span class="samp">m</span></samp>&rsquo;?
+
+<p>The answer is that the escape sequence <em>does</em> end with the
+&lsquo;<samp><span class="samp">[</span></samp>&rsquo;; but the combination &lsquo;<samp><span class="samp">Esc [</span></samp>&rsquo; invokes a control named
+<code>CONTROL SEQUENCE INTRODUCER</code>
+<a name="index-g_t_0040sc_007bcsi_007d-96"></a>(<span class="sc">csi</span>). The <span class="sc">csi</span> control
+marks the beginning of a different kind of sequence, called a
+<a name="index-control-sequence-97"></a>&ldquo;control sequence&rdquo;. Control sequences are described by the
+<a name="index-standards-98"></a><a name="index-Ecma_002d48-99"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-100"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 standard, which considers it to be a distinct concept
+from escape sequences; however, Teseq treats both types of sequences as
+&ldquo;escape sequences&rdquo;.
+
+<p>A control sequence starts with the two-character <span class="sc">csi</span> escape
+sequence &lsquo;<samp><span class="samp">Esc [</span></samp>&rsquo;, followed by an optional sequence of
+<a name="index-parameter-byte-101"></a>parameter bytes in the range <code>x30</code>&ndash;<code>x3F</code>, an optional
+sequence of
+<a name="index-intermediate-byte-102"></a>intermediate bytes in the range <code>x20</code>&ndash;<code>x2F</code> (the same range
+as intermediate bytes in a regular escape sequence), and a
+<a name="index-final-byte-103"></a>final byte in the range <code>x40</code>&ndash;<code>x7e</code>. The set of standard
+control sequence functions are defined in <a name="index-standards-104"></a><a name="index-Ecma_002d48-105"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-106"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429.
+
+<p>When used in accordance with the standard, the parameter bytes are
+used to provide a semicolon-separated list of numeric parameters to
+the control function being invoked. These affect the details of the
+control function's behavior; but not which control function is being
+invoked:
+
+<pre class="example">     : Esc [ 1 m
+     &amp; SGR: SELECT GRAPHIC RENDITION
+     " Set bold text.
+     : Esc [ 0 m
+     &amp; SGR: SELECT GRAPHIC RENDITION
+     " Clear graphic rendition to defaults.
+</pre>
+<p class="noindent">Both sequences end with the same sequence of intermediate bytes (none)
+and final byte; both invoke the <span class="sc">sgr</span> control function. But the
+first one indicates that following text should be rendered boldface,
+while the second indicates that text rendering should be restored to
+its default settings.
+
+<p>Intermediate bytes, however, together with the final byte, <em>do</em>
+affect the meaning of the function invoked. Currently, <a name="index-standards-107"></a><a name="index-Ecma_002d48-108"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-109"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429
+only defines functions for either no intermediate bytes, or a single
+space character (<code>x20</code>) as the intermediate byte.
+
+<pre class="example">     : Esc [ A
+     &amp; CUU: CURSOR UP
+     : Esc [ Spc A
+     &amp; SR: SCROLL RIGHT
+</pre>
+<p class="noindent"><a name="index-standards-110"></a><a name="index-Ecma_002d48-111"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-112"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 describes an alternate representation for <span class="sc">csi</span>; the
+8-bit byte value <code>x9B</code>. Teseq does not currently treat that value
+specially, nor any of the other high-value bytes from the C1 set of
+control functions. This is because whether or not those bytes indicate
+control functions is dependent upon what character encoding is in
+use. Future versions of Teseq may support an option to interpret these
+forms as well, at which time control sequences using the single-byte
+<span class="sc">csi</span> control will probably be rendered like:
+
+<pre class="example">     : CSI [ 1 m
+</pre>
+<p class="noindent"><a name="index-standards-113"></a><a name="index-Ecma_002d48-114"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-115"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 also describes another kind of sequence called
+<a name="index-control-string-116"></a>&ldquo;control strings&rdquo;. These are not interpreted by Teseq; the
+control characters involved (for example, &lsquo;<samp><span class="samp">SOS/^X</span></samp>&rsquo; and
+&lsquo;<samp><span class="samp">ST/^\</span></samp>&rsquo; will be printed on control-character lines, and any text
+characters will be displayed on text lines.
+
+<p>Future versions of Teseq will probably not depart from this display
+behavior; however, support for some common interpretations for control
+strings may be added, in which case a label line and/or description
+line might follow the control string, describing its usual
+interpretation.
+
+<div class="node">
+<p><hr>
+<a name="Label-Lines"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Description-Lines">Description Lines</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Escape_002dSequence-Lines">Escape-Sequence Lines</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Output-Format">Output Format</a>
+
+</div>
+
+<h3 class="section">3.4 Label Lines</h3>
+
+<p><a name="index-label-line-117"></a>
+<a name="index-g_t_0026-118"></a>Label lines begin with the ampersand, &lsquo;<samp><span class="samp">&amp;</span></samp>&rsquo;:
+
+<pre class="example">     &amp; SGR: SELECT GRAPHIC RENDITION
+</pre>
+<p class="noindent">Label lines always describe a control function, and are always
+preceded by the escape sequence that invokes that function (unless the
+<a name="index-g_t_002dE-119"></a><samp><span class="option">-E</span></samp> option was given, suppressing output for escape-sequence
+lines).
+
+<p>The format of a label line's content is always <var>acronym</var>:
+<var>name</var>; both of these are defined for each control function
+by <a name="index-standards-120"></a><a name="index-Ecma_002d48-121"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-122"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429. If the <samp><span class="option">-x</span></samp> option was specified to
+<samp><span class="command">teseq</span></samp>, then some labels may also name private functions
+defined by DEC for the VT100 and similar terminals.
+
+<p>Label lines currently are never wrapped; however, future
+versions of Teseq may wrap label lines. At that time, continuation
+label lines will probably consist of an extra space after the
+ampersand (similar to how escape-sequence lines are wrapped). Lines
+will never be split in the middle of a word.
+
+<p>Future versions of Teseq may use label lines to describe things besides
+escape sequences; for instance, control characters or control strings,
+or other strings that may be interpreted specially by some devices or
+applications.
+
+<div class="node">
+<p><hr>
+<a name="Description-Lines"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Delay-Lines">Delay Lines</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Label-Lines">Label Lines</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Output-Format">Output Format</a>
+
+</div>
+
+<h3 class="section">3.5 Description Lines</h3>
+
+<p><a name="index-description-line-123"></a>
+<a name="index-g_t_0022-124"></a>Description lines begin with the double-quote, &lsquo;<samp><span class="samp">"</span></samp>&rsquo;:
+
+<pre class="example">     " Move the cursor up 2 lines.
+</pre>
+<p class="noindent">Sequences of description lines are generally preceded by a label line
+(unless the
+<a name="index-g_t_002dL-125"></a><samp><span class="option">-L</span></samp> option was supplied), and describe the same
+control function labeled by that line. More than one description line
+may be used to describe a function, whereas only one label line is
+ever used for a control function.
+
+<p>It is important to understand that the descriptions provided are only
+approximations and guesses, and suffer from various limitations. The
+behavior of many control functions are dependent on terminal state
+that Teseq does not track. Teseq chooses a common default setting for
+applicable terminal modes, and issues a description based on that. For
+instance, the <span class="sc">insert line</span> function is described as follows:
+
+<pre class="example">     : Esc [ 2 L
+     &amp; IL: INSERT LINE
+     " Shift lines after the cursor to make room for 2 new lines.
+</pre>
+<p class="noindent">However, depending on the current setting of the
+<span class="sc">line editing mode</span>, the actual behavior might be to shift the
+lines <em>before</em> the cursor, rather than the ones after. Future
+versions of Teseq may track enough terminal state to improve the
+accuracy of these descriptions, but they would still need to
+guess at the initial state of the terminal, for any modes that had not
+been explicitly set or reset.
+
+<p>Descriptions are also often inaccurate. For instance, the description
+for <span class="sc">insert line</span> should really read &ldquo;shift the current line and
+the lines after the cursor<small class="dots">...</small>&rdquo;. In addition, no mention is made of
+the fact that the extent of the shifted part is dependent on previous
+invocations of <span class="sc">select editing extent</span>. A conscious decision has
+been made to value brevity over accuracy.
+
+<p>Also, the descriptions are based (loosely) on the semantics defined by
+<a name="index-standards-126"></a><a name="index-Ecma_002d48-127"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-128"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429. There is no guarantee that this corresponds to the
+semantics defined for the actual terminal on which these functions
+were invoked. The terminal may have different behavior, or may not
+even accept the function. The descriptions are intended as a rough aid in
+remembering what a given function does; to really understand the
+actual semantics of a function, you should read the terminal device's
+documentation, and/or <a name="index-standards-129"></a><a name="index-Ecma_002d48-130"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-131"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429.
+
+<p>Description lines currently are never wrapped; however, future
+versions of Teseq may wrap label lines. At that time, continuation
+label lines will probably consist of an extra space after the
+double-quote (just as label lines are wrapped). Lines will never be
+split in the middle of a word.
+
+<p>Future versions of Teseq may use description lines to describe thigns
+besides escape sequences; for instance, control characters or control
+strings, or other strings that may be interpreted specially by some
+devices or applications.
+
+<p>Some description lines may appear without a preceding label line (even
+when <samp><span class="option">-L</span></samp> was not specified), in the event that no standard
+designation for the function is known.
+
+<div class="node">
+<p><hr>
+<a name="Delay-Lines"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Description-Lines">Description Lines</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Output-Format">Output Format</a>
+
+</div>
+
+<h3 class="section">3.6 Delay Lines</h3>
+
+<p><a name="index-delay-line-132"></a><a name="index-g_t_0040_0040-133"></a>
+A delay line begins with an &ldquo;at&rdquo; sign &lsquo;<samp><span class="samp">@</span></samp>&rsquo;, and contains a
+single numeric value; a number of seconds to pause before continuing
+on to process further lines. The
+<a name="index-g_t_0040command_007breseq_007d-134"></a><samp><span class="command">reseq</span></samp> program will obey these instructions only if it is
+given the <samp><span class="option">--replay</span></samp> option.
+
+<pre class="example">     @ 3.0051
+</pre>
+<p class="noindent">Delay lines are only issued by <samp><span class="command">teseq</span></samp> when it has been given
+the <samp><span class="option">-t</span></samp> option, which uses a timing file from
+<a name="index-g_t_0040command_007bscript_007d-135"></a>&lsquo;<samp><span class="samp">script -t</span></samp>&rsquo; to determine where to insert delays. Aside from that,
+delay lines can be useful for manual insertion into Teseq
+output, to introduce a delay at a particular point when using
+&lsquo;<samp><span class="samp">reseq --replay</span></samp>&rsquo;, which can aid in giving the user time to more
+easily observe terminal behavior.
+
+<div class="node">
+<p><hr>
+<a name="Standards"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Reseq">Reseq</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Output-Format">Output Format</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">4 Standards</h2>
+
+<p>The most authoritative source of information on control functions,
+their representations in bytes, and their intended meaning, is the
+<a name="index-standards-136"></a><a name="index-Ecma_002d48-137"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-138"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 standard. Also related is the <a name="index-standards-139"></a><a name="index-Ecma_002d35-140"></a><a name="index-ISO_002fIEC_0040tie_007b_007d2200-141"></a>Ecma-35&nbsp;/ ISO/IEC&nbsp;2200 standard,
+which describes control functions for switching the character
+encoding, and defines the possible forms of escape sequence (note
+that, in Teseq,
+<a name="index-escape-sequence-142"></a>&ldquo;escape sequence&rdquo; refers to both the Ecma-48 concept of
+<a name="index-control-sequence-143"></a>&ldquo;control sequences&rdquo;, and the official Ecma-35 meaning of &ldquo;escape
+sequence&rdquo;.
+
+<p>These standards are available, &ldquo;free of charge and copyright&rdquo;, at<br>
+<a href="http://www.ecma-international.org/">http://www.ecma-international.org/</a>.
+
+<div class="node">
+<p><hr>
+<a name="Reseq"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Future-Directions">Future Directions</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Standards">Standards</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">5 The Reseq Command</h2>
+
+<p><a name="index-g_t_0040command_007breseq_007d-144"></a><a name="index-Reversing-the-output-of-_0040command_007bteseq_007d-145"></a><a name="index-g_t_0040command_007bteseq_007d_002c-reversing-the-output-146"></a>
+Synopsis:
+
+<pre class="example">     reseq [-t|--timings=<var>timings</var>] <var>input</var> <var>output</var>
+     reseq [--replay] <var>input</var> [<var>output</var>]
+     reseq -h | --help
+     reseq -V | --version
+</pre>
+<p>The <var>input</var> and <var>output</var> arguments are mandatory, but may be
+specified as &lsquo;<samp><span class="samp">-</span></samp>&rsquo; for standard input or output. Reseq doesn't let
+output default to standard output because, since it generates raw
+terminal codes, it is uncommon (and potentially unsafe) to send this
+directly to the terminal. The exception is when the <samp><span class="option">--replay</span></samp>
+argument has been specified, which is only useful when output is going
+to the terminal; in that event, the <var>output</var> argument is optional.
+
+     <dl>
+<dt><samp><span class="option">--help</span></samp><dt><samp><span class="option">-h</span></samp><dd><a name="index-g_t_002d_002dhelp-147"></a><a name="index-g_t_002dh-148"></a>Print usage information on standard output and exit successfully.
+
+     <br><dt><samp><span class="option">--version</span></samp><dt><samp><span class="option">-V</span></samp><dd><a name="index-g_t_002d_002dversion-149"></a><a name="index-g_t_002dV-150"></a>Print the version number and licensing information of <code>hello</code> on
+standard output and then exit successfully.
+
+     <br><dt><samp><span class="option">--replay</span></samp><dd><a name="index-g_t_002d_002dreplay-151"></a>Honor delay lines in the input, pausing the specified amount of time
+before continuing to process the next line. This is useful for
+producing behavior equivalent to that of the
+<a name="index-g_t_0040command_007bscriptreplay_007d-152"></a><samp><span class="command">scriptreplay</span></samp> command (from
+<a href="http://userweb.kernel.org/~kzak/util-linux-ng/">util-linux</a>),
+but using a Teseq output file as input, rather than a raw typescript
+file.
+
+     <br><dt><samp><span class="option">-t </span><var>timings</var></samp><dt><samp><span class="option">--timings </span><var>timings</var></samp><dd><a name="index-g_t_002dt-153"></a><a name="index-g_t_002d_002dtimings-154"></a>Produce timing information from delay lines, in the format generated
+by
+<a name="index-g_t_0040command_007bscript_007d-155"></a>&lsquo;<samp><span class="samp">script -t</span></samp>&rsquo;. This can be used to regenerate <samp><span class="command">script</span></samp>
+typescript and timing files that were fed as the input to
+&lsquo;<samp><span class="samp">teseq -t timings</span></samp>&rsquo;. 
+</dl>
+
+<p class="noindent">Teseq also comes with a <samp><span class="command">reseq</span></samp> command, which essentially
+does the reverse of <samp><span class="command">teseq</span></samp>. If you feed it the output from
+<samp><span class="command">teseq</span></samp>, it will generate the corresponding escape
+sequences&mdash;that is, it will generate the same content that was fed to
+<samp><span class="command">teseq</span></samp> to produce that output. The shell command
+
+<pre class="example">     $ teseq foo | reseq - -
+</pre>
+<p class="noindent">is roughly equivalent to
+
+<pre class="example">     $ cat foo
+</pre>
+<p class="noindent">The <samp><span class="command">reseq</span></samp> command is written in
+<a name="index-Perl-156"></a>Perl, unlike <samp><span class="command">teseq</span></samp>
+which is compiled from C-language sources, and so requires a Perl
+interpreter to be present in order to function.
+
+<p>Of the various types of lines output by the <samp><span class="command">teseq</span></samp> command,
+<samp><span class="command">reseq</span></samp> only understands four;
+<a name="index-text-line-157"></a>text lines:
+
+<pre class="example">     |Hello, there|.
+     |Here are|-
+     -|some wrapped|-
+     -|lines|.
+</pre>
+<p class="noindent"><a name="index-control_002dcharacter-line-158"></a>control-character lines:
+
+<pre class="example">     . CR/^M LF/^J
+     . CR LF
+</pre>
+<p class="noindent"><a name="index-escape_002dsequence-line-159"></a>escape-sequence lines:
+
+<pre class="example">     : Esc [ 31 ; 3 m
+</pre>
+<p class="noindent">And, of course,
+<a name="index-delay-line-160"></a>delay lines:
+
+<pre class="example">     @ 3.14159
+</pre>
+<p class="noindent">Any other sorts of lines encountered are ignored and discarded, and
+have no effect on the output.
+
+<div class="node">
+<p><hr>
+<a name="Future-Directions"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Copying">Copying</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Reseq">Reseq</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">6 Future Directions</h2>
+
+<p>Here are some potential additions that may appear in future versions of
+Teseq.
+
+<h3 class="unnumberedsec">Unicode Output</h3>
+
+<p>Currently, all output from <samp><span class="command">teseq</span></samp> is in US
+<a name="index-standards-161"></a><a name="index-ASCII-162"></a>ASCII; but future versions of Teseq might support output in more
+extensive character encodings, such as
+<a name="index-UTF_002d8-163"></a>UTF-8 or other Unicode-based encodings. If that happens, Teseq might
+also add support for the handling of <a name="index-standards-164"></a><a name="index-Ecma_002d35-165"></a><a name="index-ISO_002fIEC_0040tie_007b_007d2200-166"></a>Ecma-35&nbsp;/ ISO/IEC&nbsp;2200 character
+code-switching sequences, such that the characters given in
+<a name="index-text-line-167"></a>text lines would reflect the actual characters as they would actually
+appear in the terminal device, depending on the current encoding
+state.
+
+<h3 class="unnumberedsec">Terminal Database Awareness</h3>
+
+<p>Future versions of Teseq may allow the user to specify the name of the
+terminal for which the input was intended, which Teseq will then use
+to detect when a feature from that terminal's entry in the terminal
+database (for example, the
+<a name="index-terminfo-168"></a>terminfo database) has been invoked.
+
+<p>Since features from terminal database entries often involve multiple
+<a name="index-standards-169"></a><a name="index-Ecma_002d48-170"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-171"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 controls, Teseq would probably need to indicate out-of-band
+&ldquo;start&rdquo; and &ldquo;end&rdquo; markers for the feature. For instance, if the
+definition for the &lsquo;<samp><span class="samp">clear</span></samp>&rsquo; feature for the specified terminal
+is &lsquo;<samp><span class="samp">\E[H\E[J</span></samp>&rsquo;, then an input string of &lsquo;<samp><span class="samp">\E[m\E[H\E[J\E(B</span></samp>&rsquo;
+might result in output like:
+
+<pre class="example">     : Esc [ m
+     # start: clear
+     : Esc [ H
+     : Esc [ J
+     # end: clear
+     : Esc ( B
+</pre>
+<p class="noindent">(Label and description lines have been removed from this example.)
+
+<p>No commitment has been made to any particular output format for this
+feature; the above is intended purely as an example of one possible
+approach.
+
+<div class="node">
+<p><hr>
+<a name="Copying"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Index">Index</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Future-Directions">Future Directions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="appendix">Appendix A Copying</h2>
+
+<!-- The GNU Free Documentation License. -->
+<div align="center">Version 1.2, November 2002</div>
+
+<!-- This file is intended to be included within another document, -->
+<!-- hence no sectioning command or @node. -->
+<pre class="display">     Copyright &copy; 2000,2001,2002 Free Software Foundation, Inc.
+     51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA
+     
+     Everyone is permitted to copy and distribute verbatim copies
+     of this license document, but changing it is not allowed.
+</pre>
+     <ol type=1 start=0>
+<li>PREAMBLE
+
+     <p>The purpose of this License is to make a manual, textbook, or other
+functional and useful document <dfn>free</dfn> in the sense of freedom: to
+assure everyone the effective freedom to copy and redistribute it,
+with or without modifying it, either commercially or noncommercially. 
+Secondarily, this License preserves for the author and publisher a way
+to get credit for their work, while not being considered responsible
+for modifications made by others.
+
+     <p>This License is a kind of &ldquo;copyleft&rdquo;, which means that derivative
+works of the document must themselves be free in the same sense.  It
+complements the GNU General Public License, which is a copyleft
+license designed for free software.
+
+     <p>We have designed this License in order to use it for manuals for free
+software, because free software needs free documentation: a free
+program should come with manuals providing the same freedoms that the
+software does.  But this License is not limited to software manuals;
+it can be used for any textual work, regardless of subject matter or
+whether it is published as a printed book.  We recommend this License
+principally for works whose purpose is instruction or reference.
+
+     <li>APPLICABILITY AND DEFINITIONS
+
+     <p>This License applies to any manual or other work, in any medium, that
+contains a notice placed by the copyright holder saying it can be
+distributed under the terms of this License.  Such a notice grants a
+world-wide, royalty-free license, unlimited in duration, to use that
+work under the conditions stated herein.  The &ldquo;Document&rdquo;, below,
+refers to any such manual or work.  Any member of the public is a
+licensee, and is addressed as &ldquo;you&rdquo;.  You accept the license if you
+copy, modify or distribute the work in a way requiring permission
+under copyright law.
+
+     <p>A &ldquo;Modified Version&rdquo; of the Document means any work containing the
+Document or a portion of it, either copied verbatim, or with
+modifications and/or translated into another language.
+
+     <p>A &ldquo;Secondary Section&rdquo; is a named appendix or a front-matter section
+of the Document that deals exclusively with the relationship of the
+publishers or authors of the Document to the Document's overall
+subject (or to related matters) and contains nothing that could fall
+directly within that overall subject.  (Thus, if the Document is in
+part a textbook of mathematics, a Secondary Section may not explain
+any mathematics.)  The relationship could be a matter of historical
+connection with the subject or with related matters, or of legal,
+commercial, philosophical, ethical or political position regarding
+them.
+
+     <p>The &ldquo;Invariant Sections&rdquo; are certain Secondary Sections whose titles
+are designated, as being those of Invariant Sections, in the notice
+that says that the Document is released under this License.  If a
+section does not fit the above definition of Secondary then it is not
+allowed to be designated as Invariant.  The Document may contain zero
+Invariant Sections.  If the Document does not identify any Invariant
+Sections then there are none.
+
+     <p>The &ldquo;Cover Texts&rdquo; are certain short passages of text that are listed,
+as Front-Cover Texts or Back-Cover Texts, in the notice that says that
+the Document is released under this License.  A Front-Cover Text may
+be at most 5 words, and a Back-Cover Text may be at most 25 words.
+
+     <p>A &ldquo;Transparent&rdquo; copy of the Document means a machine-readable copy,
+represented in a format whose specification is available to the
+general public, that is suitable for revising the document
+straightforwardly with generic text editors or (for images composed of
+pixels) generic paint programs or (for drawings) some widely available
+drawing editor, and that is suitable for input to text formatters or
+for automatic translation to a variety of formats suitable for input
+to text formatters.  A copy made in an otherwise Transparent file
+format whose markup, or absence of markup, has been arranged to thwart
+or discourage subsequent modification by readers is not Transparent. 
+An image format is not Transparent if used for any substantial amount
+of text.  A copy that is not &ldquo;Transparent&rdquo; is called &ldquo;Opaque&rdquo;.
+
+     <p>Examples of suitable formats for Transparent copies include plain
+<span class="sc">ascii</span> without markup, Texinfo input format, LaTeX input
+format, <acronym>SGML</acronym> or <acronym>XML</acronym> using a publicly available
+<acronym>DTD</acronym>, and standard-conforming simple <acronym>HTML</acronym>,
+PostScript or <acronym>PDF</acronym> designed for human modification.  Examples
+of transparent image formats include <acronym>PNG</acronym>, <acronym>XCF</acronym> and
+<acronym>JPG</acronym>.  Opaque formats include proprietary formats that can be
+read and edited only by proprietary word processors, <acronym>SGML</acronym> or
+<acronym>XML</acronym> for which the <acronym>DTD</acronym> and/or processing tools are
+not generally available, and the machine-generated <acronym>HTML</acronym>,
+PostScript or <acronym>PDF</acronym> produced by some word processors for
+output purposes only.
+
+     <p>The &ldquo;Title Page&rdquo; means, for a printed book, the title page itself,
+plus such following pages as are needed to hold, legibly, the material
+this License requires to appear in the title page.  For works in
+formats which do not have any title page as such, &ldquo;Title Page&rdquo; means
+the text near the most prominent appearance of the work's title,
+preceding the beginning of the body of the text.
+
+     <p>A section &ldquo;Entitled XYZ&rdquo; means a named subunit of the Document whose
+title either is precisely XYZ or contains XYZ in parentheses following
+text that translates XYZ in another language.  (Here XYZ stands for a
+specific section name mentioned below, such as &ldquo;Acknowledgements&rdquo;,
+&ldquo;Dedications&rdquo;, &ldquo;Endorsements&rdquo;, or &ldquo;History&rdquo;.)  To &ldquo;Preserve the Title&rdquo;
+of such a section when you modify the Document means that it remains a
+section &ldquo;Entitled XYZ&rdquo; according to this definition.
+
+     <p>The Document may include Warranty Disclaimers next to the notice which
+states that this License applies to the Document.  These Warranty
+Disclaimers are considered to be included by reference in this
+License, but only as regards disclaiming warranties: any other
+implication that these Warranty Disclaimers may have is void and has
+no effect on the meaning of this License.
+
+     <li>VERBATIM COPYING
+
+     <p>You may copy and distribute the Document in any medium, either
+commercially or noncommercially, provided that this License, the
+copyright notices, and the license notice saying this License applies
+to the Document are reproduced in all copies, and that you add no other
+conditions whatsoever to those of this License.  You may not use
+technical measures to obstruct or control the reading or further
+copying of the copies you make or distribute.  However, you may accept
+compensation in exchange for copies.  If you distribute a large enough
+number of copies you must also follow the conditions in section 3.
+
+     <p>You may also lend copies, under the same conditions stated above, and
+you may publicly display copies.
+
+     <li>COPYING IN QUANTITY
+
+     <p>If you publish printed copies (or copies in media that commonly have
+printed covers) of the Document, numbering more than 100, and the
+Document's license notice requires Cover Texts, you must enclose the
+copies in covers that carry, clearly and legibly, all these Cover
+Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on
+the back cover.  Both covers must also clearly and legibly identify
+you as the publisher of these copies.  The front cover must present
+the full title with all words of the title equally prominent and
+visible.  You may add other material on the covers in addition. 
+Copying with changes limited to the covers, as long as they preserve
+the title of the Document and satisfy these conditions, can be treated
+as verbatim copying in other respects.
+
+     <p>If the required texts for either cover are too voluminous to fit
+legibly, you should put the first ones listed (as many as fit
+reasonably) on the actual cover, and continue the rest onto adjacent
+pages.
+
+     <p>If you publish or distribute Opaque copies of the Document numbering
+more than 100, you must either include a machine-readable Transparent
+copy along with each Opaque copy, or state in or with each Opaque copy
+a computer-network location from which the general network-using
+public has access to download using public-standard network protocols
+a complete Transparent copy of the Document, free of added material. 
+If you use the latter option, you must take reasonably prudent steps,
+when you begin distribution of Opaque copies in quantity, to ensure
+that this Transparent copy will remain thus accessible at the stated
+location until at least one year after the last time you distribute an
+Opaque copy (directly or through your agents or retailers) of that
+edition to the public.
+
+     <p>It is requested, but not required, that you contact the authors of the
+Document well before redistributing any large number of copies, to give
+them a chance to provide you with an updated version of the Document.
+
+     <li>MODIFICATIONS
+
+     <p>You may copy and distribute a Modified Version of the Document under
+the conditions of sections 2 and 3 above, provided that you release
+the Modified Version under precisely this License, with the Modified
+Version filling the role of the Document, thus licensing distribution
+and modification of the Modified Version to whoever possesses a copy
+of it.  In addition, you must do these things in the Modified Version:
+
+          <ol type=A start=1>
+<li>Use in the Title Page (and on the covers, if any) a title distinct
+from that of the Document, and from those of previous versions
+(which should, if there were any, be listed in the History section
+of the Document).  You may use the same title as a previous version
+if the original publisher of that version gives permission.
+
+          <li>List on the Title Page, as authors, one or more persons or entities
+responsible for authorship of the modifications in the Modified
+Version, together with at least five of the principal authors of the
+Document (all of its principal authors, if it has fewer than five),
+unless they release you from this requirement.
+
+          <li>State on the Title page the name of the publisher of the
+Modified Version, as the publisher.
+
+          <li>Preserve all the copyright notices of the Document.
+
+          <li>Add an appropriate copyright notice for your modifications
+adjacent to the other copyright notices.
+
+          <li>Include, immediately after the copyright notices, a license notice
+giving the public permission to use the Modified Version under the
+terms of this License, in the form shown in the Addendum below.
+
+          <li>Preserve in that license notice the full lists of Invariant Sections
+and required Cover Texts given in the Document's license notice.
+
+          <li>Include an unaltered copy of this License.
+
+          <li>Preserve the section Entitled &ldquo;History&rdquo;, Preserve its Title, and add
+to it an item stating at least the title, year, new authors, and
+publisher of the Modified Version as given on the Title Page.  If
+there is no section Entitled &ldquo;History&rdquo; in the Document, create one
+stating the title, year, authors, and publisher of the Document as
+given on its Title Page, then add an item describing the Modified
+Version as stated in the previous sentence.
+
+          <li>Preserve the network location, if any, given in the Document for
+public access to a Transparent copy of the Document, and likewise
+the network locations given in the Document for previous versions
+it was based on.  These may be placed in the &ldquo;History&rdquo; section. 
+You may omit a network location for a work that was published at
+least four years before the Document itself, or if the original
+publisher of the version it refers to gives permission.
+
+          <li>For any section Entitled &ldquo;Acknowledgements&rdquo; or &ldquo;Dedications&rdquo;, Preserve
+the Title of the section, and preserve in the section all the
+substance and tone of each of the contributor acknowledgements and/or
+dedications given therein.
+
+          <li>Preserve all the Invariant Sections of the Document,
+unaltered in their text and in their titles.  Section numbers
+or the equivalent are not considered part of the section titles.
+
+          <li>Delete any section Entitled &ldquo;Endorsements&rdquo;.  Such a section
+may not be included in the Modified Version.
+
+          <li>Do not retitle any existing section to be Entitled &ldquo;Endorsements&rdquo; or
+to conflict in title with any Invariant Section.
+
+          <li>Preserve any Warranty Disclaimers.
+          </ol>
+
+     <p>If the Modified Version includes new front-matter sections or
+appendices that qualify as Secondary Sections and contain no material
+copied from the Document, you may at your option designate some or all
+of these sections as invariant.  To do this, add their titles to the
+list of Invariant Sections in the Modified Version's license notice. 
+These titles must be distinct from any other section titles.
+
+     <p>You may add a section Entitled &ldquo;Endorsements&rdquo;, provided it contains
+nothing but endorsements of your Modified Version by various
+parties&mdash;for example, statements of peer review or that the text has
+been approved by an organization as the authoritative definition of a
+standard.
+
+     <p>You may add a passage of up to five words as a Front-Cover Text, and a
+passage of up to 25 words as a Back-Cover Text, to the end of the list
+of Cover Texts in the Modified Version.  Only one passage of
+Front-Cover Text and one of Back-Cover Text may be added by (or
+through arrangements made by) any one entity.  If the Document already
+includes a cover text for the same cover, previously added by you or
+by arrangement made by the same entity you are acting on behalf of,
+you may not add another; but you may replace the old one, on explicit
+permission from the previous publisher that added the old one.
+
+     <p>The author(s) and publisher(s) of the Document do not by this License
+give permission to use their names for publicity for or to assert or
+imply endorsement of any Modified Version.
+
+     <li>COMBINING DOCUMENTS
+
+     <p>You may combine the Document with other documents released under this
+License, under the terms defined in section 4 above for modified
+versions, provided that you include in the combination all of the
+Invariant Sections of all of the original documents, unmodified, and
+list them all as Invariant Sections of your combined work in its
+license notice, and that you preserve all their Warranty Disclaimers.
+
+     <p>The combined work need only contain one copy of this License, and
+multiple identical Invariant Sections may be replaced with a single
+copy.  If there are multiple Invariant Sections with the same name but
+different contents, make the title of each such section unique by
+adding at the end of it, in parentheses, the name of the original
+author or publisher of that section if known, or else a unique number. 
+Make the same adjustment to the section titles in the list of
+Invariant Sections in the license notice of the combined work.
+
+     <p>In the combination, you must combine any sections Entitled &ldquo;History&rdquo;
+in the various original documents, forming one section Entitled
+&ldquo;History&rdquo;; likewise combine any sections Entitled &ldquo;Acknowledgements&rdquo;,
+and any sections Entitled &ldquo;Dedications&rdquo;.  You must delete all
+sections Entitled &ldquo;Endorsements.&rdquo;
+
+     <li>COLLECTIONS OF DOCUMENTS
+
+     <p>You may make a collection consisting of the Document and other documents
+released under this License, and replace the individual copies of this
+License in the various documents with a single copy that is included in
+the collection, provided that you follow the rules of this License for
+verbatim copying of each of the documents in all other respects.
+
+     <p>You may extract a single document from such a collection, and distribute
+it individually under this License, provided you insert a copy of this
+License into the extracted document, and follow this License in all
+other respects regarding verbatim copying of that document.
+
+     <li>AGGREGATION WITH INDEPENDENT WORKS
+
+     <p>A compilation of the Document or its derivatives with other separate
+and independent documents or works, in or on a volume of a storage or
+distribution medium, is called an &ldquo;aggregate&rdquo; if the copyright
+resulting from the compilation is not used to limit the legal rights
+of the compilation's users beyond what the individual works permit. 
+When the Document is included in an aggregate, this License does not
+apply to the other works in the aggregate which are not themselves
+derivative works of the Document.
+
+     <p>If the Cover Text requirement of section 3 is applicable to these
+copies of the Document, then if the Document is less than one half of
+the entire aggregate, the Document's Cover Texts may be placed on
+covers that bracket the Document within the aggregate, or the
+electronic equivalent of covers if the Document is in electronic form. 
+Otherwise they must appear on printed covers that bracket the whole
+aggregate.
+
+     <li>TRANSLATION
+
+     <p>Translation is considered a kind of modification, so you may
+distribute translations of the Document under the terms of section 4. 
+Replacing Invariant Sections with translations requires special
+permission from their copyright holders, but you may include
+translations of some or all Invariant Sections in addition to the
+original versions of these Invariant Sections.  You may include a
+translation of this License, and all the license notices in the
+Document, and any Warranty Disclaimers, provided that you also include
+the original English version of this License and the original versions
+of those notices and disclaimers.  In case of a disagreement between
+the translation and the original version of this License or a notice
+or disclaimer, the original version will prevail.
+
+     <p>If a section in the Document is Entitled &ldquo;Acknowledgements&rdquo;,
+&ldquo;Dedications&rdquo;, or &ldquo;History&rdquo;, the requirement (section 4) to Preserve
+its Title (section 1) will typically require changing the actual
+title.
+
+     <li>TERMINATION
+
+     <p>You may not copy, modify, sublicense, or distribute the Document except
+as expressly provided for under this License.  Any other attempt to
+copy, modify, sublicense or distribute the Document is void, and will
+automatically terminate your rights under this License.  However,
+parties who have received copies, or rights, from you under this
+License will not have their licenses terminated so long as such
+parties remain in full compliance.
+
+     <li>FUTURE REVISIONS OF THIS LICENSE
+
+     <p>The Free Software Foundation may publish new, revised versions
+of the GNU Free Documentation License from time to time.  Such new
+versions will be similar in spirit to the present version, but may
+differ in detail to address new problems or concerns.  See
+<a href="http://www.gnu.org/copyleft/">http://www.gnu.org/copyleft/</a>.
+
+     <p>Each version of the License is given a distinguishing version number. 
+If the Document specifies that a particular numbered version of this
+License &ldquo;or any later version&rdquo; applies to it, you have the option of
+following the terms and conditions either of that specified version or
+of any later version that has been published (not as a draft) by the
+Free Software Foundation.  If the Document does not specify a version
+number of this License, you may choose any version ever published (not
+as a draft) by the Free Software Foundation.
+     </ol>
+
+<h3 class="heading">ADDENDUM: How to use this License for your documents</h3>
+
+<p>To use this License in a document you have written, include a copy of
+the License in the document and put the following copyright and
+license notices just after the title page:
+
+<pre class="smallexample">       Copyright (C)  <var>year</var>  <var>your name</var>.
+       Permission is granted to copy, distribute and/or modify this document
+       under the terms of the GNU Free Documentation License, Version 1.2
+       or any later version published by the Free Software Foundation;
+       with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+       Texts.  A copy of the license is included in the section entitled ``GNU
+       Free Documentation License''.
+</pre>
+<p>If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
+replace the &ldquo;with<small class="dots">...</small>Texts.&rdquo; line with this:
+
+<pre class="smallexample">         with the Invariant Sections being <var>list their titles</var>, with
+         the Front-Cover Texts being <var>list</var>, and with the Back-Cover Texts
+         being <var>list</var>.
+</pre>
+<p>If you have Invariant Sections without Cover Texts, or some other
+combination of the three, merge those two alternatives to suit the
+situation.
+
+<p>If your document contains nontrivial examples of program code, we
+recommend releasing these examples in parallel under your choice of
+free software license, such as the GNU General Public License,
+to permit their use in free software.
+
+<!-- Local Variables: -->
+<!-- ispell-local-pdict: "ispell-dict" -->
+<!-- End: -->
+<div class="node">
+<p><hr>
+<a name="Index"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Copying">Copying</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="unnumbered">Index</h2>
+
+<ul class="index-cp" compact>
+<li><a href="#index-g_t_0022-124"><code>"</code></a>: <a href="#Description-Lines">Description Lines</a></li>
+<li><a href="#index-g_t_0026-118"><code>&amp;</code></a>: <a href="#Label-Lines">Label Lines</a></li>
+<li><a href="#index-g_t_002d_0022-52"><code>-"</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002d_0026-51"><code>-&amp;</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002d_002dhelp-147"><code>--help</code></a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-g_t_002d_002dhelp-23"><code>--help</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002d_002dreplay-151"><code>--replay</code></a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-g_t_002d_002dtimings-154"><code>--timings</code></a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-g_t_002d_002dversion-149"><code>--version</code></a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-g_t_002d_002dversion-37"><code>--version</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002d_003a-53"><code>-:</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002d_005e-56"><code>-^</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002dC-79"><code>-C</code></a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-g_t_002dC-25"><code>-C</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002dD-30"><code>-D</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002dE-119"><code>-E</code></a>: <a href="#Label-Lines">Label Lines</a></li>
+<li><a href="#index-g_t_002dE-32"><code>-E</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002dh-148"><code>-h</code></a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-g_t_002dh-24"><code>-h</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002dL-125"><code>-L</code></a>: <a href="#Description-Lines">Description Lines</a></li>
+<li><a href="#index-g_t_002dL-35"><code>-L</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002dt-153"><code>-t</code></a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-g_t_002dt-39"><code>-t</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002dV-150"><code>-V</code></a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-g_t_002dV-38"><code>-V</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002dx-42"><code>-x</code></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_002e-78"><code>.</code></a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-g_t_0040_0040-133"><code>@</code></a>: <a href="#Delay-Lines">Delay Lines</a></li>
+<li><a href="#index-ASCII-162">ASCII</a>: <a href="#Future-Directions">Future Directions</a></li>
+<li><a href="#index-ASCII-71">ASCII</a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-ASCII-61">ASCII</a>: <a href="#Text-Lines">Text Lines</a></li>
+<li><a href="#index-control-character-68">control character</a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-control-character-26">control character</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-control-character-1">control character</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-control-characters-table-84">control characters table</a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-control-sequence-143">control sequence</a>: <a href="#Standards">Standards</a></li>
+<li><a href="#index-control-sequence-97">control sequence</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-control-sequence-2">control sequence</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-Control-Sequence-Introducer-6">Control Sequence Introducer</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-control-string-116">control string</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-control_002dcharacter-line-158">control-character line</a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-control_002dcharacter-line-69">control-character line</a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-control_002dcharacter-line-50">control-character line</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_0040sc_007bcsi_007d-96"><span class="sc">csi</span></a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-g_t_0040sc_007bcsi_007d-5"><span class="sc">csi</span></a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-delay-line-160">delay line</a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-delay-line-132">delay line</a>: <a href="#Delay-Lines">Delay Lines</a></li>
+<li><a href="#index-delay-line-40">delay line</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-delete-character-80">delete character</a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-description-line-123">description line</a>: <a href="#Description-Lines">Description Lines</a></li>
+<li><a href="#index-description-line-31">description line</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-Ecma_002d35-165">Ecma-35</a>: <a href="#Future-Directions">Future Directions</a></li>
+<li><a href="#index-Ecma_002d35-140">Ecma-35</a>: <a href="#Standards">Standards</a></li>
+<li><a href="#index-Ecma_002d35-89">Ecma-35</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-Ecma_002d35-44">Ecma-35</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-Ecma_002d48-170">Ecma-48</a>: <a href="#Future-Directions">Future Directions</a></li>
+<li><a href="#index-Ecma_002d48-137">Ecma-48</a>: <a href="#Standards">Standards</a></li>
+<li><a href="#index-Ecma_002d48-127">Ecma-48</a>: <a href="#Description-Lines">Description Lines</a></li>
+<li><a href="#index-Ecma_002d48-121">Ecma-48</a>: <a href="#Label-Lines">Label Lines</a></li>
+<li><a href="#index-Ecma_002d48-99">Ecma-48</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-Ecma_002d48-76">Ecma-48</a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-Ecma_002d48-28">Ecma-48</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-Ecma_002d48-8">Ecma-48</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-Ecma_002d6-73">Ecma-6</a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-Ecma_002d6-63">Ecma-6</a>: <a href="#Text-Lines">Text Lines</a></li>
+<li><a href="#index-escape-sequence-142">escape sequence</a>: <a href="#Standards">Standards</a></li>
+<li><a href="#index-escape-sequence_002c-defined-87">escape sequence, defined</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-escape-sequence_002c-final-byte-92">escape sequence, final byte</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-escape-sequence_002c-intermediate-byte-94">escape sequence, intermediate byte</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-escape_002dsequence-line-159">escape-sequence line</a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-escape_002dsequence-line-33">escape-sequence line</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-escape_002dsequence-lines-86">escape-sequence lines</a>: <a href="#Escape_002dSequence-Lines">Escape-Sequence Lines</a></li>
+<li><a href="#index-examples-12">examples</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-final-byte-91">final byte</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-Hello_002c-world_0021-14">Hello, world!</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-help-22">help</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-intermediate-byte-93">intermediate byte</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-invoking-19">invoking</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-ISO-646-74">ISO 646</a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-ISO-646-64">ISO 646</a>: <a href="#Text-Lines">Text Lines</a></li>
+<li><a href="#index-ISO_002fIEC_0040tie_007b_007d2200-166">ISO/IEC&nbsp;2200</a>: <a href="#Future-Directions">Future Directions</a></li>
+<li><a href="#index-ISO_002fIEC_0040tie_007b_007d2200-141">ISO/IEC&nbsp;2200</a>: <a href="#Standards">Standards</a></li>
+<li><a href="#index-ISO_002fIEC_0040tie_007b_007d2200-90">ISO/IEC&nbsp;2200</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-ISO_002fIEC_0040tie_007b_007d2200-45">ISO/IEC&nbsp;2200</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-ISO_002fIEC_0040tie_007b_007d6429-171">ISO/IEC&nbsp;6429</a>: <a href="#Future-Directions">Future Directions</a></li>
+<li><a href="#index-ISO_002fIEC_0040tie_007b_007d6429-138">ISO/IEC&nbsp;6429</a>: <a href="#Standards">Standards</a></li>
+<li><a href="#index-ISO_002fIEC_0040tie_007b_007d6429-128">ISO/IEC&nbsp;6429</a>: <a href="#Description-Lines">Description Lines</a></li>
+<li><a href="#index-ISO_002fIEC_0040tie_007b_007d6429-122">ISO/IEC&nbsp;6429</a>: <a href="#Label-Lines">Label Lines</a></li>
+<li><a href="#index-ISO_002fIEC_0040tie_007b_007d6429-100">ISO/IEC&nbsp;6429</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-ISO_002fIEC_0040tie_007b_007d6429-77">ISO/IEC&nbsp;6429</a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-ISO_002fIEC_0040tie_007b_007d6429-29">ISO/IEC&nbsp;6429</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-ISO_002fIEC_0040tie_007b_007d6429-9">ISO/IEC&nbsp;6429</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-label-line-117">label line</a>: <a href="#Label-Lines">Label Lines</a></li>
+<li><a href="#index-label-line-36">label line</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-line-prefix-57">line prefix</a>: <a href="#Output-Format">Output Format</a></li>
+<li><a href="#index-line-prefix-54">line prefix</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-line-prefixes-16">line prefixes</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-options-20">options</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-parameter-byte-101">parameter byte</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-Perl-156">Perl</a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-prefix_002c-line-58">prefix, line</a>: <a href="#Output-Format">Output Format</a></li>
+<li><a href="#index-prefix_002c-line-55">prefix, line</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-prefixes-17">prefixes</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-g_t_0040command_007breseq_007d-144"><samp><span class="command">reseq</span></samp></a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-g_t_0040command_007breseq_007d-134"><samp><span class="command">reseq</span></samp></a>: <a href="#Delay-Lines">Delay Lines</a></li>
+<li><a href="#index-g_t_0040command_007breseq_007d-34"><samp><span class="command">reseq</span></samp></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_0040command_007breseq_007d-18"><samp><span class="command">reseq</span></samp></a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-Reversing-the-output-of-_0040command_007bteseq_007d-145">Reversing the output of <samp><span class="command">teseq</span></samp></a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-g_t_0040command_007bscript_007d-155"><samp><span class="command">script</span></samp></a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-g_t_0040command_007bscript_007d-135"><samp><span class="command">script</span></samp></a>: <a href="#Delay-Lines">Delay Lines</a></li>
+<li><a href="#index-g_t_0040command_007bscript_007d-41"><samp><span class="command">script</span></samp></a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-g_t_0040command_007bscript_007d-15"><samp><span class="command">script</span></samp></a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-g_t_0040command_007bscriptreplay_007d-152"><samp><span class="command">scriptreplay</span></samp></a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-standards-161">standards</a>: <a href="#Future-Directions">Future Directions</a></li>
+<li><a href="#index-standards-136">standards</a>: <a href="#Standards">Standards</a></li>
+<li><a href="#index-standards-126">standards</a>: <a href="#Description-Lines">Description Lines</a></li>
+<li><a href="#index-standards-120">standards</a>: <a href="#Label-Lines">Label Lines</a></li>
+<li><a href="#index-standards-88">standards</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-standards-70">standards</a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-standards-60">standards</a>: <a href="#Text-Lines">Text Lines</a></li>
+<li><a href="#index-standards-27">standards</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-standards-7">standards</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-table-of-control-characters-85">table of control characters</a>: <a href="#Control_002dCharacter-Lines">Control-Character Lines</a></li>
+<li><a href="#index-table-of-printable-ASCII-characters-95">table of printable ASCII characters</a>: <a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></li>
+<li><a href="#index-termcap-10">termcap</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-terminal-3">terminal</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-terminal-emulator-4">terminal emulator</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-terminfo-168">terminfo</a>: <a href="#Future-Directions">Future Directions</a></li>
+<li><a href="#index-terminfo-11">terminfo</a>: <a href="#Overview">Overview</a></li>
+<li><a href="#index-g_t_0040command_007bteseq_007d_002c-reversing-the-output-146"><samp><span class="command">teseq</span></samp>, reversing the output</a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-text-line-167">text line</a>: <a href="#Future-Directions">Future Directions</a></li>
+<li><a href="#index-text-line-157">text line</a>: <a href="#Reseq">Reseq</a></li>
+<li><a href="#index-text-line-49">text line</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-usage-21">usage</a>: <a href="#Invoking-Teseq">Invoking Teseq</a></li>
+<li><a href="#index-UTF_002d8-163">UTF-8</a>: <a href="#Future-Directions">Future Directions</a></li>
+<li><a href="#index-g_t_007c-59"><code>|</code></a>: <a href="#Text-Lines">Text Lines</a></li>
+</ul></body></html>
+

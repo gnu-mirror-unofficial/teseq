@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+<title>Label Lines - GNU Teseq 1.0-devel Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Output-Format.html#Output-Format" title="Output Format">
+<link rel="prev" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" title="Escape-Sequence Lines">
+<link rel="next" href="Description-Lines.html#Description-Lines" title="Description Lines">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for GNU Teseq, version 1.0-devel.
+
+Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.2 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts, and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled ``GNU Free Documentation License''.
+-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Label-Lines"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Description-Lines.html#Description-Lines">Description Lines</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines">Escape-Sequence Lines</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Output-Format.html#Output-Format">Output Format</a>
+<hr>
+</div>
+
+<h3 class="section">3.4 Label Lines</h3>
+
+<p><a name="index-label-line-117"></a>
+<a name="index-g_t_0026-118"></a>Label lines begin with the ampersand, &lsquo;<samp><span class="samp">&amp;</span></samp>&rsquo;:
+
+<pre class="example">     &amp; SGR: SELECT GRAPHIC RENDITION
+</pre>
+<p class="noindent">Label lines always describe a control function, and are always
+preceded by the escape sequence that invokes that function (unless the
+<a name="index-g_t_002dE-119"></a><samp><span class="option">-E</span></samp> option was given, suppressing output for escape-sequence
+lines).
+
+<p>The format of a label line's content is always <var>acronym</var>:
+<var>name</var>; both of these are defined for each control function
+by <a name="index-standards-120"></a><a name="index-Ecma_002d48-121"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-122"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429. If the <samp><span class="option">-x</span></samp> option was specified to
+<samp><span class="command">teseq</span></samp>, then some labels may also name private functions
+defined by DEC for the VT100 and similar terminals.
+
+<p>Label lines currently are never wrapped; however, future
+versions of Teseq may wrap label lines. At that time, continuation
+label lines will probably consist of an extra space after the
+ampersand (similar to how escape-sequence lines are wrapped). Lines
+will never be split in the middle of a word.
+
+<p>Future versions of Teseq may use label lines to describe things besides
+escape sequences; for instance, control characters or control strings,
+or other strings that may be interpreted specially by some devices or
+applications.
+
+</body></html>
+

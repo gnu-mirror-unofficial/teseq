@@ -1,0 +1,154 @@
+<html lang="en">
+<head>
+<title>Text Lines - GNU Teseq 1.0-devel Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Output-Format.html#Output-Format" title="Output Format">
+<link rel="prev" href="Output-Format.html#Output-Format" title="Output Format">
+<link rel="next" href="Control_002dCharacter-Lines.html#Control_002dCharacter-Lines" title="Control-Character Lines">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for GNU Teseq, version 1.0-devel.
+
+Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.2 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts, and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled ``GNU Free Documentation License''.
+-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Text-Lines"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Control_002dCharacter-Lines.html#Control_002dCharacter-Lines">Control-Character Lines</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Output-Format.html#Output-Format">Output Format</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Output-Format.html#Output-Format">Output Format</a>
+<hr>
+</div>
+
+<h3 class="section">3.1 Text Lines</h3>
+
+<p><a name="index-g_t_007c-59"></a>Lines of plain text input, are output between a pair of pipe characters
+&lsquo;<samp><span class="samp">|</span></samp>&rsquo;, with a final period to indicate the linefeed character. 
+Input:
+
+<pre class="example">     Hello there
+</pre>
+<p class="noindent">Output:
+
+<pre class="example">     |Hello there|.
+</pre>
+<p class="noindent">Trailing whitespace is thus made plainly visible to the reader.
+
+<pre class="example">     |Trailing space:    |.
+</pre>
+<p class="noindent">A blank line is represented as empty content between the pipes.
+
+<pre class="example">     ||.
+</pre>
+<p class="noindent">If the input line is too long to display as one line of output, it
+will be displayed as follows, with dash characters, &lsquo;<samp><span class="samp">-</span></samp>&rsquo;, to
+mark continuity at the beginnings and ends of the lines (outside the
+pipe characters).
+
+<pre class="example">     |This input line |-
+     -|was too long to|-
+     -| fit|.
+</pre>
+<p>You might wonder whether pipe characters themselves might have to be
+escaped, so as to avoid confusion with the surrounding pipes. After
+all, in a C string literal, denoted by double-quotes, &lsquo;<samp><span class="samp">"</span></samp>&rsquo;, one
+must escape literal double-quote characters by preceding them with a
+backslash (and must then also escape literal backslashes): <code>"She
+said \"no\""</code>. However, no such escaping mechanism is needed in Teseq. 
+Input:
+
+<pre class="example">     A line with a pipe | in it, and a line with just a pipe
+     |
+</pre>
+<p class="noindent">Output:
+
+<pre class="example">     |A line with a pipe | in it, and a line with just a pipe|.
+     |||.
+</pre>
+<p class="noindent">No special treatment whatsoever!
+
+<p>The reason Teseq can get away with this is that the pipe character only
+has its special &ldquo;mark the enclosed as normal text&rdquo; meaning, when it
+is the first and the last character on a line of output (aside from a
+possible prefacing dash to indicate a wrapped line, or a trailing dash
+or period).
+
+<p>A lot of the output lines you've seen so far have all ended with a
+period, denoting the linefeed character. However, this isn't always
+the case. For instance, if the input line contains a control
+character, Teseq will close the text line (with just a pipe, no
+period), print a control-character line with the control characters,
+and then finish up the rest of the text line. The following sample
+output represents a single line which contains a delete character and
+a null character:
+
+<pre class="example">     |Fee fi|
+     . DEL/^?
+     |fo|
+     . NUL/^@
+     |fum|.
+</pre>
+<p class="noindent">And here's a line that's terminated with a carriage-return/line-feed
+combination, rather than just a linefeed.
+
+<pre class="example">     |The promised line|
+     . CR/^M LF/^J
+</pre>
+<p class="noindent">The linefeed character is special: when it's preceded by control
+characters or escape sequence, it's printed as a control character;
+when it's preceded by text characters (or by nothing at all), it's
+printed as that final dot thing. This behavior is designed to make a
+newline look like the end of a line or a blank line when it should,
+and to look like a control character when it should.
+
+<p>And of course, if the final line in the file is missing a newline, the
+dot won't appear there either.
+
+<p>Currently, the only characters included in text lines, are those from
+the printable range of characters from US
+<a name="index-standards-60"></a><a name="index-ASCII-61"></a>ASCII (<a name="index-standards-62"></a><a name="index-Ecma_002d6-63"></a><a name="index-ISO-646-64"></a>Ecma-6&nbsp;/ ISO&nbsp;646)&mdash;and sometimes linefeed, represented by the special
+final-dot notation. This means that if the terminal was using a
+character set that high-value code points, all high-valued bytes will
+be represented in hexadecimal on control-character lines, and not
+displayed on a text line. Future versions of Teseq may provide options
+allowing for these characters to be represented properly in text
+lines, but for now, the output format is ASCII characters only. 
+See <a href="Future-Directions.html#Future-Directions">Future Directions</a>.
+
+<p>Note that even characters falling in the normal range of ASCII
+printable characters may not necessarily be represented correctly: for
+instance, if escape codes are present in the input that would switch
+the terminal to a different national variant of <a name="index-standards-65"></a><a name="index-Ecma_002d6-66"></a><a name="index-ISO-646-67"></a>Ecma-6&nbsp;/ ISO&nbsp;646, then the real
+terminal might display (say, for ISO-646ES)
+&lsquo;<samp><span class="samp">&Ntilde;</span></samp>&rsquo;
+instead of
+&lsquo;<samp><span class="samp">[</span></samp>&rsquo;; but the output from Teseq will not change based on this (even
+though it will recognize and identify the control sequences that
+invoke that character set for use).
+
+</body></html>
+

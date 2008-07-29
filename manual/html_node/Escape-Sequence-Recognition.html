@@ -1,0 +1,175 @@
+<html lang="en">
+<head>
+<title>Escape Sequence Recognition - GNU Teseq 1.0-devel Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" title="Escape-Sequence Lines">
+<link rel="prev" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" title="Escape-Sequence Lines">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for GNU Teseq, version 1.0-devel.
+
+Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.2 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts, and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled ``GNU Free Documentation License''.
+-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Escape-Sequence-Recognition"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines">Escape-Sequence Lines</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines">Escape-Sequence Lines</a>
+<hr>
+</div>
+
+<h4 class="unnumberedsubsec">Recognizing Escape Sequences</h4>
+
+<p><a name="index-escape-sequence_002c-defined-87"></a>
+Okay, great, so escape-sequence lines help distinguish
+control-characters and text characters that make up an escape sequence
+from those that don't. But what exactly makes up an escape sequence,
+anyway?
+
+<p>The <a name="index-standards-88"></a><a name="index-Ecma_002d35-89"></a><a name="index-ISO_002fIEC_0040tie_007b_007d2200-90"></a>Ecma-35&nbsp;/ ISO/IEC&nbsp;2200 standard defines an escape sequence to be a sequence
+of characters beginning with <span class="sc">esc</span>, with a
+<a name="index-final-byte-91"></a><a name="index-escape-sequence_002c-final-byte-92"></a>final byte in the range
+<code>x30</code>&ndash;<code>x7E</code>, and any number (including zero) of
+<a name="index-intermediate-byte-93"></a><a name="index-escape-sequence_002c-intermediate-byte-94"></a>intermediate bytes in the range <code>x20</code>-<code>x2F</code>. 
+<a href="ascii.html#ascii">ascii</a>
+has been provided as a reference for finding which characters match
+which codes.
+
+<div class="float">
+<a name="ascii"></a><a name="index-table-of-printable-ASCII-characters-95"></a>
+<p><table summary=""><tr align="left"><th valign="top"></th><th valign="top">x2X </th><th valign="top">x3X </th><th valign="top">x4X </th><th valign="top">x5X
+</th><th valign="top">x6X </th><th valign="top">x7X
+<br></th></tr><tr align="left"><td valign="top"><strong>xX0</strong> </td><td valign="top"><span class="sc">spc</span> </td><td valign="top">0 </td><td valign="top">@ </td><td valign="top">P
+</td><td valign="top">` </td><td valign="top">p
+<br></td></tr><tr align="left"><td valign="top"><strong>xX1</strong> </td><td valign="top">! </td><td valign="top">1 </td><td valign="top">A </td><td valign="top">Q </td><td valign="top">a </td><td valign="top">q
+<br></td></tr><tr align="left"><td valign="top"><strong>xX2</strong> </td><td valign="top">" </td><td valign="top">2 </td><td valign="top">B </td><td valign="top">R </td><td valign="top">b </td><td valign="top">r
+<br></td></tr><tr align="left"><td valign="top"><strong>xX3</strong> </td><td valign="top"># </td><td valign="top">3 </td><td valign="top">C </td><td valign="top">S </td><td valign="top">c </td><td valign="top">s
+<br></td></tr><tr align="left"><td valign="top"><strong>xX4</strong> </td><td valign="top">$ </td><td valign="top">4 </td><td valign="top">D </td><td valign="top">T </td><td valign="top">d </td><td valign="top">t
+<br></td></tr><tr align="left"><td valign="top"><strong>xX5</strong> </td><td valign="top">% </td><td valign="top">5 </td><td valign="top">E </td><td valign="top">U </td><td valign="top">e </td><td valign="top">u
+<br></td></tr><tr align="left"><td valign="top"><strong>xX6</strong> </td><td valign="top">&amp; </td><td valign="top">6 </td><td valign="top">F </td><td valign="top">V </td><td valign="top">f </td><td valign="top">v
+<br></td></tr><tr align="left"><td valign="top"><strong>xX7</strong> </td><td valign="top">' </td><td valign="top">7 </td><td valign="top">G </td><td valign="top">W </td><td valign="top">g </td><td valign="top">w
+<br></td></tr><tr align="left"><td valign="top"><strong>xX8</strong> </td><td valign="top">( </td><td valign="top">8 </td><td valign="top">H </td><td valign="top">X </td><td valign="top">h </td><td valign="top">x
+<br></td></tr><tr align="left"><td valign="top"><strong>xX9</strong> </td><td valign="top">) </td><td valign="top">9 </td><td valign="top">I </td><td valign="top">Y </td><td valign="top">i </td><td valign="top">y
+<br></td></tr><tr align="left"><td valign="top"><strong>xXA</strong> </td><td valign="top">* </td><td valign="top">: </td><td valign="top">J </td><td valign="top">Z </td><td valign="top">j </td><td valign="top">z
+<br></td></tr><tr align="left"><td valign="top"><strong>xXB</strong> </td><td valign="top">+ </td><td valign="top">; </td><td valign="top">K </td><td valign="top">[ </td><td valign="top">k </td><td valign="top">{
+<br></td></tr><tr align="left"><td valign="top"><strong>xXC</strong> </td><td valign="top">, </td><td valign="top">&lt; </td><td valign="top">L </td><td valign="top">\ </td><td valign="top">l </td><td valign="top">|
+<br></td></tr><tr align="left"><td valign="top"><strong>xXD</strong> </td><td valign="top">- </td><td valign="top">= </td><td valign="top">M </td><td valign="top">] </td><td valign="top">m </td><td valign="top">}
+<br></td></tr><tr align="left"><td valign="top"><strong>xXE</strong> </td><td valign="top">. </td><td valign="top">&gt; </td><td valign="top">N </td><td valign="top">^ </td><td valign="top">n </td><td valign="top">~
+<br></td></tr><tr align="left"><td valign="top"><strong>xXF</strong> </td><td valign="top">/ </td><td valign="top">? </td><td valign="top">O </td><td valign="top">_ </td><td valign="top">o </td><td valign="top"><span class="sc">del</span>
+<br></td></tr></table>
+<p><strong class="float-caption">Table 3.1</strong></p></div>
+
+<p class="noindent">So, for instance, the following is a valid escape sequence.
+
+<pre class="example">     : Esc $ ( C
+</pre>
+<p class="noindent">&lsquo;<samp><span class="samp">$</span></samp>&rsquo; and &lsquo;<samp><span class="samp">(</span></samp>&rsquo; have code values <code>x24</code> and <code>x28</code>, and
+so are valid intermediate bytes; &lsquo;<samp><span class="samp">C</span></samp>&rsquo; has the value <code>x43</code>,
+and so terminates the escape sequence.
+
+<p>You may have noticed that a lot of the examples of escape sequences in
+this document don't actually follow this format. For instance,
+
+<pre class="example">     : Esc [ 3 ; 31 m
+</pre>
+<p class="noindent">According to the definition we just gave, &lsquo;<samp><span class="samp">[</span></samp>&rsquo; should be the final
+byte of an escape sequence. So why does Teseq keep going until it
+reaches the &lsquo;<samp><span class="samp">m</span></samp>&rsquo;?
+
+<p>The answer is that the escape sequence <em>does</em> end with the
+&lsquo;<samp><span class="samp">[</span></samp>&rsquo;; but the combination &lsquo;<samp><span class="samp">Esc [</span></samp>&rsquo; invokes a control named
+<code>CONTROL SEQUENCE INTRODUCER</code>
+<a name="index-g_t_0040sc_007bcsi_007d-96"></a>(<span class="sc">csi</span>). The <span class="sc">csi</span> control
+marks the beginning of a different kind of sequence, called a
+<a name="index-control-sequence-97"></a>&ldquo;control sequence&rdquo;. Control sequences are described by the
+<a name="index-standards-98"></a><a name="index-Ecma_002d48-99"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-100"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 standard, which considers it to be a distinct concept
+from escape sequences; however, Teseq treats both types of sequences as
+&ldquo;escape sequences&rdquo;.
+
+<p>A control sequence starts with the two-character <span class="sc">csi</span> escape
+sequence &lsquo;<samp><span class="samp">Esc [</span></samp>&rsquo;, followed by an optional sequence of
+<a name="index-parameter-byte-101"></a>parameter bytes in the range <code>x30</code>&ndash;<code>x3F</code>, an optional
+sequence of
+<a name="index-intermediate-byte-102"></a>intermediate bytes in the range <code>x20</code>&ndash;<code>x2F</code> (the same range
+as intermediate bytes in a regular escape sequence), and a
+<a name="index-final-byte-103"></a>final byte in the range <code>x40</code>&ndash;<code>x7e</code>. The set of standard
+control sequence functions are defined in <a name="index-standards-104"></a><a name="index-Ecma_002d48-105"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-106"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429.
+
+<p>When used in accordance with the standard, the parameter bytes are
+used to provide a semicolon-separated list of numeric parameters to
+the control function being invoked. These affect the details of the
+control function's behavior; but not which control function is being
+invoked:
+
+<pre class="example">     : Esc [ 1 m
+     &amp; SGR: SELECT GRAPHIC RENDITION
+     " Set bold text.
+     : Esc [ 0 m
+     &amp; SGR: SELECT GRAPHIC RENDITION
+     " Clear graphic rendition to defaults.
+</pre>
+<p class="noindent">Both sequences end with the same sequence of intermediate bytes (none)
+and final byte; both invoke the <span class="sc">sgr</span> control function. But the
+first one indicates that following text should be rendered boldface,
+while the second indicates that text rendering should be restored to
+its default settings.
+
+<p>Intermediate bytes, however, together with the final byte, <em>do</em>
+affect the meaning of the function invoked. Currently, <a name="index-standards-107"></a><a name="index-Ecma_002d48-108"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-109"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429
+only defines functions for either no intermediate bytes, or a single
+space character (<code>x20</code>) as the intermediate byte.
+
+<pre class="example">     : Esc [ A
+     &amp; CUU: CURSOR UP
+     : Esc [ Spc A
+     &amp; SR: SCROLL RIGHT
+</pre>
+<p class="noindent"><a name="index-standards-110"></a><a name="index-Ecma_002d48-111"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-112"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 describes an alternate representation for <span class="sc">csi</span>; the
+8-bit byte value <code>x9B</code>. Teseq does not currently treat that value
+specially, nor any of the other high-value bytes from the C1 set of
+control functions. This is because whether or not those bytes indicate
+control functions is dependent upon what character encoding is in
+use. Future versions of Teseq may support an option to interpret these
+forms as well, at which time control sequences using the single-byte
+<span class="sc">csi</span> control will probably be rendered like:
+
+<pre class="example">     : CSI [ 1 m
+</pre>
+<p class="noindent"><a name="index-standards-113"></a><a name="index-Ecma_002d48-114"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-115"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 also describes another kind of sequence called
+<a name="index-control-string-116"></a>&ldquo;control strings&rdquo;. These are not interpreted by Teseq; the
+control characters involved (for example, &lsquo;<samp><span class="samp">SOS/^X</span></samp>&rsquo; and
+&lsquo;<samp><span class="samp">ST/^\</span></samp>&rsquo; will be printed on control-character lines, and any text
+characters will be displayed on text lines.
+
+<p>Future versions of Teseq will probably not depart from this display
+behavior; however, support for some common interpretations for control
+strings may be added, in which case a label line and/or description
+line might follow the control string, describing its usual
+interpretation.
+
+</body></html>
+

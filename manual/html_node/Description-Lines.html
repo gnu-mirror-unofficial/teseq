@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+<title>Description Lines - GNU Teseq 1.0-devel Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Output-Format.html#Output-Format" title="Output Format">
+<link rel="prev" href="Label-Lines.html#Label-Lines" title="Label Lines">
+<link rel="next" href="Delay-Lines.html#Delay-Lines" title="Delay Lines">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for GNU Teseq, version 1.0-devel.
+
+Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.2 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts, and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled ``GNU Free Documentation License''.
+-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Description-Lines"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Delay-Lines.html#Delay-Lines">Delay Lines</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Label-Lines.html#Label-Lines">Label Lines</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Output-Format.html#Output-Format">Output Format</a>
+<hr>
+</div>
+
+<h3 class="section">3.5 Description Lines</h3>
+
+<p><a name="index-description-line-123"></a>
+<a name="index-g_t_0022-124"></a>Description lines begin with the double-quote, &lsquo;<samp><span class="samp">"</span></samp>&rsquo;:
+
+<pre class="example">     " Move the cursor up 2 lines.
+</pre>
+<p class="noindent">Sequences of description lines are generally preceded by a label line
+(unless the
+<a name="index-g_t_002dL-125"></a><samp><span class="option">-L</span></samp> option was supplied), and describe the same
+control function labeled by that line. More than one description line
+may be used to describe a function, whereas only one label line is
+ever used for a control function.
+
+<p>It is important to understand that the descriptions provided are only
+approximations and guesses, and suffer from various limitations. The
+behavior of many control functions are dependent on terminal state
+that Teseq does not track. Teseq chooses a common default setting for
+applicable terminal modes, and issues a description based on that. For
+instance, the <span class="sc">insert line</span> function is described as follows:
+
+<pre class="example">     : Esc [ 2 L
+     &amp; IL: INSERT LINE
+     " Shift lines after the cursor to make room for 2 new lines.
+</pre>
+<p class="noindent">However, depending on the current setting of the
+<span class="sc">line editing mode</span>, the actual behavior might be to shift the
+lines <em>before</em> the cursor, rather than the ones after. Future
+versions of Teseq may track enough terminal state to improve the
+accuracy of these descriptions, but they would still need to
+guess at the initial state of the terminal, for any modes that had not
+been explicitly set or reset.
+
+<p>Descriptions are also often inaccurate. For instance, the description
+for <span class="sc">insert line</span> should really read &ldquo;shift the current line and
+the lines after the cursor<small class="dots">...</small>&rdquo;. In addition, no mention is made of
+the fact that the extent of the shifted part is dependent on previous
+invocations of <span class="sc">select editing extent</span>. A conscious decision has
+been made to value brevity over accuracy.
+
+<p>Also, the descriptions are based (loosely) on the semantics defined by
+<a name="index-standards-126"></a><a name="index-Ecma_002d48-127"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-128"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429. There is no guarantee that this corresponds to the
+semantics defined for the actual terminal on which these functions
+were invoked. The terminal may have different behavior, or may not
+even accept the function. The descriptions are intended as a rough aid in
+remembering what a given function does; to really understand the
+actual semantics of a function, you should read the terminal device's
+documentation, and/or <a name="index-standards-129"></a><a name="index-Ecma_002d48-130"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-131"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429.
+
+<p>Description lines currently are never wrapped; however, future
+versions of Teseq may wrap label lines. At that time, continuation
+label lines will probably consist of an extra space after the
+double-quote (just as label lines are wrapped). Lines will never be
+split in the middle of a word.
+
+<p>Future versions of Teseq may use description lines to describe thigns
+besides escape sequences; for instance, control characters or control
+strings, or other strings that may be interpreted specially by some
+devices or applications.
+
+<p>Some description lines may appear without a preceding label line (even
+when <samp><span class="option">-L</span></samp> was not specified), in the event that no standard
+designation for the function is known.
+
+</body></html>
+

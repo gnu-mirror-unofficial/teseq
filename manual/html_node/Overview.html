@@ -1,0 +1,150 @@
+<html lang="en">
+<head>
+<title>Overview - GNU Teseq 1.0-devel Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="index.html#Top" title="Top">
+<link rel="next" href="Invoking-Teseq.html#Invoking-Teseq" title="Invoking Teseq">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for GNU Teseq, version 1.0-devel.
+
+Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.2 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts, and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled ``GNU Free Documentation License''.
+-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Overview"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Invoking-Teseq.html#Invoking-Teseq">Invoking Teseq</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="index.html#Top">Top</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">1 Overview</h2>
+
+<p><a name="index-control-character-1"></a><a name="index-control-sequence-2"></a><a name="index-terminal-3"></a><a name="index-terminal-emulator-4"></a>
+GNU Teseq is a tool for translating files that contain control
+characters and terminal control sequences, into human-understandable
+text. It is intended to aid in debugging problems in terminal
+emulators, software that makes use of special terminal features, and
+interactions between the two.
+
+<p>It is primarily targeted at individuals who possess a basic
+understanding of terminal control sequences, especially
+<a name="index-g_t_0040sc_007bcsi_007d-5"></a><a name="index-Control-Sequence-Introducer-6"></a><acronym><span class="sc">csi</span></acronym> sequences; however, by default Teseq will try to
+identify and describe the sequences that it encounters, and the
+behavior they might produce in a terminal.
+
+<p>Teseq describes control functions as they are interpreted by
+VT100-compatible terminals, and/or terminals compliant with the
+<a name="index-standards-7"></a><a name="index-Ecma_002d48-8"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-9"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 standard. Teseq does <em>not</em> support describing
+control functions according to terminal-specific definitions in a
+database such as
+<a name="index-termcap-10"></a>termcap or
+<a name="index-terminfo-11"></a>terminfo, though future versions may
+include limited support for that (see <a href="Future-Directions.html#Future-Directions">Future Directions</a>). 
+Therefore, the descriptions Teseq uses for control functions may not
+necessarily match their actual interpretation by whatever terminal
+device the characters were actually intended for.
+
+<p>GNU Teseq is <a href="http://www.gnu.org/philosophy/free-sw.html">free software</a>. See <a href="Copying.html#Copying">Copying</a>, for copying conditions.
+
+<h3 class="unnumberedsec">A Quick Example</h3>
+
+<p><a name="index-examples-12"></a><a name="index-terminal-13"></a><a name="index-Hello_002c-world_0021-14"></a>
+You can't beat a short example to demonstrate what a program does, so
+here goes. Suppose you've got a program that writes the following
+output to a terminal.
+
+<pre class="example">     <strong>Hi</strong> <span class="roman">there, world</span>
+</pre>
+<p class="noindent">A simple text string, using a boldface font to render the first word.
+
+<p>Suppose that, after a moment or two, the program then replaced the
+final word &ldquo;world&rdquo; with the word &ldquo;earth&rdquo;.
+
+<p>In order to achieve this effect, the program would have to send
+special controls to the terminal to ask it to start writing in bold
+text, and then to revert back to normal text for the rest. To replace
+the final word, it might have to issue a series of backspaces before
+issuing the replacement word. All of this will be handled
+transparently by the terminal, and you wouldn't see any of the special
+characters the program sent to the terminal&mdash;unless perhaps you
+convinced the program to write to a text file as if it were writing to
+a terminal, or ran the program under a terminal capture utility such
+as the
+<a name="index-g_t_0040command_007bscript_007d-15"></a><samp><span class="command">script</span></samp> command.
+
+<p>You may be able to produce this effect yourself with the following
+shell command.
+
+<pre class="example">     $ printf '\033[1mHi\033[m there, world'; sleep 1; \
+         printf '\b\b\b\b\bearth\n'
+</pre>
+<p class="noindent">If you were to examine the output from such a command with a text
+editor, it might look something like this.
+
+<pre class="example">     ^[[1mHi^[[m there, world^H^H^H^H^Hearth
+</pre>
+<p class="noindent">Not very readable, is it? That's where Teseq comes in! When you run
+that gibberish through the <samp><span class="command">teseq</span></samp> command with the default
+settings, you'll get the following output.
+
+<pre class="example">     : Esc [ 1 m
+     &amp; SGR: SELECT GRAPHIC RENDITION
+     " Set bold text.
+     |Hi|
+     : Esc [ 0 m
+     &amp; SGR: SELECT GRAPHIC RENDITION
+     " Clear graphic rendition to defaults.
+     | there, world|
+     . BS/^H BS/^H BS/^H BS/^H BS/^H
+     |earth|.
+</pre>
+<p><a name="index-line-prefixes-16"></a><a name="index-prefixes-17"></a>Note that the special control sequences that tell the terminal to start
+and stop writing in boldface text are separated out on their own lines
+(prefixed with a colon &lsquo;<samp><span class="samp">:</span></samp>&rsquo;), and followed by an identification
+(prefixed with an ampersand &lsquo;<samp><span class="samp">&amp;</span></samp>&rsquo;) and a description of what it
+does (prefixed with a quote character &lsquo;<samp><span class="samp">"</span></samp>&rsquo;).
+
+<p>The actual text appears in lines bracketed by pipe &lsquo;<samp><span class="samp">|</span></samp>&rsquo;
+characters.
+
+<p>The series of single-character backspace controls appear on a line
+prefixed with a period &lsquo;<samp><span class="samp">.</span></samp>&rsquo;, identified by its identifying acronym
+(<span class="sc">bs</span> for <span class="sc">backspace</span>), and its control-key representation
+(Control-H).
+
+<p>The final word, &ldquo;earth&rdquo;, is followed by a period just
+after the closing pipe symbol; this indicates a following linefeed (or
+&ldquo;newline&rdquo;) character.
+
+<p><a name="index-g_t_0040command_007breseq_007d-18"></a>The <samp><span class="command">reseq</span></samp> command may be used to reverse the procedure,
+accepting the above input and printing out the original set of escape
+sequences that produced it. See <a href="Reseq.html#Reseq">Reseq</a>.
+
+</body></html>
+
