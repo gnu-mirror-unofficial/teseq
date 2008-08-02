@@ -1,8 +1,8 @@
 <html lang="en">
 <head>
-<title>Text Lines - GNU Teseq 1.0-devel Manual</title>
+<title>Text Lines - GNU Teseq 1.0.0 Manual</title>
 <meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="description" content="GNU Teseq 1.0.0 Manual">
 <meta name="generator" content="makeinfo 4.11">
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="up" href="Output-Format.html#Output-Format" title="Output Format">
@@ -10,7 +10,7 @@
 <link rel="next" href="Control_002dCharacter-Lines.html#Control_002dCharacter-Lines" title="Control-Character Lines">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Teseq, version 1.0-devel.
+This manual is for GNU Teseq, version 1.0.0.
 
 Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
 
@@ -46,7 +46,7 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Output-Format.html#Output-Format">Outpu
 
 <h3 class="section">3.1 Text Lines</h3>
 
-<p><a name="index-g_t_007c-59"></a>Lines of plain text input, are output between a pair of pipe characters
+<p><a name="index-g_t_007c-70"></a>Lines of plain text input, are output between a pair of pipe characters
 &lsquo;<samp><span class="samp">|</span></samp>&rsquo;, with a final period to indicate the linefeed character. 
 Input:
 
@@ -130,19 +130,19 @@ dot won't appear there either.
 
 <p>Currently, the only characters included in text lines, are those from
 the printable range of characters from US
-<a name="index-standards-60"></a><a name="index-ASCII-61"></a>ASCII (<a name="index-standards-62"></a><a name="index-Ecma_002d6-63"></a><a name="index-ISO-646-64"></a>Ecma-6&nbsp;/ ISO&nbsp;646)&mdash;and sometimes linefeed, represented by the special
+<a name="index-standards-71"></a><a name="index-ASCII-72"></a>ASCII (<a name="index-standards-73"></a><a name="index-Ecma_002d6-74"></a><a name="index-ISO-646-75"></a>Ecma-6&nbsp;/ ISO&nbsp;646)&mdash;and sometimes linefeed, represented by the special
 final-dot notation. This means that if the terminal was using a
 character set that high-value code points, all high-valued bytes will
 be represented in hexadecimal on control-character lines, and not
 displayed on a text line. Future versions of Teseq may provide options
 allowing for these characters to be represented properly in text
 lines, but for now, the output format is ASCII characters only. 
-See <a href="Future-Directions.html#Future-Directions">Future Directions</a>.
+See <a href="Future-Enhancements.html#Future-Enhancements">Future Enhancements</a>.
 
 <p>Note that even characters falling in the normal range of ASCII
 printable characters may not necessarily be represented correctly: for
 instance, if escape codes are present in the input that would switch
-the terminal to a different national variant of <a name="index-standards-65"></a><a name="index-Ecma_002d6-66"></a><a name="index-ISO-646-67"></a>Ecma-6&nbsp;/ ISO&nbsp;646, then the real
+the terminal to a different national variant of <a name="index-standards-76"></a><a name="index-Ecma_002d6-77"></a><a name="index-ISO-646-78"></a>Ecma-6&nbsp;/ ISO&nbsp;646, then the real
 terminal might display (say, for ISO-646ES)
 &lsquo;<samp><span class="samp">&Ntilde;</span></samp>&rsquo;
 instead of

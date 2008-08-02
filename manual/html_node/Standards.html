@@ -1,15 +1,15 @@
 <html lang="en">
 <head>
-<title>Standards - GNU Teseq 1.0-devel Manual</title>
+<title>Standards - GNU Teseq 1.0.0 Manual</title>
 <meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="description" content="GNU Teseq 1.0.0 Manual">
 <meta name="generator" content="makeinfo 4.11">
 <link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Output-Format.html#Output-Format" title="Output Format">
-<link rel="next" href="Reseq.html#Reseq" title="Reseq">
+<link rel="prev" href="Reseq.html#Reseq" title="Reseq">
+<link rel="next" href="Future-Enhancements.html#Future-Enhancements" title="Future Enhancements">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Teseq, version 1.0-devel.
+This manual is for GNU Teseq, version 1.0.0.
 
 Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
 
@@ -37,26 +37,34 @@ Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
 <div class="node">
 <p>
 <a name="Standards"></a>
-Next:&nbsp;<a rel="next" accesskey="n" href="Reseq.html#Reseq">Reseq</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Output-Format.html#Output-Format">Output Format</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="Future-Enhancements.html#Future-Enhancements">Future Enhancements</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Reseq.html#Reseq">Reseq</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
 <hr>
 </div>
 
-<h2 class="chapter">4 Standards</h2>
+<h2 class="chapter">5 Standards</h2>
 
 <p>The most authoritative source of information on control functions,
 their representations in bytes, and their intended meaning, is the
-<a name="index-standards-136"></a><a name="index-Ecma_002d48-137"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-138"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 standard. Also related is the <a name="index-standards-139"></a><a name="index-Ecma_002d35-140"></a><a name="index-ISO_002fIEC_0040tie_007b_007d2200-141"></a>Ecma-35&nbsp;/ ISO/IEC&nbsp;2200 standard,
+<a name="index-standards-172"></a><a name="index-Ecma_002d48-173"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-174"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 standard. Also related is the <a name="index-standards-175"></a><a name="index-Ecma_002d35-176"></a><a name="index-ISO_002fIEC_0040tie_007b_007d2200-177"></a>Ecma-35&nbsp;/ ISO/IEC&nbsp;2200 standard,
 which describes control functions for switching the character
 encoding, and defines the possible forms of escape sequence (note
 that, in Teseq,
-<a name="index-escape-sequence-142"></a>&ldquo;escape sequence&rdquo; refers to both the Ecma-48 concept of
-<a name="index-control-sequence-143"></a>&ldquo;control sequences&rdquo;, and the official Ecma-35 meaning of &ldquo;escape
-sequence&rdquo;.
+<a name="index-escape-sequence-178"></a>&ldquo;escape sequence&rdquo; refers to both the Ecma-48 concept of
+<a name="index-control-sequence-179"></a>&ldquo;control sequences&rdquo;, and the official Ecma-35 meaning of &ldquo;escape
+sequence&rdquo;. These standards are available, &ldquo;free of charge and
+copyright&rdquo;, at:
 
-<p>These standards are available, &ldquo;free of charge and copyright&rdquo;, at<br>
-<a href="http://www.ecma-international.org/">http://www.ecma-international.org/</a>.
+<pre class="example">     <a href="http://www.ecma-international.org/">http://www.ecma-international.org/</a>.
+</pre>
+<p class="noindent">In addition to the definitions provided by these standards, Teseq also
+recognizes additional sequences when the <samp><span class="option">-x</span></samp> option has been
+specified. Sources of information that were used for identifying and
+describing these sequences, include:
 
+<pre class="example">     <a href="http://invisible-island.net/xterm/ctlseqs/ctlseqs.html">http://invisible-island.net/xterm/ctlseqs/ctlseqs.html</a>
+     <a href="http://www.vt100.net/">http://www.vt100.net/</a>.
+</pre>
 </body></html>
 

@@ -1,8 +1,8 @@
 <html lang="en">
 <head>
-<title>Description Lines - GNU Teseq 1.0-devel Manual</title>
+<title>Description Lines - GNU Teseq 1.0.0 Manual</title>
 <meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="description" content="GNU Teseq 1.0.0 Manual">
 <meta name="generator" content="makeinfo 4.11">
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="up" href="Output-Format.html#Output-Format" title="Output Format">
@@ -10,7 +10,7 @@
 <link rel="next" href="Delay-Lines.html#Delay-Lines" title="Delay Lines">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Teseq, version 1.0-devel.
+This manual is for GNU Teseq, version 1.0.0.
 
 Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
 
@@ -46,14 +46,14 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Output-Format.html#Output-Format">Outpu
 
 <h3 class="section">3.5 Description Lines</h3>
 
-<p><a name="index-description-line-123"></a>
-<a name="index-g_t_0022-124"></a>Description lines begin with the double-quote, &lsquo;<samp><span class="samp">"</span></samp>&rsquo;:
+<p><a name="index-description-line-134"></a>
+<a name="index-g_t_0022-135"></a>Description lines begin with the double-quote, &lsquo;<samp><span class="samp">"</span></samp>&rsquo;:
 
 <pre class="example">     " Move the cursor up 2 lines.
 </pre>
 <p class="noindent">Sequences of description lines are generally preceded by a label line
 (unless the
-<a name="index-g_t_002dL-125"></a><samp><span class="option">-L</span></samp> option was supplied), and describe the same
+<a name="index-g_t_002dL-136"></a><samp><span class="option">-L</span></samp> option was supplied), and describe the same
 control function labeled by that line. More than one description line
 may be used to describe a function, whereas only one label line is
 ever used for a control function.
@@ -73,9 +73,9 @@ instance, the <span class="sc">insert line</span> function is described as follo
 <span class="sc">line editing mode</span>, the actual behavior might be to shift the
 lines <em>before</em> the cursor, rather than the ones after. Future
 versions of Teseq may track enough terminal state to improve the
-accuracy of these descriptions, but they would still need to
-guess at the initial state of the terminal, for any modes that had not
-been explicitly set or reset.
+accuracy of these descriptions (see <a href="Future-Enhancements.html#Future-Enhancements">Future Enhancements</a>), but they
+would still need to guess at the initial state of the terminal, for
+any modes that had not been explicitly set or reset.
 
 <p>Descriptions are also often inaccurate. For instance, the description
 for <span class="sc">insert line</span> should really read &ldquo;shift the current line and
@@ -85,13 +85,13 @@ invocations of <span class="sc">select editing extent</span>. A conscious decisi
 been made to value brevity over accuracy.
 
 <p>Also, the descriptions are based (loosely) on the semantics defined by
-<a name="index-standards-126"></a><a name="index-Ecma_002d48-127"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-128"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429. There is no guarantee that this corresponds to the
+<a name="index-standards-137"></a><a name="index-Ecma_002d48-138"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-139"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429. There is no guarantee that this corresponds to the
 semantics defined for the actual terminal on which these functions
 were invoked. The terminal may have different behavior, or may not
 even accept the function. The descriptions are intended as a rough aid in
 remembering what a given function does; to really understand the
 actual semantics of a function, you should read the terminal device's
-documentation, and/or <a name="index-standards-129"></a><a name="index-Ecma_002d48-130"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-131"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429.
+documentation, and/or <a name="index-standards-140"></a><a name="index-Ecma_002d48-141"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-142"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429.
 
 <p>Description lines currently are never wrapped; however, future
 versions of Teseq may wrap label lines. At that time, continuation

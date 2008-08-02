@@ -1,15 +1,15 @@
 <html lang="en">
 <head>
-<title>Invoking Teseq - GNU Teseq 1.0-devel Manual</title>
+<title>Invoking Teseq - GNU Teseq 1.0.0 Manual</title>
 <meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="description" content="GNU Teseq 1.0.0 Manual">
 <meta name="generator" content="makeinfo 4.11">
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="prev" href="Overview.html#Overview" title="Overview">
 <link rel="next" href="Output-Format.html#Output-Format" title="Output Format">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Teseq, version 1.0-devel.
+This manual is for GNU Teseq, version 1.0.0.
 
 Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
 
@@ -57,9 +57,12 @@ as &lsquo;<samp><span class="samp">-</span></samp>&rsquo;, standard input/output
 standard output by default, but see the <samp><span class="option">-o</span></samp> option.
 
      <dl>
-<dt><samp><span class="option">--help</span></samp><dt><samp><span class="option">-h</span></samp><dd><a name="index-g_t_002d_002dhelp-23"></a><a name="index-g_t_002dh-24"></a>Print usage information on standard output and exit successfully.
+<dt><samp><span class="option">-h</span></samp><dt><samp><span class="option">--help</span></samp><dd><a name="index-g_t_002d_002dhelp-23"></a><a name="index-g_t_002dh-24"></a>Print usage information on standard output and exit successfully.
 
-     <br><dt><samp><span class="option">-C</span></samp><dd><a name="index-g_t_002dC-25"></a><a name="index-control-character-26"></a>For control characters from the C0 set of <a name="index-standards-27"></a><a name="index-Ecma_002d48-28"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-29"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429, don't write
+     <br><dt><samp><span class="option">-V</span></samp><dt><samp><span class="option">--version</span></samp><dd><a name="index-g_t_002d_002dversion-25"></a><a name="index-g_t_002dV-26"></a>Print the version number and licensing information for <samp><span class="command">teseq</span></samp> on
+standard output and then exit successfully.
+
+     <br><dt><samp><span class="option">-C</span></samp><dd><a name="index-g_t_002dC-27"></a><a name="index-control-character-28"></a>For control characters from the C0 set of <a name="index-standards-29"></a><a name="index-Ecma_002d48-30"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-31"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429, don't write
 the control-key representation, only the identifying acronym. For
 example, write the carriage-return/line-feed combination as
      <pre class="example">          . CR LF
@@ -67,54 +70,101 @@ example, write the carriage-return/line-feed combination as
      <p class="noindent">rather than
      <pre class="example">          . CR/^M LF/^J
 </pre>
-     <br><dt><samp><span class="option">-D</span></samp><dd><a name="index-g_t_002dD-30"></a><a name="index-description-line-31"></a>Don't print description lines (those beginning with &lsquo;<samp><span class="samp">"</span></samp>&rsquo;).
+     <br><dt><samp><span class="option">-D</span></samp><dd><a name="index-g_t_002dD-32"></a><a name="index-description-line-33"></a>Don't print description lines (those beginning with &lsquo;<samp><span class="samp">"</span></samp>&rsquo;).
 
-     <br><dt><samp><span class="option">-E</span></samp><dd><a name="index-g_t_002dE-32"></a><a name="index-escape_002dsequence-line-33"></a>Don't print escape-sequence lines (beginning with
+     <br><dt><samp><span class="option">-E</span></samp><dd><a name="index-g_t_002dE-34"></a><a name="index-escape_002dsequence-line-35"></a>Don't print escape-sequence lines (beginning with
 &lsquo;<samp><span class="samp">:</span></samp>&rsquo;). <strong>Warning:</strong> this results in loss of information, and in
 particular means that running the output through the
-<a name="index-g_t_0040command_007breseq_007d-34"></a><samp><span class="command">reseq</span></samp> command won't reproduce the input.
+<a name="index-g_t_0040command_007breseq_007d-36"></a><samp><span class="command">reseq</span></samp> command won't reproduce the input.
 
      <p>Still, this option can be useful (in combination with <samp><span class="option">-L</span></samp>) for
 those that don't care about the exact sequence of characters, or what
 their function is called, but just what their effects in the terminal
 are (those that Teseq understands). The output produced
 
-     <br><dt><samp><span class="option">-L</span></samp><dd><a name="index-g_t_002dL-35"></a><a name="index-label-line-36"></a>Don't print identifying labels (lines beginning with &lsquo;<samp><span class="samp">&amp;</span></samp>&rsquo;) for
+     <br><dt><samp><span class="option">-L</span></samp><dd><a name="index-g_t_002dL-37"></a><a name="index-label-line-38"></a>Don't print identifying labels (lines beginning with &lsquo;<samp><span class="samp">&amp;</span></samp>&rsquo;) for
 escape sequences.
 
-     <br><dt><samp><span class="option">--version</span></samp><dt><samp><span class="option">-V</span></samp><dd><a name="index-g_t_002d_002dversion-37"></a><a name="index-g_t_002dV-38"></a>Print the version number and licensing information of <code>hello</code> on
-standard output and then exit successfully.
+     <br><dt><samp><span class="option">-I</span></samp><dt><samp><span class="option">--no-interactive</span></samp><dd><a name="index-g_t_002dI-39"></a><a name="index-g_t_002d_002dno_002dinteractive-40"></a>Don't put the terminal into non-canonical or no-echo mode, and don't
+try to ensure output lines are finished when a signal is received (see
+below).
 
-     <br><dt><samp><span class="option">-t </span><var>timings</var></samp><dd><a name="index-g_t_002dt-39"></a>Read timing information from <var>timings</var> and emit
-<a name="index-delay-line-40"></a>delay lines. This file must be formatted as if generated by
-<a name="index-g_t_0040command_007bscript_007d-41"></a>&lsquo;<samp><span class="samp">script -t</span></samp>&rsquo; (for the <samp><span class="command">script</span></samp> command from
+     <br><dt><samp><span class="option">-b</span></samp><dt><samp><span class="option">--buffered</span></samp><dd><a name="index-g_t_002d_002dbuffered-41"></a><a name="index-g_t_002db-42"></a>Force <samp><span class="command">teseq</span></samp> to use buffered I/O (see below).
+
+     <br><dt><samp><span class="option">-t </span><var>timings</var></samp><dt><samp><span class="option">--timings </span><var>timings</var></samp><dd><a name="index-g_t_002dt-43"></a><a name="index-g_t_002d_002dtimings-44"></a>Read timing information from <var>timings</var> and emit
+<a name="index-delay-line-45"></a>delay lines. This file must be formatted as if generated by
+<a name="index-g_t_0040command_007bscript_007d-46"></a>&lsquo;<samp><span class="samp">script -t</span></samp>&rsquo; (for the <samp><span class="command">script</span></samp> command from
 util-linux).
 
-     <br><dt><samp><span class="option">-x</span></samp><dd><a name="index-g_t_002dx-42"></a>Allow <samp><span class="command">teseq</span></samp> to recognize some additional, non-standard
+     <br><dt><samp><span class="option">-x</span></samp><dd><a name="index-g_t_002dx-47"></a>Allow <samp><span class="command">teseq</span></samp> to recognize some additional, non-standard
 sequences, such as extensions from VT100 or Xterm. Without this
 option, <samp><span class="command">teseq</span></samp> will only interpret functions standardized by
-<a name="index-standards-43"></a><a name="index-Ecma_002d35-44"></a><a name="index-ISO_002fIEC_0040tie_007b_007d2200-45"></a>Ecma-35&nbsp;/ ISO/IEC&nbsp;2200 and <a name="index-standards-46"></a><a name="index-Ecma_002d48-47"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-48"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429. 
+<a name="index-standards-48"></a><a name="index-Ecma_002d35-49"></a><a name="index-ISO_002fIEC_0040tie_007b_007d2200-50"></a>Ecma-35&nbsp;/ ISO/IEC&nbsp;2200 and <a name="index-standards-51"></a><a name="index-Ecma_002d48-52"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-53"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429. 
 </dl>
 
 <p class="noindent">Note that there are no options for suppressing
-<a name="index-text-line-49"></a>text lines (&lsquo;<samp><span class="samp">|</span></samp>&rsquo;)
+<a name="index-text-line-54"></a>text lines (&lsquo;<samp><span class="samp">|</span></samp>&rsquo;)
 or
-<a name="index-control_002dcharacter-line-50"></a>control-character lines (&lsquo;<samp><span class="samp">.</span></samp>&rsquo;),
+<a name="index-control_002dcharacter-line-55"></a>control-character lines (&lsquo;<samp><span class="samp">.</span></samp>&rsquo;),
 as there are for description or
 escape-sequence lines.
 
 <p>The <samp><span class="option">-L</span></samp>, <samp><span class="option">-D</span></samp> and <samp><span class="option">-E</span></samp> options also have
 mnemonic equivalents of
-<a name="index-g_t_002d_0026-51"></a><samp><span class="option">-&amp;</span></samp>,
-<a name="index-g_t_002d_0022-52"></a><samp><span class="option">-"</span></samp> and
-<a name="index-g_t_002d_003a-53"></a><samp><span class="option">-:</span></samp>
+<a name="index-g_t_002d_0026-56"></a><samp><span class="option">-&amp;</span></samp>,
+<a name="index-g_t_002d_0022-57"></a><samp><span class="option">-"</span></samp> and
+<a name="index-g_t_002d_003a-58"></a><samp><span class="option">-:</span></samp>
 respectively, corresponding to the
-<a name="index-line-prefix-54"></a><a name="index-prefix_002c-line-55"></a>character prefixes for the lines they suppress; and <samp><span class="option">-C</span></samp> has an
-<a name="index-g_t_002d_005e-56"></a><samp><span class="option">-^</span></samp> equivalent, for the &lsquo;<samp><span class="samp">^X</span></samp>&rsquo;-style control
+<a name="index-line-prefix-59"></a><a name="index-prefix_002c-line-60"></a>character prefixes for the lines they suppress; and <samp><span class="option">-C</span></samp> has an
+<a name="index-g_t_002d_005e-61"></a><samp><span class="option">-^</span></samp> equivalent, for the &lsquo;<samp><span class="samp">^X</span></samp>&rsquo;-style control
 representations it suppresses. However, while they may be more practical to remember, they
 will be less practical to type, since both <samp><span class="option">-&amp;</span></samp> and <samp><span class="option">-"</span></samp>
 are apt to be interpreted as special by the shell, and must be quoted
 in order to pass them to the <samp><span class="command">teseq</span></samp> command.
+
+<h3 class="unnumberedsec">Interactive Mode</h3>
+
+<p><a name="index-non_002dcanonical-mode-62"></a><a name="index-g_t_0040command_007bteseq_007d_002c-interactive-mode-63"></a>
+When <samp><span class="command">teseq</span></samp> is started with a terminal as its input, it sets
+the terminal to non-canonical mode. That way, you can see real-time
+translation of input, as you type. If both input and output are
+terminals, then <samp><span class="command">teseq</span></samp> will also turn local echo off, so that
+the characters you type will not interfere with the output you
+see. You can try it out by simply running <samp><span class="command">teseq</span></samp> without any
+arguments. <strong>Note</strong>, this means that the control for indicating
+&ldquo;end-of-file&rdquo; (usually &lsquo;<samp><span class="samp">C-d</span></samp>&rsquo;) will not be processed specially,
+but will be passed through to <samp><span class="command">teseq</span></samp> like any other
+character. Use the interrupt character (usually &lsquo;<samp><span class="samp">C-c</span></samp>&rsquo;) instead,
+or specify <samp><span class="option">--no-interactive</span></samp> to disable this behavior.
+
+<p>When run in this way, characters typed as input are immediately
+translated and written out. The exception is that when an <span class="sc">escape</span>
+character is encountered, <samp><span class="command">teseq</span></samp> must wait for the next few
+characters before writing anything, so it can decide whether to start
+an escape line or a control-character line.
+
+<p>When <samp><span class="command">teseq</span></samp> has a terminal as its output, it is careful to
+ensure that it finishes output lines when it is stopped by a
+signal. If it was in the middle of writing a text line, it will write
+the closing pipe character &lsquo;<samp><span class="samp">|</span></samp>&rsquo;, followed by a newline. If it was
+in the middle of trying to determine whether it's in a valid escape
+sequence or just an escape character followed by other characters, it
+will assume the latter case, and translate all the characters it has
+seen so far.
+
+<p>To force <samp><span class="command">teseq</span></samp> to behave as if it's not connected to a terminal (that is, to refrain from
+<a name="index-g_t_002d_002dno_002dinteractive-64"></a><a name="index-g_t_002dI-65"></a>ensuring lines are finished, or setting non-canonical/no-echo mode),
+use the <samp><span class="option">--no-interactive</span></samp> (<samp><span class="option">-I</span></samp>) option.
+
+<p>The <samp><span class="command">teseq</span></samp> program does not take care to finish lines when
+the output is not a terminal.
+
+<p>Whether or not <samp><span class="command">teseq</span></samp> is connected to a terminal, it uses
+unbuffered I/O by default, unless the input is an ordinary file. This is
+so that each character may be processed as soon as it's seen. However,
+this can result in much longer processing time overall. To force
+<samp><span class="command">teseq</span></samp> to buffer its input and output, use the
+<a name="index-g_t_002d_002dbuffered-66"></a><a name="index-g_t_002db-67"></a><samp><span class="option">--buffered</span></samp> (<samp><span class="option">-b</span></samp>) option.
 
 </body></html>
 

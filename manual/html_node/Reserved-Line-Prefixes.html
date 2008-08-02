@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+<title>Reserved Line Prefixes - GNU Teseq 1.0.0 Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Teseq 1.0.0 Manual">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Reseq.html#Reseq" title="Reseq">
+<link rel="prev" href="Reseq.html#Reseq" title="Reseq">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for GNU Teseq, version 1.0.0.
+
+Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.2 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts, and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled ``GNU Free Documentation License''.
+-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Reserved-Line-Prefixes"></a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Reseq.html#Reseq">Reseq</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Reseq.html#Reseq">Reseq</a>
+<hr>
+</div>
+
+<h3 class="unnumberedsec">Reserved Line Prefixes</h3>
+
+<p><a name="index-reserved-line-prefixes-165"></a><a name="index-line-prefix_002c-reserved-166"></a><a name="index-line-prefix-167"></a><a name="index-prefix_002c-line-168"></a>
+It's important for <samp><span class="command">reseq</span></samp> to be able to process its input
+correctly, even if that output came from a different version of
+<samp><span class="command">teseq</span></samp> than <samp><span class="command">reseq</span></samp> is familiar with. So, it's
+important that <samp><span class="command">reseq</span></samp> should refuse to continue processing
+input if it encounters a line that it doesn't recognize, but which
+might contain important semantic information that effects the output
+<samp><span class="command">reseq</span></samp> should produce.
+
+<p>At the same time, it'd be a shame for <samp><span class="command">reseq</span></samp> to refuse to
+process a line it doesn't understand, if that line contains
+non-critical information. For example, consider delay lines (beginning
+with &lsquo;<samp><span class="samp">@</span></samp>&rsquo;. The delay line holds semantic information, to be sure;
+but not information that would affect <samp><span class="command">reseq</span></samp>'s normal
+operation (it only has meaning when one of the
+<a name="index-g_t_002dt-_0028reseq_0029-169"></a><a name="index-g_t_002d_002dtimings-_0028reseq_0029-170"></a><samp><span class="option">--timings</span></samp> or
+<a name="index-g_t_002d_002dreplay-_0028reseq_0029-171"></a><samp><span class="option">--replay</span></samp> options has been specified). So, if an older version
+of <samp><span class="command">reseq</span></samp> had existed that did not recognize them, it would
+have been a shame if its introduction in the newer release had caused
+the older version to refuse to process it.
+
+<p>To address both of these concerns, <samp><span class="command">reseq</span></samp> has taken the
+approach of reserving certain prefixes for use as &ldquo;semantically
+significant&rdquo; line prefixes, and others for use in lines that
+<samp><span class="command">reseq</span></samp> can safely ignore. A line that begins with any of the
+following characters, will cause <samp><span class="command">reseq</span></samp> to halt processing
+and exit with an error.
+
+<pre class="example">     !$+/=[\^{~
+</pre>
+<p class="noindent">The idea is that these prefixes are reserved for future use in lines
+that <samp><span class="command">reseq</span></samp> must understand in order to produce correct
+results.
+
+<p>This leaves all remaining characters free for use in specifying future
+<samp><span class="command">teseq</span></samp> output lines that do not affect processing for older
+<samp><span class="command">reseq</span></samp>s. Note that they are still reserved for
+<samp><span class="command">teseq</span></samp>, and are not intended for users to insert commentary
+or such. However, <samp><span class="command">teseq</span></samp> will never use a line beginning with
+the space character; and <samp><span class="command">reseq</span></samp> will always ignore such
+lines, so the space character may be used to indicate user comments.
+
+</body></html>
+

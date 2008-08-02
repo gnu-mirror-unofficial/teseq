@@ -1,15 +1,15 @@
 <html lang="en">
 <head>
-<title>Delay Lines - GNU Teseq 1.0-devel Manual</title>
+<title>Delay Lines - GNU Teseq 1.0.0 Manual</title>
 <meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="description" content="GNU Teseq 1.0.0 Manual">
 <meta name="generator" content="makeinfo 4.11">
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="up" href="Output-Format.html#Output-Format" title="Output Format">
 <link rel="prev" href="Description-Lines.html#Description-Lines" title="Description Lines">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Teseq, version 1.0-devel.
+This manual is for GNU Teseq, version 1.0.0.
 
 Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
 
@@ -44,18 +44,18 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Output-Format.html#Output-Format">Outpu
 
 <h3 class="section">3.6 Delay Lines</h3>
 
-<p><a name="index-delay-line-132"></a><a name="index-g_t_0040_0040-133"></a>
+<p><a name="index-delay-line-143"></a><a name="index-g_t_0040_0040-144"></a>
 A delay line begins with an &ldquo;at&rdquo; sign &lsquo;<samp><span class="samp">@</span></samp>&rsquo;, and contains a
 single numeric value; a number of seconds to pause before continuing
 on to process further lines. The
-<a name="index-g_t_0040command_007breseq_007d-134"></a><samp><span class="command">reseq</span></samp> program will obey these instructions only if it is
+<a name="index-g_t_0040command_007breseq_007d-145"></a><samp><span class="command">reseq</span></samp> program will obey these instructions only if it is
 given the <samp><span class="option">--replay</span></samp> option.
 
 <pre class="example">     @ 3.0051
 </pre>
 <p class="noindent">Delay lines are only issued by <samp><span class="command">teseq</span></samp> when it has been given
 the <samp><span class="option">-t</span></samp> option, which uses a timing file from
-<a name="index-g_t_0040command_007bscript_007d-135"></a>&lsquo;<samp><span class="samp">script -t</span></samp>&rsquo; to determine where to insert delays. Aside from that,
+<a name="index-g_t_0040command_007bscript_007d-146"></a>&lsquo;<samp><span class="samp">script -t</span></samp>&rsquo; to determine where to insert delays. Aside from that,
 delay lines can be useful for manual insertion into Teseq
 output, to introduce a delay at a particular point when using
 &lsquo;<samp><span class="samp">reseq --replay</span></samp>&rsquo;, which can aid in giving the user time to more

@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+<title>Stateful Processing - GNU Teseq 1.0.0 Manual</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU Teseq 1.0.0 Manual">
+<meta name="generator" content="makeinfo 4.11">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Future-Enhancements.html#Future-Enhancements" title="Future Enhancements">
+<link rel="prev" href="Localized-Messages.html#Localized-Messages" title="Localized Messages">
+<link rel="next" href="Terminal-Databases.html#Terminal-Databases" title="Terminal Databases">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for GNU Teseq, version 1.0.0.
+
+Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.2 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts, and
+     no Back-Cover Texts.  A copy of the license is included in the
+     section entitled ``GNU Free Documentation License''.
+-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Stateful-Processing"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Terminal-Databases.html#Terminal-Databases">Terminal Databases</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Localized-Messages.html#Localized-Messages">Localized Messages</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Future-Enhancements.html#Future-Enhancements">Future Enhancements</a>
+<hr>
+</div>
+
+<h3 class="section">6.2 Stateful Processing</h3>
+
+<p>Future versions of Teseq may support options to remember state
+information about the terminal. For instance if Teseq has seen the
+invocation of <span class="sc">select graphic rendition</span> to set underlined text,
+Teseq might render any further text that
+appears in
+<a name="index-text-line-180"></a>with underlining. In addition, the meaning of some standardized
+commands defined by <a name="index-standards-181"></a><a name="index-Ecma_002d48-182"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-183"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 depend on the current setting of
+various terminal modes, and Teseq currently makes assumptions about
+those modes. A state-remembering Teseq might remember the last time a
+mode was set, and no longer need to make assumptions.
+
+<p>If Teseq is given information about the size of the target terminal,
+it could also provide information about the cursor's present location
+after every cursor-moving command.
+
+<p>Currently, all output from <samp><span class="command">teseq</span></samp> is in US
+<a name="index-standards-184"></a><a name="index-ASCII-185"></a>ASCII; but future versions of Teseq might support output in other
+encodings. If that happens, Teseq might also add support for the
+handling of <a name="index-standards-186"></a><a name="index-Ecma_002d35-187"></a><a name="index-ISO_002fIEC_0040tie_007b_007d2200-188"></a>Ecma-35&nbsp;/ ISO/IEC&nbsp;2200 character code-switching sequences, such
+that the characters given in
+<a name="index-text-line-189"></a>text lines would reflect the actual characters as they would actually
+appear in the terminal device, depending on the current encoding
+state.
+
+<p>Note that features which alter the bytes found between the pipe
+characters of a text line, would most likely break reverse-translation
+with
+<a name="index-g_t_0040command_007breseq_007d-190"></a><samp><span class="command">reseq</span></samp>, as it would be much harder to tell what the original
+byte values had been.
+
+</body></html>
+

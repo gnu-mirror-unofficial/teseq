@@ -1,13 +1,13 @@
 <html lang="en">
 <head>
-<title>GNU Teseq 1.0-devel Manual</title>
+<title>GNU Teseq 1.0.0 Manual</title>
 <meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="description" content="GNU Teseq 1.0.0 Manual">
 <meta name="generator" content="makeinfo 4.11">
 <link title="Top" rel="start" href="#Top">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Teseq, version 1.0-devel.
+This manual is for GNU Teseq, version 1.0.0.
 
 Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
 
@@ -32,7 +32,7 @@ Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
 --></style>
 </head>
 <body>
-<h1 class="settitle">GNU Teseq 1.0-devel Manual</h1>
+<h1 class="settitle">GNU Teseq 1.0.0 Manual</h1>
 <div class="contents">
 <h2>Table of Contents</h2>
 <ul>
@@ -42,6 +42,9 @@ Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
 <li><a href="Overview.html#Overview">A Quick Example</a>
 </li></ul>
 <li><a name="toc_Invoking-Teseq" href="Invoking-Teseq.html#Invoking-Teseq">2 Invoking Teseq</a>
+<ul>
+<li><a href="Invoking-Teseq.html#Invoking-Teseq">Interactive Mode</a>
+</li></ul>
 <li><a name="toc_Output-Format" href="Output-Format.html#Output-Format">3 Output Format</a>
 <ul>
 <li><a href="Text-Lines.html#Text-Lines">3.1 Text Lines</a>
@@ -54,13 +57,18 @@ Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
 <li><a href="Description-Lines.html#Description-Lines">3.5 Description Lines</a>
 <li><a href="Delay-Lines.html#Delay-Lines">3.6 Delay Lines</a>
 </li></ul>
-<li><a name="toc_Standards" href="Standards.html#Standards">4 Standards</a>
-<li><a name="toc_Reseq" href="Reseq.html#Reseq">5 The Reseq Command</a>
-<li><a name="toc_Future-Directions" href="Future-Directions.html#Future-Directions">6 Future Directions</a>
+<li><a name="toc_Reseq" href="Reseq.html#Reseq">4 The Reseq Command</a>
 <ul>
-<li><a href="Future-Directions.html#Future-Directions">Unicode Output</a>
-<li><a href="Future-Directions.html#Future-Directions">Terminal Database Awareness</a>
+<li><a href="Reserved-Line-Prefixes.html#Reserved-Line-Prefixes">Reserved Line Prefixes</a>
 </li></ul>
+<li><a name="toc_Standards" href="Standards.html#Standards">5 Standards</a>
+<li><a name="toc_Future-Enhancements" href="Future-Enhancements.html#Future-Enhancements">6 Future Enhancements</a>
+<ul>
+<li><a href="Localized-Messages.html#Localized-Messages">6.1 Localized Messages</a>
+<li><a href="Stateful-Processing.html#Stateful-Processing">6.2 Stateful Processing</a>
+<li><a href="Terminal-Databases.html#Terminal-Databases">6.3 Terminal Database Awareness</a>
+</li></ul>
+<li><a name="toc_Contact-and-Info" href="Contact-and-Info.html#Contact-and-Info">7 Contact and Information</a>
 <li><a name="toc_Copying" href="Copying.html#Copying">Appendix A Copying</a>
 <li><a name="toc_Index" href="Index.html#Index">Index</a>
 </li></ul>
@@ -79,22 +87,23 @@ Up:&nbsp;<a rel="up" accesskey="u" href="../index.html#dir">(dir)</a>
 
 <h2 class="unnumbered">Teseq</h2>
 
-<p>This manual is for GNU Teseq, version 1.0-devel.
+<p>This manual is for GNU Teseq, version 1.0.0.
 
 <p class="noindent">Copyright &copy; 2008 Micah Cowan <a href="mailto:micah@cowan.name">micah@cowan.name</a>
 
 <ul class="menu">
 <li><a accesskey="1" href="Overview.html#Overview">Overview</a>:                     What does Teseq do? (with example)
 <li><a accesskey="2" href="Invoking-Teseq.html#Invoking-Teseq">Invoking Teseq</a>:               How to run Teseq, with options 'n' stuff. 
-<li><a accesskey="3" href="Output-Format.html#Output-Format">Output Format</a>:                How Teseq's output looks. 
-<li><a accesskey="4" href="Standards.html#Standards">Standards</a>:                    The official word on control functions.
+<li><a accesskey="3" href="Output-Format.html#Output-Format">Output Format</a>:                How Teseq's output looks.
 
-<li><a accesskey="5" href="Reseq.html#Reseq">Reseq</a>:                        Reversing Teseq's output.
+<li><a accesskey="4" href="Reseq.html#Reseq">Reseq</a>:                        Reversing Teseq's output.
 
-<li><a accesskey="6" href="Future-Directions.html#Future-Directions">Future Directions</a>:            Future features under consideration.
+<li><a accesskey="5" href="Standards.html#Standards">Standards</a>:                    The official word on control functions. 
+<li><a accesskey="6" href="Future-Enhancements.html#Future-Enhancements">Future Enhancements</a>:          Future features under consideration. 
+<li><a accesskey="7" href="Contact-and-Info.html#Contact-and-Info">Contact and Info</a>:             Where to ask questions and find answers.
 
-<li><a accesskey="7" href="Copying.html#Copying">Copying</a>:                      Copying and sharing this manual. 
-<li><a accesskey="8" href="Index.html#Index">Index</a>:                        Index of concepts. 
+<li><a accesskey="8" href="Copying.html#Copying">Copying</a>:                      Copying and sharing this manual. 
+<li><a accesskey="9" href="Index.html#Index">Index</a>:                        Index of concepts. 
 </ul>
 
 </body></html>

@@ -1,8 +1,8 @@
 <html lang="en">
 <head>
-<title>Control-Character Lines - GNU Teseq 1.0-devel Manual</title>
+<title>Control-Character Lines - GNU Teseq 1.0.0 Manual</title>
 <meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0-devel Manual">
+<meta name="description" content="GNU Teseq 1.0.0 Manual">
 <meta name="generator" content="makeinfo 4.11">
 <link title="Top" rel="start" href="index.html#Top">
 <link rel="up" href="Output-Format.html#Output-Format" title="Output Format">
@@ -10,7 +10,7 @@
 <link rel="next" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" title="Escape-Sequence Lines">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual is for GNU Teseq, version 1.0-devel.
+This manual is for GNU Teseq, version 1.0.0.
 
 Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
 
@@ -47,18 +47,18 @@ Up:&nbsp;<a rel="up" accesskey="u" href="Output-Format.html#Output-Format">Outpu
 
 <h3 class="section">3.2 Control-Character Lines</h3>
 
-<p><a name="index-control-character-68"></a><a name="index-control_002dcharacter-line-69"></a>
+<p><a name="index-control-character-79"></a><a name="index-control_002dcharacter-line-80"></a>
 Control-character lines are used to display characters whose code
 values fall outside the range of printable characters from US
-<a name="index-standards-70"></a><a name="index-ASCII-71"></a>ASCII
-(<a name="index-standards-72"></a><a name="index-Ecma_002d6-73"></a><a name="index-ISO-646-74"></a>Ecma-6&nbsp;/ ISO&nbsp;646). That
+<a name="index-standards-81"></a><a name="index-ASCII-82"></a>ASCII
+(<a name="index-standards-83"></a><a name="index-Ecma_002d6-84"></a><a name="index-ISO-646-85"></a>Ecma-6&nbsp;/ ISO&nbsp;646). That
 is, those characters whose code values fall below below 32 decimal
 (those from the C0 set of control characters from
-<a name="index-standards-75"></a><a name="index-Ecma_002d48-76"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-77"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429); and those whose values are at or above 127 decimal
+<a name="index-standards-86"></a><a name="index-Ecma_002d48-87"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-88"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429); and those whose values are at or above 127 decimal
 (the &ldquo;delete&rdquo; character, and character byte values with the high bit
 set).
 
-<p><a name="index-g_t_002e-78"></a>Control-character lines begin with an initial dot, &lsquo;<samp><span class="samp">.</span></samp>&rsquo;, followed by the
+<p><a name="index-g_t_002e-89"></a>Control-character lines begin with an initial dot, &lsquo;<samp><span class="samp">.</span></samp>&rsquo;, followed by the
 control characters or high-value bytes being represented.
 
 <pre class="example">     . BEL/^G NUL/^ CR/^M LF/^J DEL/^? xA0 xFF
@@ -66,7 +66,7 @@ control characters or high-value bytes being represented.
 <p class="noindent">Control characters (whose numeric codes fall below decimal 32, plus
 the delete character at decimal 127) are represented by a mnemonic
 acronym identifying the character's function. Unless the
-<a name="index-g_t_002dC-79"></a><samp><span class="option">-C</span></samp> was given, this acronym is followed by a slash, and the
+<a name="index-g_t_002dC-90"></a><samp><span class="option">-C</span></samp> was given, this acronym is followed by a slash, and the
 control-key combination that would produce the corresponding character
 (control characters are usually much more recognizable from one or the
 other of their name or their control-character representation, than
@@ -75,7 +75,7 @@ combination&rdquo; representation consists of a &ldquo;hat&rdquo; or &ldquo;circ
 accent&rdquo; character, followed by a character with a value in the range
 of 63 through 95 decimal.
 
-<p><a name="index-delete-character-80"></a>Note that the delete character, designated as
+<p><a name="index-delete-character-91"></a>Note that the delete character, designated as
 &lsquo;<samp><span class="samp">DEL/^?</span></samp>&rsquo;, is a special case, in that one can not generally
 reproduce that key by holding down the control key and typing a
 question mark; it is simply used as an identification of the
@@ -87,9 +87,9 @@ the character.
 
 <p>For reference, here's a table of the control characters (plus
 <span class="sc">del</span>). It is based on the information from Table 1 of
-<a name="index-standards-81"></a><a name="index-Ecma_002d48-82"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-83"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 (the control-key representation has been added).
+<a name="index-standards-92"></a><a name="index-Ecma_002d48-93"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-94"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 (the control-key representation has been added).
 
-<p><a name="index-control-characters-table-84"></a><a name="index-table-of-control-characters-85"></a>
+<p><a name="index-control-characters-table-95"></a><a name="index-table-of-control-characters-96"></a>
 <p><table summary=""><tr align="left"><th valign="top" width="10%">Hex </th><th valign="top" width="10%">Key </th><th valign="top" width="20%">Name
 </th><th valign="top" width="10%">Hex </th><th valign="top" width="10%">Key </th><th valign="top" width="20%">Name
 <br></th></tr><tr align="left"><td valign="top" width="10%">x00 </td><td valign="top" width="10%">^@ </td><td valign="top" width="20%">NUL
