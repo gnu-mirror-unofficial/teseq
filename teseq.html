@@ -1,5 +1,13 @@
 <!--#include virtual="/server/header.html" -->
 <title>GNU Teseq - GNU Project - Free Software Foundation</title>
+<style type="text/css">
+pre { margin-left: 2em; }
+.teseqT { background-color: cyan; }
+.teseqC { color: red; }
+.teseqE { color: orange; }
+.teseqL { color: magenta; }
+.teseqD { color: green; font-weight: bold; }
+</style>
 <!--#include virtual="/server/banner.html" -->
 <h2>GNU Teseq</h2>
 
@@ -27,41 +35,44 @@ intended to be useful for diagnosing terminal emulators, and programs
 that make heavy use of terminal features (such as those based on the
 Curses library).</p>
 
-<p>It is primarily targeted at individuals who possess a basic
-understanding of terminal control sequences, especially CSI sequences;
-however, by default Teseq will try to identify and describe the
-sequences that it encounters, and the behavior they might produce in a
-terminal.</p>
+<p>Teseq is useful for:</p>
 
-<p>Teseq describes control functions as they are interpreted by
-VT100-compatible terminals, and/or terminals compliant with the Ecma-48
-/ ISO/IEC 6429 standard. Teseq does <em>not</em> support describing
-control functions according to terminal-specific definitions in a
-database such as termcap or terminfo, though future versions may include
-limited support for that.  Therefore, the descriptions Teseq uses for
-control functions may not necessarily match their actual interpretation
-by whatever terminal device the characters were actually intended for.  </p>
+<ul>
+    <li>creating animated, interactive demos to run on the terminal,</li>
+    <li>knowing the exact output of a program (Did it have spaces at the
+    end of the line? Or maybe it contains invisible control
+    characters?),</li>
+    <li>examining a text file's contents unambiguously, a la &ldquo;cat
+    -t&rdquo; or the ed &ldquo;l&rdquo; command,</li>
+    <li>examining invisible control sequences within a text file, that
+    affect graphical formatting or character encoding, and</li>
+    <li>debugging graphical terminal applications, and terminal
+    emulators.</li>
+</ul>
 
-<p>It takes input like:</p>
+<p>It takes input like the following, containing various invisible
+formatting codes:</p>
 
-<pre>
-^[[1mHi^[[m there, world^H^H^H^H^Hearth
+<pre><b>Hi</b> there, world
 </pre>
 
 <p>And spits out something like:</p>
 
 <pre>
-: Esc [ 1 m
-&amp; SGR: SELECT GRAPHIC RENDITION
-&quot; Set bold text.
-|Hi|
-: Esc [ 0 m
-&amp; SGR: SELECT GRAPHIC RENDITION
-&quot; Clear graphic rendition to defaults.
-| there, world|
-. BS/^H BS/^H BS/^H BS/^H BS/^H
-|earth|.
+: <span class="teseqE">Esc [ 1 m</span>
+&amp; <span class="teseqL">SGR: SELECT GRAPHIC RENDITION</span>
+&quot; <span class="teseqD">Set bold text.</span>
+|<span class="teseqT">Hi</span>|
+: <span class="teseqE">Esc [ 0 m</span>
+&amp; <span class="teseqL">SGR: SELECT GRAPHIC RENDITION</span>
+&quot; <span class="teseqD">Clear graphic rendition to defaults.</span>
+|<span class="teseqT"> there, world</span>|
+. <span class="teseqC">BS/^H BS/^H BS/^H BS/^H BS/^H</span>
+|<span class="teseqT">earth</span>|.
 </pre>
+
+<p>(Coloring added for clarity; though Teseq does offer options for
+colorizing the output.)</p>
 
 <h3>Downloading GNU Teseq</h3>
 
@@ -175,7 +186,7 @@ notice, and the copyright notice, are preserved.
 <p>
 Updated:
 <!-- timestamp start -->
-$Date: 2008/08/04 17:26:02 $
+$Date: 2013/05/03 19:08:01 $
 <!-- timestamp end -->
 </p>
 </div>
