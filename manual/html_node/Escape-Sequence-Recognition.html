@@ -1,175 +1,244 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Teseq, version 1.1.
+
+Copyright (C) 2008, 2013 Micah Cowan <micah@cowan.name>
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Escape Sequence Recognition - GNU Teseq 1.0.0 Manual</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0.0 Manual">
-<meta name="generator" content="makeinfo 4.11">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" title="Escape-Sequence Lines">
-<link rel="prev" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" title="Escape-Sequence Lines">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<title>GNU Teseq 1.1 Manual: Escape Sequence Recognition</title>
+
+<meta name="description" content="GNU Teseq 1.1 Manual: Escape Sequence Recognition">
+<meta name="keywords" content="GNU Teseq 1.1 Manual: Escape Sequence Recognition">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" rel="up" title="Escape-Sequence Lines">
+<link href="Label-Lines.html#Label-Lines" rel="next" title="Label Lines">
+<link href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" rel="previous" title="Escape-Sequence Lines">
+<style type="text/css">
 <!--
-This manual is for GNU Teseq, version 1.0.0.
-
-Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
-
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.2 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, no Front-Cover Texts, and
-     no Back-Cover Texts.  A copy of the license is included in the
-     section entitled ``GNU Free Documentation License''.
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
 -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+</style>
+
+
 </head>
-<body>
-<div class="node">
-<p>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 <a name="Escape-Sequence-Recognition"></a>
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines">Escape-Sequence Lines</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines">Escape-Sequence Lines</a>
-<hr>
+<div class="header">
+<p>
+Previous: <a href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" accesskey="p" rel="previous">Escape-Sequence Lines</a>, Up: <a href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" accesskey="u" rel="up">Escape-Sequence Lines</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Recognizing-Escape-Sequences"></a>
 <h4 class="unnumberedsubsec">Recognizing Escape Sequences</h4>
+<a name="index-escape-sequence_002c-defined"></a>
 
-<p><a name="index-escape-sequence_002c-defined-98"></a>
-Okay, great, so escape-sequence lines help distinguish
+<p>Okay, great, so escape-sequence lines help distinguish
 control-characters and text characters that make up an escape sequence
-from those that don't. But what exactly makes up an escape sequence,
+from those that don&rsquo;t. But what exactly makes up an escape sequence,
 anyway?
-
-<p>The <a name="index-standards-99"></a><a name="index-Ecma_002d35-100"></a><a name="index-ISO_002fIEC_0040tie_007b_007d2200-101"></a>Ecma-35&nbsp;/ ISO/IEC&nbsp;2200 standard defines an escape sequence to be a sequence
-of characters beginning with <span class="sc">esc</span>, with a
-<a name="index-final-byte-102"></a><a name="index-escape-sequence_002c-final-byte-103"></a>final byte in the range
+</p>
+<p>The <a name="index-standards-8"></a>
+<a name="index-Ecma_002d35"></a>
+<a name="index-ISO_002fIEC-2022"></a>
+Ecma-35&nbsp;/ ISO/IEC&nbsp;2022 standard defines an escape sequence to be a sequence
+of characters beginning with <small>ESC</small>, with a
+<a name="index-final-byte"></a>
+<a name="index-escape-sequence_002c-final-byte"></a>
+final byte in the range
 <code>x30</code>&ndash;<code>x7E</code>, and any number (including zero) of
-<a name="index-intermediate-byte-104"></a><a name="index-escape-sequence_002c-intermediate-byte-105"></a>intermediate bytes in the range <code>x20</code>-<code>x2F</code>. 
-<a href="ascii.html#ascii">ascii</a>
+<a name="index-intermediate-byte"></a>
+<a name="index-escape-sequence_002c-intermediate-byte"></a>
+intermediate bytes in the range <code>x20</code>-<code>x2F</code>.
+<a href="#ascii">Table 3.1</a>
 has been provided as a reference for finding which characters match
 which codes.
+</p>
+<div class="float"><a name="ascii"></a>
+<a name="index-table-of-printable-ASCII-characters"></a>
+<table>
+<thead><tr><th></th><th>x2X</th><th>x3X</th><th>x4X</th><th>x5X</th><th>x6X</th><th>x7X</th></tr></thead>
+<tr><td><strong>xX0</strong></td><td><small>SPC</small></td><td>0</td><td>@</td><td>P</td><td>&lsquo;</td><td>p</td></tr>
+<tr><td><strong>xX1</strong></td><td>!</td><td>1</td><td>A</td><td>Q</td><td>a</td><td>q</td></tr>
+<tr><td><strong>xX2</strong></td><td>&quot;</td><td>2</td><td>B</td><td>R</td><td>b</td><td>r</td></tr>
+<tr><td><strong>xX3</strong></td><td>#</td><td>3</td><td>C</td><td>S</td><td>c</td><td>s</td></tr>
+<tr><td><strong>xX4</strong></td><td>$</td><td>4</td><td>D</td><td>T</td><td>d</td><td>t</td></tr>
+<tr><td><strong>xX5</strong></td><td>%</td><td>5</td><td>E</td><td>U</td><td>e</td><td>u</td></tr>
+<tr><td><strong>xX6</strong></td><td>&amp;</td><td>6</td><td>F</td><td>V</td><td>f</td><td>v</td></tr>
+<tr><td><strong>xX7</strong></td><td>&rsquo;</td><td>7</td><td>G</td><td>W</td><td>g</td><td>w</td></tr>
+<tr><td><strong>xX8</strong></td><td>(</td><td>8</td><td>H</td><td>X</td><td>h</td><td>x</td></tr>
+<tr><td><strong>xX9</strong></td><td>)</td><td>9</td><td>I</td><td>Y</td><td>i</td><td>y</td></tr>
+<tr><td><strong>xXA</strong></td><td>*</td><td>:</td><td>J</td><td>Z</td><td>j</td><td>z</td></tr>
+<tr><td><strong>xXB</strong></td><td>+</td><td>;</td><td>K</td><td>[</td><td>k</td><td>{</td></tr>
+<tr><td><strong>xXC</strong></td><td>,</td><td>&lt;</td><td>L</td><td>\</td><td>l</td><td>|</td></tr>
+<tr><td><strong>xXD</strong></td><td>-</td><td>=</td><td>M</td><td>]</td><td>m</td><td>}</td></tr>
+<tr><td><strong>xXE</strong></td><td>.</td><td>&gt;</td><td>N</td><td>^</td><td>n</td><td>~</td></tr>
+<tr><td><strong>xXF</strong></td><td>/</td><td>?</td><td>O</td><td>_</td><td>o</td><td><small>DEL</small></td></tr>
+</table>
+<div class="float-caption"><p><strong>Table 3.1
+</strong></p></div></div>
+<p>So, for instance, the following is a valid escape sequence.
+</p>
+<div class="example">
+<pre class="example">: Esc $ ( C
+</pre></div>
 
-<div class="float">
-<a name="ascii"></a><a name="index-table-of-printable-ASCII-characters-106"></a>
-<p><table summary=""><tr align="left"><th valign="top"></th><th valign="top">x2X </th><th valign="top">x3X </th><th valign="top">x4X </th><th valign="top">x5X
-</th><th valign="top">x6X </th><th valign="top">x7X
-<br></th></tr><tr align="left"><td valign="top"><strong>xX0</strong> </td><td valign="top"><span class="sc">spc</span> </td><td valign="top">0 </td><td valign="top">@ </td><td valign="top">P
-</td><td valign="top">` </td><td valign="top">p
-<br></td></tr><tr align="left"><td valign="top"><strong>xX1</strong> </td><td valign="top">! </td><td valign="top">1 </td><td valign="top">A </td><td valign="top">Q </td><td valign="top">a </td><td valign="top">q
-<br></td></tr><tr align="left"><td valign="top"><strong>xX2</strong> </td><td valign="top">" </td><td valign="top">2 </td><td valign="top">B </td><td valign="top">R </td><td valign="top">b </td><td valign="top">r
-<br></td></tr><tr align="left"><td valign="top"><strong>xX3</strong> </td><td valign="top"># </td><td valign="top">3 </td><td valign="top">C </td><td valign="top">S </td><td valign="top">c </td><td valign="top">s
-<br></td></tr><tr align="left"><td valign="top"><strong>xX4</strong> </td><td valign="top">$ </td><td valign="top">4 </td><td valign="top">D </td><td valign="top">T </td><td valign="top">d </td><td valign="top">t
-<br></td></tr><tr align="left"><td valign="top"><strong>xX5</strong> </td><td valign="top">% </td><td valign="top">5 </td><td valign="top">E </td><td valign="top">U </td><td valign="top">e </td><td valign="top">u
-<br></td></tr><tr align="left"><td valign="top"><strong>xX6</strong> </td><td valign="top">&amp; </td><td valign="top">6 </td><td valign="top">F </td><td valign="top">V </td><td valign="top">f </td><td valign="top">v
-<br></td></tr><tr align="left"><td valign="top"><strong>xX7</strong> </td><td valign="top">' </td><td valign="top">7 </td><td valign="top">G </td><td valign="top">W </td><td valign="top">g </td><td valign="top">w
-<br></td></tr><tr align="left"><td valign="top"><strong>xX8</strong> </td><td valign="top">( </td><td valign="top">8 </td><td valign="top">H </td><td valign="top">X </td><td valign="top">h </td><td valign="top">x
-<br></td></tr><tr align="left"><td valign="top"><strong>xX9</strong> </td><td valign="top">) </td><td valign="top">9 </td><td valign="top">I </td><td valign="top">Y </td><td valign="top">i </td><td valign="top">y
-<br></td></tr><tr align="left"><td valign="top"><strong>xXA</strong> </td><td valign="top">* </td><td valign="top">: </td><td valign="top">J </td><td valign="top">Z </td><td valign="top">j </td><td valign="top">z
-<br></td></tr><tr align="left"><td valign="top"><strong>xXB</strong> </td><td valign="top">+ </td><td valign="top">; </td><td valign="top">K </td><td valign="top">[ </td><td valign="top">k </td><td valign="top">{
-<br></td></tr><tr align="left"><td valign="top"><strong>xXC</strong> </td><td valign="top">, </td><td valign="top">&lt; </td><td valign="top">L </td><td valign="top">\ </td><td valign="top">l </td><td valign="top">|
-<br></td></tr><tr align="left"><td valign="top"><strong>xXD</strong> </td><td valign="top">- </td><td valign="top">= </td><td valign="top">M </td><td valign="top">] </td><td valign="top">m </td><td valign="top">}
-<br></td></tr><tr align="left"><td valign="top"><strong>xXE</strong> </td><td valign="top">. </td><td valign="top">&gt; </td><td valign="top">N </td><td valign="top">^ </td><td valign="top">n </td><td valign="top">~
-<br></td></tr><tr align="left"><td valign="top"><strong>xXF</strong> </td><td valign="top">/ </td><td valign="top">? </td><td valign="top">O </td><td valign="top">_ </td><td valign="top">o </td><td valign="top"><span class="sc">del</span>
-<br></td></tr></table>
-<p><strong class="float-caption">Table 3.1</strong></p></div>
-
-<p class="noindent">So, for instance, the following is a valid escape sequence.
-
-<pre class="example">     : Esc $ ( C
-</pre>
-<p class="noindent">&lsquo;<samp><span class="samp">$</span></samp>&rsquo; and &lsquo;<samp><span class="samp">(</span></samp>&rsquo; have code values <code>x24</code> and <code>x28</code>, and
-so are valid intermediate bytes; &lsquo;<samp><span class="samp">C</span></samp>&rsquo; has the value <code>x43</code>,
+<p>&lsquo;<samp>$</samp>&rsquo; and &lsquo;<samp>(</samp>&rsquo; have code values <code>x24</code> and <code>x28</code>, and
+so are valid intermediate bytes; &lsquo;<samp>C</samp>&rsquo; has the value <code>x43</code>,
 and so terminates the escape sequence.
-
+</p>
 <p>You may have noticed that a lot of the examples of escape sequences in
-this document don't actually follow this format. For instance,
+this document don&rsquo;t actually follow this format. For instance, 
+</p>
+<div class="example">
+<pre class="example">: Esc [ 3 ; 31 m
+</pre></div>
 
-<pre class="example">     : Esc [ 3 ; 31 m
-</pre>
-<p class="noindent">According to the definition we just gave, &lsquo;<samp><span class="samp">[</span></samp>&rsquo; should be the final
+<p>According to the definition we just gave, &lsquo;<samp>[</samp>&rsquo; should be the final
 byte of an escape sequence. So why does Teseq keep going until it
-reaches the &lsquo;<samp><span class="samp">m</span></samp>&rsquo;?
-
+reaches the &lsquo;<samp>m</samp>&rsquo;?
+</p>
 <p>The answer is that the escape sequence <em>does</em> end with the
-&lsquo;<samp><span class="samp">[</span></samp>&rsquo;; but the combination &lsquo;<samp><span class="samp">Esc [</span></samp>&rsquo; invokes a control named
+&lsquo;<samp>[</samp>&rsquo;; but the combination &lsquo;<samp>Esc [</samp>&rsquo; invokes a control named
 <code>CONTROL SEQUENCE INTRODUCER</code>
-<a name="index-g_t_0040sc_007bcsi_007d-107"></a>(<span class="sc">csi</span>). The <span class="sc">csi</span> control
+<a name="index-CSI-1"></a>
+(<small>CSI</small>). The <small>CSI</small> control
 marks the beginning of a different kind of sequence, called a
-<a name="index-control-sequence-108"></a>&ldquo;control sequence&rdquo;. Control sequences are described by the
-<a name="index-standards-109"></a><a name="index-Ecma_002d48-110"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-111"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 standard, which considers it to be a distinct concept
+<a name="index-control-sequence-1"></a>
+&ldquo;control sequence&rdquo;. Control sequences are described by the
+<a name="index-standards-9"></a>
+<a name="index-Ecma_002d48-3"></a>
+<a name="index-ISO_002fIEC-6429-3"></a>
+Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 standard, which considers it to be a distinct concept
 from escape sequences; however, Teseq treats both types of sequences as
 &ldquo;escape sequences&rdquo;.
-
-<p>A control sequence starts with the two-character <span class="sc">csi</span> escape
-sequence &lsquo;<samp><span class="samp">Esc [</span></samp>&rsquo;, followed by an optional sequence of
-<a name="index-parameter-byte-112"></a>parameter bytes in the range <code>x30</code>&ndash;<code>x3F</code>, an optional
+</p>
+<p>A control sequence starts with the two-character <small>CSI</small> escape
+sequence &lsquo;<samp>Esc [</samp>&rsquo;, followed by an optional sequence of
+<a name="index-parameter-byte"></a>
+parameter bytes in the range <code>x30</code>&ndash;<code>x3F</code>, an optional
 sequence of
-<a name="index-intermediate-byte-113"></a>intermediate bytes in the range <code>x20</code>&ndash;<code>x2F</code> (the same range
+<a name="index-intermediate-byte-1"></a>
+intermediate bytes in the range <code>x20</code>&ndash;<code>x2F</code> (the same range
 as intermediate bytes in a regular escape sequence), and a
-<a name="index-final-byte-114"></a>final byte in the range <code>x40</code>&ndash;<code>x7e</code>. The set of standard
-control sequence functions are defined in <a name="index-standards-115"></a><a name="index-Ecma_002d48-116"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-117"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429.
-
+<a name="index-final-byte-1"></a>
+final byte in the range <code>x40</code>&ndash;<code>x7e</code>. The set of standard
+control sequence functions are defined in <a name="index-standards-10"></a>
+<a name="index-Ecma_002d48-4"></a>
+<a name="index-ISO_002fIEC-6429-4"></a>
+Ecma-48&nbsp;/ ISO/IEC&nbsp;6429.
+</p>
 <p>When used in accordance with the standard, the parameter bytes are
 used to provide a semicolon-separated list of numeric parameters to
 the control function being invoked. These affect the details of the
-control function's behavior; but not which control function is being
+control function&rsquo;s behavior; but not which control function is being
 invoked:
+</p>
+<div class="example">
+<pre class="example">: Esc [ 1 m
+&amp; SGR: SELECT GRAPHIC RENDITION
+&quot; Set bold text.
+: Esc [ 0 m
+&amp; SGR: SELECT GRAPHIC RENDITION
+&quot; Clear graphic rendition to defaults.
+</pre></div>
 
-<pre class="example">     : Esc [ 1 m
-     &amp; SGR: SELECT GRAPHIC RENDITION
-     " Set bold text.
-     : Esc [ 0 m
-     &amp; SGR: SELECT GRAPHIC RENDITION
-     " Clear graphic rendition to defaults.
-</pre>
-<p class="noindent">Both sequences end with the same sequence of intermediate bytes (none)
-and final byte; both invoke the <span class="sc">sgr</span> control function. But the
+<p>Both sequences end with the same sequence of intermediate bytes (none)
+and final byte; both invoke the <small>SGR</small> control function. But the
 first one indicates that following text should be rendered boldface,
 while the second indicates that text rendering should be restored to
 its default settings.
-
+</p>
 <p>Intermediate bytes, however, together with the final byte, <em>do</em>
-affect the meaning of the function invoked. Currently, <a name="index-standards-118"></a><a name="index-Ecma_002d48-119"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-120"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429
+affect the meaning of the function invoked. Currently, <a name="index-standards-11"></a>
+<a name="index-Ecma_002d48-5"></a>
+<a name="index-ISO_002fIEC-6429-5"></a>
+Ecma-48&nbsp;/ ISO/IEC&nbsp;6429
 only defines functions for either no intermediate bytes, or a single
 space character (<code>x20</code>) as the intermediate byte.
+</p>
+<div class="example">
+<pre class="example">: Esc [ A
+&amp; CUU: CURSOR UP
+: Esc [ Spc A
+&amp; SR: SCROLL RIGHT
+</pre></div>
 
-<pre class="example">     : Esc [ A
-     &amp; CUU: CURSOR UP
-     : Esc [ Spc A
-     &amp; SR: SCROLL RIGHT
-</pre>
-<p class="noindent"><a name="index-standards-121"></a><a name="index-Ecma_002d48-122"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-123"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 describes an alternate representation for <span class="sc">csi</span>; the
+<a name="index-standards-12"></a>
+<a name="index-Ecma_002d48-6"></a>
+<a name="index-ISO_002fIEC-6429-6"></a>
+<p>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 describes an alternate representation for <small>CSI</small>; the
 8-bit byte value <code>x9B</code>. Teseq does not currently treat that value
 specially, nor any of the other high-value bytes from the C1 set of
 control functions. This is because whether or not those bytes indicate
 control functions is dependent upon what character encoding is in
 use. Future versions of Teseq may support an option to interpret these
 forms as well, at which time control sequences using the single-byte
-<span class="sc">csi</span> control will probably be rendered like:
+<small>CSI</small> control will probably be rendered like:
+</p>
+<div class="example">
+<pre class="example">: CSI [ 1 m
+</pre></div>
 
-<pre class="example">     : CSI [ 1 m
-</pre>
-<p class="noindent"><a name="index-standards-124"></a><a name="index-Ecma_002d48-125"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-126"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 also describes another kind of sequence called
-<a name="index-control-string-127"></a>&ldquo;control strings&rdquo;. These are not interpreted by Teseq; the
-control characters involved (for example, &lsquo;<samp><span class="samp">SOS/^X</span></samp>&rsquo; and
-&lsquo;<samp><span class="samp">ST/^\</span></samp>&rsquo; will be printed on control-character lines, and any text
+<a name="index-standards-13"></a>
+<a name="index-Ecma_002d48-7"></a>
+<a name="index-ISO_002fIEC-6429-7"></a>
+<p>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 also describes another kind of sequence called
+<a name="index-control-string"></a>
+&ldquo;control strings&rdquo;. These are not interpreted by Teseq; the
+control characters involved (for example, &lsquo;<samp>SOS/^X</samp>&rsquo; and
+&lsquo;<samp>ST/^\</samp>&rsquo;) will be printed on control-character lines, and any text
 characters will be displayed on text lines.
-
+</p>
 <p>Future versions of Teseq will probably not depart from this display
 behavior; however, support for some common interpretations for control
 strings may be added, in which case a label line and/or description
 line might follow the control string, describing its usual
 interpretation.
+</p>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" accesskey="p" rel="previous">Escape-Sequence Lines</a>, Up: <a href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" accesskey="u" rel="up">Escape-Sequence Lines</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-</body></html>
 
+
+</body>
+</html>

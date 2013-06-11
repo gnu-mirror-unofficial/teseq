@@ -1,72 +1,106 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Teseq, version 1.1.
+
+Copyright (C) 2008, 2013 Micah Cowan <micah@cowan.name>
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Control-Character Lines - GNU Teseq 1.0.0 Manual</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0.0 Manual">
-<meta name="generator" content="makeinfo 4.11">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Output-Format.html#Output-Format" title="Output Format">
-<link rel="prev" href="Text-Lines.html#Text-Lines" title="Text Lines">
-<link rel="next" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" title="Escape-Sequence Lines">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<title>GNU Teseq 1.1 Manual: Control-Character Lines</title>
+
+<meta name="description" content="GNU Teseq 1.1 Manual: Control-Character Lines">
+<meta name="keywords" content="GNU Teseq 1.1 Manual: Control-Character Lines">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Output-Format.html#Output-Format" rel="up" title="Output Format">
+<link href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" rel="next" title="Escape-Sequence Lines">
+<link href="Text-Lines.html#Text-Lines" rel="previous" title="Text Lines">
+<style type="text/css">
 <!--
-This manual is for GNU Teseq, version 1.0.0.
-
-Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
-
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.2 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, no Front-Cover Texts, and
-     no Back-Cover Texts.  A copy of the license is included in the
-     section entitled ``GNU Free Documentation License''.
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
 -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+</style>
+
+
 </head>
-<body>
-<div class="node">
-<p>
-<a name="Control-Character-Lines"></a>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 <a name="Control_002dCharacter-Lines"></a>
-Next:&nbsp;<a rel="next" accesskey="n" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines">Escape-Sequence Lines</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Text-Lines.html#Text-Lines">Text Lines</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Output-Format.html#Output-Format">Output Format</a>
-<hr>
+<div class="header">
+<p>
+Next: <a href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" accesskey="n" rel="next">Escape-Sequence Lines</a>, Previous: <a href="Text-Lines.html#Text-Lines" accesskey="p" rel="previous">Text Lines</a>, Up: <a href="Output-Format.html#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Control_002dCharacter-Lines-1"></a>
 <h3 class="section">3.2 Control-Character Lines</h3>
+<a name="index-control-character-2"></a>
+<a name="index-control_002dcharacter-line-1"></a>
 
-<p><a name="index-control-character-79"></a><a name="index-control_002dcharacter-line-80"></a>
-Control-character lines are used to display characters whose code
+<p>Control-character lines are used to display characters whose code
 values fall outside the range of printable characters from US
-<a name="index-standards-81"></a><a name="index-ASCII-82"></a>ASCII
-(<a name="index-standards-83"></a><a name="index-Ecma_002d6-84"></a><a name="index-ISO-646-85"></a>Ecma-6&nbsp;/ ISO&nbsp;646). That
+<a name="index-standards-4"></a>
+<a name="index-ASCII-1"></a>
+ASCII
+(<a name="index-standards-5"></a>
+<a name="index-Ecma_002d6-2"></a>
+<a name="index-ISO-646-2"></a>
+Ecma-6&nbsp;/ ISO&nbsp;646). That
 is, those characters whose code values fall below below 32 decimal
 (those from the C0 set of control characters from
-<a name="index-standards-86"></a><a name="index-Ecma_002d48-87"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-88"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429); and those whose values are at or above 127 decimal
+<a name="index-standards-6"></a>
+<a name="index-Ecma_002d48-1"></a>
+<a name="index-ISO_002fIEC-6429-1"></a>
+Ecma-48&nbsp;/ ISO/IEC&nbsp;6429); and those whose values are at or above 127 decimal
 (the &ldquo;delete&rdquo; character, and character byte values with the high bit
 set).
-
-<p><a name="index-g_t_002e-89"></a>Control-character lines begin with an initial dot, &lsquo;<samp><span class="samp">.</span></samp>&rsquo;, followed by the
+</p>
+<a name="index-_002e"></a>
+<p>Control-character lines begin with an initial dot, &lsquo;<samp>.</samp>&rsquo;, followed by the
 control characters or high-value bytes being represented.
+</p>
+<div class="example">
+<pre class="example">. BEL/^G NUL/^&nbsp;CR/^M LF/^J DEL/^? xA0 xFF
+</pre></div>
 
-<pre class="example">     . BEL/^G NUL/^ CR/^M LF/^J DEL/^? xA0 xFF
-</pre>
-<p class="noindent">Control characters (whose numeric codes fall below decimal 32, plus
+<p>Control characters (whose numeric codes fall below decimal 32, plus
 the delete character at decimal 127) are represented by a mnemonic
-acronym identifying the character's function. Unless the
-<a name="index-g_t_002dC-90"></a><samp><span class="option">-C</span></samp> was given, this acronym is followed by a slash, and the
+acronym identifying the character&rsquo;s function. Unless the
+<a name="index-_002dC-1"></a>
+<samp>-C</samp> was given, this acronym is followed by a slash, and the
 control-key combination that would produce the corresponding character
 (control characters are usually much more recognizable from one or the
 other of their name or their control-character representation, than
@@ -74,59 +108,55 @@ they are by their hexadecimal code value). The &ldquo;control-key
 combination&rdquo; representation consists of a &ldquo;hat&rdquo; or &ldquo;circumflex
 accent&rdquo; character, followed by a character with a value in the range
 of 63 through 95 decimal.
-
-<p><a name="index-delete-character-91"></a>Note that the delete character, designated as
-&lsquo;<samp><span class="samp">DEL/^?</span></samp>&rsquo;, is a special case, in that one can not generally
+</p>
+<a name="index-delete-character"></a>
+<p>Note that the delete character, designated as
+&lsquo;<samp>DEL/^?</samp>&rsquo;, is a special case, in that one can not generally
 reproduce that key by holding down the control key and typing a
 question mark; it is simply used as an identification of the
 key.
-
+</p>
 <p>Other values (high-value bytes) are represented by the lowercase
-letter &lsquo;<samp><span class="samp">x</span></samp>&rsquo; followed by the two-digit hexadecimal code value for
+letter &lsquo;<samp>x</samp>&rsquo; followed by the two-digit hexadecimal code value for
 the character.
+</p>
+<p>For reference, here&rsquo;s a table of the control characters (plus
+<small>DEL</small>). It is based on the information from Table 1 of
+<a name="index-standards-7"></a>
+<a name="index-Ecma_002d48-2"></a>
+<a name="index-ISO_002fIEC-6429-2"></a>
+Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 (the control-key representation has been added).
+</p>
+<a name="index-control-characters-table"></a>
+<a name="index-table-of-control-characters"></a>
+<table>
+<thead><tr><th width="10%">Hex</th><th width="10%">Key</th><th width="20%">Name</th><th width="10%">Hex</th><th width="10%">Key</th><th width="20%">Name</th></tr></thead>
+<tr><td width="10%">x00</td><td width="10%">^@</td><td width="20%">NUL</td><td width="10%">x10</td><td width="10%">^P</td><td width="20%">DLE</td></tr>
+<tr><td width="10%">x01</td><td width="10%">^A</td><td width="20%">SOH</td><td width="10%">x11</td><td width="10%">^Q</td><td width="20%">DC1</td></tr>
+<tr><td width="10%">x02</td><td width="10%">^B</td><td width="20%">STX</td><td width="10%">x12</td><td width="10%">^R</td><td width="20%">DC2</td></tr>
+<tr><td width="10%">x03</td><td width="10%">^C</td><td width="20%">ETX</td><td width="10%">x13</td><td width="10%">^S</td><td width="20%">DC3</td></tr>
+<tr><td width="10%">x04</td><td width="10%">^D</td><td width="20%">EOT</td><td width="10%">x14</td><td width="10%">^T</td><td width="20%">DC4</td></tr>
+<tr><td width="10%">x05</td><td width="10%">^E</td><td width="20%">ENQ</td><td width="10%">x15</td><td width="10%">^U</td><td width="20%">NAK</td></tr>
+<tr><td width="10%">x06</td><td width="10%">^F</td><td width="20%">ACK</td><td width="10%">x16</td><td width="10%">^V</td><td width="20%">SYN</td></tr>
+<tr><td width="10%">x07</td><td width="10%">^G</td><td width="20%">BEL</td><td width="10%">x17</td><td width="10%">^W</td><td width="20%">ETB</td></tr>
+<tr><td width="10%">x08</td><td width="10%">^H</td><td width="20%">BS</td><td width="10%">x18</td><td width="10%">^X</td><td width="20%">CAN</td></tr>
+<tr><td width="10%">x09</td><td width="10%">^I</td><td width="20%">TAB</td><td width="10%">x19</td><td width="10%">^Y</td><td width="20%">EM</td></tr>
+<tr><td width="10%">x0A</td><td width="10%">^J</td><td width="20%">LF</td><td width="10%">x1A</td><td width="10%">^Z</td><td width="20%">SUB</td></tr>
+<tr><td width="10%">x0B</td><td width="10%">^K</td><td width="20%">VT</td><td width="10%">x1B</td><td width="10%">^[</td><td width="20%">ESC</td></tr>
+<tr><td width="10%">x0C</td><td width="10%">^L</td><td width="20%">FF</td><td width="10%">x1C</td><td width="10%">^\</td><td width="20%">IS4</td></tr>
+<tr><td width="10%">x0D</td><td width="10%">^M</td><td width="20%">CR</td><td width="10%">x1D</td><td width="10%">^]</td><td width="20%">IS3</td></tr>
+<tr><td width="10%">x0E</td><td width="10%">^N</td><td width="20%">SO</td><td width="10%">x1E</td><td width="10%">^^</td><td width="20%">IS2</td></tr>
+<tr><td width="10%">x0F</td><td width="10%">^O</td><td width="20%">SI</td><td width="10%">x1F</td><td width="10%">^_</td><td width="20%">IS1</td></tr>
+<tr><td width="10%">x7F</td><td width="10%">^?</td><td width="20%">DEL</td><td width="10%"></td><td width="10%"></td><td width="20%"></td></tr>
+</table>
 
-<p>For reference, here's a table of the control characters (plus
-<span class="sc">del</span>). It is based on the information from Table 1 of
-<a name="index-standards-92"></a><a name="index-Ecma_002d48-93"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-94"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 (the control-key representation has been added).
+<hr>
+<div class="header">
+<p>
+Next: <a href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" accesskey="n" rel="next">Escape-Sequence Lines</a>, Previous: <a href="Text-Lines.html#Text-Lines" accesskey="p" rel="previous">Text Lines</a>, Up: <a href="Output-Format.html#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-<p><a name="index-control-characters-table-95"></a><a name="index-table-of-control-characters-96"></a>
-<p><table summary=""><tr align="left"><th valign="top" width="10%">Hex </th><th valign="top" width="10%">Key </th><th valign="top" width="20%">Name
-</th><th valign="top" width="10%">Hex </th><th valign="top" width="10%">Key </th><th valign="top" width="20%">Name
-<br></th></tr><tr align="left"><td valign="top" width="10%">x00 </td><td valign="top" width="10%">^@ </td><td valign="top" width="20%">NUL
-</td><td valign="top" width="10%">x10 </td><td valign="top" width="10%">^P </td><td valign="top" width="20%">DLE
-<br></td></tr><tr align="left"><td valign="top" width="10%">x01 </td><td valign="top" width="10%">^A </td><td valign="top" width="20%">SOH
-</td><td valign="top" width="10%">x11 </td><td valign="top" width="10%">^Q </td><td valign="top" width="20%">DC1
-<br></td></tr><tr align="left"><td valign="top" width="10%">x02 </td><td valign="top" width="10%">^B </td><td valign="top" width="20%">STX
-</td><td valign="top" width="10%">x12 </td><td valign="top" width="10%">^R </td><td valign="top" width="20%">DC2
-<br></td></tr><tr align="left"><td valign="top" width="10%">x03 </td><td valign="top" width="10%">^C </td><td valign="top" width="20%">ETX
-</td><td valign="top" width="10%">x13 </td><td valign="top" width="10%">^S </td><td valign="top" width="20%">DC3
-<br></td></tr><tr align="left"><td valign="top" width="10%">x04 </td><td valign="top" width="10%">^D </td><td valign="top" width="20%">EOT
-</td><td valign="top" width="10%">x14 </td><td valign="top" width="10%">^T </td><td valign="top" width="20%">DC4
-<br></td></tr><tr align="left"><td valign="top" width="10%">x05 </td><td valign="top" width="10%">^E </td><td valign="top" width="20%">ENQ
-</td><td valign="top" width="10%">x15 </td><td valign="top" width="10%">^U </td><td valign="top" width="20%">NAK
-<br></td></tr><tr align="left"><td valign="top" width="10%">x06 </td><td valign="top" width="10%">^F </td><td valign="top" width="20%">ACK
-</td><td valign="top" width="10%">x16 </td><td valign="top" width="10%">^V </td><td valign="top" width="20%">SYN
-<br></td></tr><tr align="left"><td valign="top" width="10%">x07 </td><td valign="top" width="10%">^G </td><td valign="top" width="20%">BEL
-</td><td valign="top" width="10%">x17 </td><td valign="top" width="10%">^W </td><td valign="top" width="20%">ETB
-<br></td></tr><tr align="left"><td valign="top" width="10%">x08 </td><td valign="top" width="10%">^H </td><td valign="top" width="20%">BS
-</td><td valign="top" width="10%">x18 </td><td valign="top" width="10%">^X </td><td valign="top" width="20%">CAN
-<br></td></tr><tr align="left"><td valign="top" width="10%">x09 </td><td valign="top" width="10%">^I </td><td valign="top" width="20%">TAB
-</td><td valign="top" width="10%">x19 </td><td valign="top" width="10%">^Y </td><td valign="top" width="20%">EM
-<br></td></tr><tr align="left"><td valign="top" width="10%">x0A </td><td valign="top" width="10%">^J </td><td valign="top" width="20%">LF
-</td><td valign="top" width="10%">x1A </td><td valign="top" width="10%">^Z </td><td valign="top" width="20%">SUB
-<br></td></tr><tr align="left"><td valign="top" width="10%">x0B </td><td valign="top" width="10%">^K </td><td valign="top" width="20%">VT
-</td><td valign="top" width="10%">x1B </td><td valign="top" width="10%">^[ </td><td valign="top" width="20%">ESC
-<br></td></tr><tr align="left"><td valign="top" width="10%">x0C </td><td valign="top" width="10%">^L </td><td valign="top" width="20%">FF
-</td><td valign="top" width="10%">x1C </td><td valign="top" width="10%">^\ </td><td valign="top" width="20%">IS4
-<br></td></tr><tr align="left"><td valign="top" width="10%">x0D </td><td valign="top" width="10%">^M </td><td valign="top" width="20%">CR
-</td><td valign="top" width="10%">x1D </td><td valign="top" width="10%">^] </td><td valign="top" width="20%">IS3
-<br></td></tr><tr align="left"><td valign="top" width="10%">x0E </td><td valign="top" width="10%">^N </td><td valign="top" width="20%">SO
-</td><td valign="top" width="10%">x1E </td><td valign="top" width="10%">^^ </td><td valign="top" width="20%">IS2
-<br></td></tr><tr align="left"><td valign="top" width="10%">x0F </td><td valign="top" width="10%">^O </td><td valign="top" width="20%">SI
-</td><td valign="top" width="10%">x1F </td><td valign="top" width="10%">^_ </td><td valign="top" width="20%">IS1
-<br></td></tr><tr align="left"><td valign="top" width="10%">x7F </td><td valign="top" width="10%">^? </td><td valign="top" width="20%">DEL
-</td><td valign="top" width="10%"></td><td valign="top" width="10%"></td><td valign="top" width="20%">
-<br></td></tr></table>
 
-</body></html>
 
+</body>
+</html>

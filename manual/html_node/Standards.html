@@ -1,70 +1,113 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Teseq, version 1.1.
+
+Copyright (C) 2008, 2013 Micah Cowan <micah@cowan.name>
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Standards - GNU Teseq 1.0.0 Manual</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0.0 Manual">
-<meta name="generator" content="makeinfo 4.11">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Reseq.html#Reseq" title="Reseq">
-<link rel="next" href="Future-Enhancements.html#Future-Enhancements" title="Future Enhancements">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<title>GNU Teseq 1.1 Manual: Standards</title>
+
+<meta name="description" content="GNU Teseq 1.1 Manual: Standards">
+<meta name="keywords" content="GNU Teseq 1.1 Manual: Standards">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Future-Enhancements.html#Future-Enhancements" rel="next" title="Future Enhancements">
+<link href="Reserved-Line-Prefixes.html#Reserved-Line-Prefixes" rel="previous" title="Reserved Line Prefixes">
+<style type="text/css">
 <!--
-This manual is for GNU Teseq, version 1.0.0.
-
-Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
-
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.2 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, no Front-Cover Texts, and
-     no Back-Cover Texts.  A copy of the license is included in the
-     section entitled ``GNU Free Documentation License''.
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
 -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
-</head>
-<body>
-<div class="node">
-<p>
-<a name="Standards"></a>
-Next:&nbsp;<a rel="next" accesskey="n" href="Future-Enhancements.html#Future-Enhancements">Future Enhancements</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Reseq.html#Reseq">Reseq</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
-</div>
+</style>
 
-<h2 class="chapter">5 Standards</h2>
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="Standards"></a>
+<div class="header">
+<p>
+Next: <a href="Future-Enhancements.html#Future-Enhancements" accesskey="n" rel="next">Future Enhancements</a>, Previous: <a href="Reseq.html#Reseq" accesskey="p" rel="previous">Reseq</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Standards-1"></a>
+<h2 class="chapter">6 Standards</h2>
 
 <p>The most authoritative source of information on control functions,
 their representations in bytes, and their intended meaning, is the
-<a name="index-standards-172"></a><a name="index-Ecma_002d48-173"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-174"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 standard. Also related is the <a name="index-standards-175"></a><a name="index-Ecma_002d35-176"></a><a name="index-ISO_002fIEC_0040tie_007b_007d2200-177"></a>Ecma-35&nbsp;/ ISO/IEC&nbsp;2200 standard,
+<a name="index-standards-17"></a>
+<a name="index-Ecma_002d48-11"></a>
+<a name="index-ISO_002fIEC-6429-11"></a>
+Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 standard. Also related is the <a name="index-standards-18"></a>
+<a name="index-Ecma_002d35-1"></a>
+<a name="index-ISO_002fIEC-2022-1"></a>
+Ecma-35&nbsp;/ ISO/IEC&nbsp;2022 standard,
 which describes control functions for switching the character
 encoding, and defines the possible forms of escape sequence (note
-that, in Teseq,
-<a name="index-escape-sequence-178"></a>&ldquo;escape sequence&rdquo; refers to both the Ecma-48 concept of
-<a name="index-control-sequence-179"></a>&ldquo;control sequences&rdquo;, and the official Ecma-35 meaning of &ldquo;escape
+that, in Teseq, 
+<a name="index-escape-sequence"></a>
+&ldquo;escape sequence&rdquo; refers to both the Ecma-48 concept of
+<a name="index-control-sequence-2"></a>
+&ldquo;control sequences&rdquo;, and the official Ecma-35 meaning of &ldquo;escape
 sequence&rdquo;. These standards are available, &ldquo;free of charge and
 copyright&rdquo;, at:
+</p>
+<div class="example">
+<pre class="example"><a href="http://www.ecma-international.org/">http://www.ecma-international.org/</a>.
+</pre></div>
 
-<pre class="example">     <a href="http://www.ecma-international.org/">http://www.ecma-international.org/</a>.
-</pre>
-<p class="noindent">In addition to the definitions provided by these standards, Teseq also
-recognizes additional sequences when the <samp><span class="option">-x</span></samp> option has been
-specified. Sources of information that were used for identifying and
+<p>Teseq also recognizes some additional sequences that were not defined by
+international standard, but are in fairly wide use.
+In such cases, if descriptions are enabled, the description text for
+these sequences will be prefixed by a tag in parentheses that identifies
+where this functionality is found. For instance, <code>(DEC)</code> for
+sequences used in DEC equipment such as the VT100, or <code>(Xterm)</code> for
+squences supported by xterm.
+Sources of information that were used for identifying and
 describing these sequences, include:
+</p>
+<div class="example">
+<pre class="example"><a href="http://invisible-island.net/xterm/ctlseqs/ctlseqs.html">http://invisible-island.net/xterm/ctlseqs/ctlseqs.html</a>
+<a href="http://www.vt100.net/">http://www.vt100.net/</a>.
+</pre></div>
 
-<pre class="example">     <a href="http://invisible-island.net/xterm/ctlseqs/ctlseqs.html">http://invisible-island.net/xterm/ctlseqs/ctlseqs.html</a>
-     <a href="http://www.vt100.net/">http://www.vt100.net/</a>.
-</pre>
-</body></html>
 
+
+
+</body>
+</html>

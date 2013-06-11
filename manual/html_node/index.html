@@ -1,110 +1,164 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Teseq, version 1.1.
+
+Copyright (C) 2008, 2013 Micah Cowan <micah@cowan.name>
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>GNU Teseq 1.0.0 Manual</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0.0 Manual">
-<meta name="generator" content="makeinfo 4.11">
-<link title="Top" rel="start" href="#Top">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<title>GNU Teseq 1.1 Manual: Top</title>
+
+<meta name="description" content="GNU Teseq 1.1 Manual: Top">
+<meta name="keywords" content="GNU Teseq 1.1 Manual: Top">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="../dir/index.html" rel="up" title="(dir)">
+<link href="Overview.html#Overview" rel="next" title="Overview">
+<style type="text/css">
 <!--
-This manual is for GNU Teseq, version 1.0.0.
-
-Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
-
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.2 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, no Front-Cover Texts, and
-     no Back-Cover Texts.  A copy of the license is included in the
-     section entitled "GNU Free Documentation License".
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
 -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+</style>
+
+
 </head>
-<body>
-<h1 class="settitle">GNU Teseq 1.0.0 Manual</h1>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<h1 class="settitle" align="center">GNU Teseq 1.1 Manual</h1>
+
+
+
+
+
+
+
+
+
+<a name="SEC_Contents"></a>
+<h2 class="contents-heading">Table of Contents</h2>
+
 <div class="contents">
-<h2>Table of Contents</h2>
-<ul>
-<li><a name="toc_Top" href="index.html#Top">Teseq</a>
-<li><a name="toc_Overview" href="Overview.html#Overview">1 Overview</a>
-<ul>
-<li><a href="Overview.html#Overview">A Quick Example</a>
-</li></ul>
-<li><a name="toc_Invoking-Teseq" href="Invoking-Teseq.html#Invoking-Teseq">2 Invoking Teseq</a>
-<ul>
-<li><a href="Invoking-Teseq.html#Invoking-Teseq">Interactive Mode</a>
-</li></ul>
-<li><a name="toc_Output-Format" href="Output-Format.html#Output-Format">3 Output Format</a>
-<ul>
-<li><a href="Text-Lines.html#Text-Lines">3.1 Text Lines</a>
-<li><a href="Control_002dCharacter-Lines.html#Control_002dCharacter-Lines">3.2 Control-Character Lines</a>
-<li><a href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines">3.3 Escape-Sequence Lines</a>
-<ul>
-<li><a href="Escape-Sequence-Recognition.html#Escape-Sequence-Recognition">Recognizing Escape Sequences</a>
-</li></ul>
-<li><a href="Label-Lines.html#Label-Lines">3.4 Label Lines</a>
-<li><a href="Description-Lines.html#Description-Lines">3.5 Description Lines</a>
-<li><a href="Delay-Lines.html#Delay-Lines">3.6 Delay Lines</a>
-</li></ul>
-<li><a name="toc_Reseq" href="Reseq.html#Reseq">4 The Reseq Command</a>
-<ul>
-<li><a href="Reserved-Line-Prefixes.html#Reserved-Line-Prefixes">Reserved Line Prefixes</a>
-</li></ul>
-<li><a name="toc_Standards" href="Standards.html#Standards">5 Standards</a>
-<li><a name="toc_Future-Enhancements" href="Future-Enhancements.html#Future-Enhancements">6 Future Enhancements</a>
-<ul>
-<li><a href="Localized-Messages.html#Localized-Messages">6.1 Localized Messages</a>
-<li><a href="Stateful-Processing.html#Stateful-Processing">6.2 Stateful Processing</a>
-<li><a href="Terminal-Databases.html#Terminal-Databases">6.3 Terminal Database Awareness</a>
-</li></ul>
-<li><a name="toc_Contact-and-Info" href="Contact-and-Info.html#Contact-and-Info">7 Contact and Information</a>
-<li><a name="toc_Copying" href="Copying.html#Copying">Appendix A Copying</a>
-<li><a name="toc_Index" href="Index.html#Index">Index</a>
-</li></ul>
-</div>
 
-
-
-<div class="node">
-<p>
-<a name="Top"></a>
-Next:&nbsp;<a rel="next" accesskey="n" href="Overview.html#Overview">Overview</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="../index.html#dir">(dir)</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="../index.html#dir">(dir)</a>
-<hr>
-</div>
-
-<h2 class="unnumbered">Teseq</h2>
-
-<p>This manual is for GNU Teseq, version 1.0.0.
-
-<p class="noindent">Copyright &copy; 2008 Micah Cowan <a href="mailto:micah@cowan.name">micah@cowan.name</a>
-
-<ul class="menu">
-<li><a accesskey="1" href="Overview.html#Overview">Overview</a>:                     What does Teseq do? (with example)
-<li><a accesskey="2" href="Invoking-Teseq.html#Invoking-Teseq">Invoking Teseq</a>:               How to run Teseq, with options 'n' stuff. 
-<li><a accesskey="3" href="Output-Format.html#Output-Format">Output Format</a>:                How Teseq's output looks.
-
-<li><a accesskey="4" href="Reseq.html#Reseq">Reseq</a>:                        Reversing Teseq's output.
-
-<li><a accesskey="5" href="Standards.html#Standards">Standards</a>:                    The official word on control functions. 
-<li><a accesskey="6" href="Future-Enhancements.html#Future-Enhancements">Future Enhancements</a>:          Future features under consideration. 
-<li><a accesskey="7" href="Contact-and-Info.html#Contact-and-Info">Contact and Info</a>:             Where to ask questions and find answers.
-
-<li><a accesskey="8" href="Copying.html#Copying">Copying</a>:                      Copying and sharing this manual. 
-<li><a accesskey="9" href="Index.html#Index">Index</a>:                        Index of concepts. 
+<ul class="no-bullet">
+  <li><a name="toc-Overview-1" href="Overview.html#Overview">1 Overview</a>
+  <ul class="no-bullet">
+    <li><a name="toc-A-Quick-Example" href="Overview.html#A-Quick-Example">A Quick Example</a></li>
+  </ul></li>
+  <li><a name="toc-Invoking-Teseq-1" href="Invoking-Teseq.html#Invoking-Teseq">2 Invoking Teseq</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Interactive-Mode" href="Invoking-Teseq.html#Interactive-Mode">Interactive Mode</a></li>
+  </ul></li>
+  <li><a name="toc-Output-Format-1" href="Output-Format.html#Output-Format">3 Output Format</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Text-Lines-1" href="Text-Lines.html#Text-Lines">3.1 Text Lines</a></li>
+    <li><a name="toc-Control_002dCharacter-Lines-1" href="Control_002dCharacter-Lines.html#Control_002dCharacter-Lines">3.2 Control-Character Lines</a></li>
+    <li><a name="toc-Escape_002dSequence-Lines-1" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines">3.3 Escape-Sequence Lines</a>
+    <ul class="no-bullet">
+      <li><a name="toc-Recognizing-Escape-Sequences" href="Escape-Sequence-Recognition.html#Escape-Sequence-Recognition">Recognizing Escape Sequences</a></li>
+    </ul></li>
+    <li><a name="toc-Label-Lines-1" href="Label-Lines.html#Label-Lines">3.4 Label Lines</a></li>
+    <li><a name="toc-Description-Lines-1" href="Description-Lines.html#Description-Lines">3.5 Description Lines</a></li>
+    <li><a name="toc-Delay-Lines-and-Halt-Lines-1" href="Delay-Lines-and-Halt-Lines.html#Delay-Lines-and-Halt-Lines">3.6 Delay Lines and Halt Lines</a></li>
+  </ul></li>
+  <li><a name="toc-Color-Mode-1" href="Color-Mode.html#Color-Mode">4 Color Mode</a></li>
+  <li><a name="toc-The-Reseq-Command" href="Reseq.html#Reseq">5 The Reseq Command</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Reserved-Line-Prefixes-1" href="Reserved-Line-Prefixes.html#Reserved-Line-Prefixes">Reserved Line Prefixes</a></li>
+  </ul></li>
+  <li><a name="toc-Standards-1" href="Standards.html#Standards">6 Standards</a></li>
+  <li><a name="toc-Future-Enhancements-1" href="Future-Enhancements.html#Future-Enhancements">7 Future Enhancements</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Localized-Messages-1" href="Localized-Messages.html#Localized-Messages">7.1 Localized Messages</a></li>
+    <li><a name="toc-Stateful-Processing-1" href="Stateful-Processing.html#Stateful-Processing">7.2 Stateful Processing</a></li>
+    <li><a name="toc-Terminal-Database-Awareness" href="Terminal-Databases.html#Terminal-Databases">7.3 Terminal Database Awareness</a></li>
+  </ul></li>
+  <li><a name="toc-Contact-and-Information" href="Contact-and-Info.html#Contact-and-Info">8 Contact and Information</a></li>
+  <li><a name="toc-Copying-1" href="Copying.html#Copying">Appendix A Copying</a></li>
+  <li><a name="toc-Index-1" href="Index.html#Index">Index</a></li>
 </ul>
+</div>
 
-</body></html>
 
+<a name="Top"></a>
+<div class="header">
+<p>
+Next: <a href="Overview.html#Overview" accesskey="n" rel="next">Overview</a>, Previous: <a href="../dir/index.html" accesskey="p" rel="previous">(dir)</a>, Up: <a href="../dir/index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Teseq"></a>
+<h1 class="top">Teseq</h1>
+
+<p>This manual is for GNU Teseq, version 1.1.
+</p>
+<p>Copyright &copy; 2008, 2013 Micah Cowan <a href="mailto:micah@cowan.name">micah@cowan.name</a>
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Overview.html#Overview" accesskey="1">Overview</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">What does Teseq do? (with example)
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Invoking-Teseq.html#Invoking-Teseq" accesskey="2">Invoking Teseq</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">How to run Teseq, with options &rsquo;n&rsquo; stuff.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Output-Format.html#Output-Format" accesskey="3">Output Format</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">How Teseq&rsquo;s output looks.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Color-Mode.html#Color-Mode" accesskey="4">Color Mode</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Customized color output.
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+</pre></th></tr><tr><td align="left" valign="top">&bull; <a href="Reseq.html#Reseq" accesskey="5">Reseq</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Reversing Teseq&rsquo;s output.
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+</pre></th></tr><tr><td align="left" valign="top">&bull; <a href="Standards.html#Standards" accesskey="6">Standards</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The official word on control functions.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Future-Enhancements.html#Future-Enhancements" accesskey="7">Future Enhancements</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Future features under consideration.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Contact-and-Info.html#Contact-and-Info" accesskey="8">Contact and Info</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Where to ask questions and find answers.
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+</pre></th></tr><tr><td align="left" valign="top">&bull; <a href="Copying.html#Copying" accesskey="9">Copying</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Copying and sharing this manual.
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Index.html#Index">Index</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Index of concepts.
+</td></tr>
+</table>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Overview.html#Overview" accesskey="n" rel="next">Overview</a>, Previous: <a href="../dir/index.html" accesskey="p" rel="previous">(dir)</a>, Up: <a href="../dir/index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

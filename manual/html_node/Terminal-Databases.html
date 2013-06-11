@@ -1,74 +1,107 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Teseq, version 1.1.
+
+Copyright (C) 2008, 2013 Micah Cowan <micah@cowan.name>
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Terminal Databases - GNU Teseq 1.0.0 Manual</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0.0 Manual">
-<meta name="generator" content="makeinfo 4.11">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Future-Enhancements.html#Future-Enhancements" title="Future Enhancements">
-<link rel="prev" href="Stateful-Processing.html#Stateful-Processing" title="Stateful Processing">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<title>GNU Teseq 1.1 Manual: Terminal Databases</title>
+
+<meta name="description" content="GNU Teseq 1.1 Manual: Terminal Databases">
+<meta name="keywords" content="GNU Teseq 1.1 Manual: Terminal Databases">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Future-Enhancements.html#Future-Enhancements" rel="up" title="Future Enhancements">
+<link href="Contact-and-Info.html#Contact-and-Info" rel="next" title="Contact and Info">
+<link href="Stateful-Processing.html#Stateful-Processing" rel="previous" title="Stateful Processing">
+<style type="text/css">
 <!--
-This manual is for GNU Teseq, version 1.0.0.
-
-Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
-
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.2 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, no Front-Cover Texts, and
-     no Back-Cover Texts.  A copy of the license is included in the
-     section entitled ``GNU Free Documentation License''.
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
 -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
-</head>
-<body>
-<div class="node">
-<p>
-<a name="Terminal-Databases"></a>
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Stateful-Processing.html#Stateful-Processing">Stateful Processing</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Future-Enhancements.html#Future-Enhancements">Future Enhancements</a>
-<hr>
-</div>
+</style>
 
-<h3 class="section">6.3 Terminal Database Awareness</h3>
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="Terminal-Databases"></a>
+<div class="header">
+<p>
+Previous: <a href="Stateful-Processing.html#Stateful-Processing" accesskey="p" rel="previous">Stateful Processing</a>, Up: <a href="Future-Enhancements.html#Future-Enhancements" accesskey="u" rel="up">Future Enhancements</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Terminal-Database-Awareness"></a>
+<h3 class="section">7.3 Terminal Database Awareness</h3>
 
 <p>Future versions of Teseq may allow the user to specify the name of the
 terminal for which the input was intended, which Teseq will then use
-to detect when a feature from that terminal's entry in the terminal
+to detect when a feature from that terminal&rsquo;s entry in the terminal
 database (for example, the
-<a name="index-terminfo-191"></a>terminfo database) has been invoked.
-
+<a name="index-terminfo"></a>
+terminfo database) has been invoked.
+</p>
 <p>Since features from terminal database entries often involve multiple
-<a name="index-standards-192"></a><a name="index-Ecma_002d48-193"></a><a name="index-ISO_002fIEC_0040tie_007b_007d6429-194"></a>Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 controls, Teseq would probably need to indicate out-of-band
+<a name="index-standards-22"></a>
+<a name="index-Ecma_002d48-13"></a>
+<a name="index-ISO_002fIEC-6429-13"></a>
+Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 controls, Teseq would probably need to indicate out-of-band
 &ldquo;start&rdquo; and &ldquo;end&rdquo; markers for the feature. For instance, if the
-definition for the &lsquo;<samp><span class="samp">clear</span></samp>&rsquo; feature for the specified terminal
-is &lsquo;<samp><span class="samp">\E[H\E[J</span></samp>&rsquo;, then an input string of &lsquo;<samp><span class="samp">\E[m\E[H\E[J\E(B</span></samp>&rsquo;
+definition for the &lsquo;<samp>clear</samp>&rsquo; feature for the specified terminal
+is &lsquo;<samp>\E[H\E[J</samp>&rsquo;, then an input string of &lsquo;<samp>\E[m\E[H\E[J\E(B</samp>&rsquo;
 might result in output like:
+</p>
+<div class="example">
+<pre class="example">: Esc [ m
+# start: clear
+: Esc [ H
+: Esc [ J
+# end: clear
+: Esc ( B
+</pre></div>
 
-<pre class="example">     : Esc [ m
-     # start: clear
-     : Esc [ H
-     : Esc [ J
-     # end: clear
-     : Esc ( B
-</pre>
-<p class="noindent">(Label and description lines have been removed from this example.)
-
+<p>(Label and description lines have been removed from this example.)
+</p>
 <p>No commitment has been made to any particular output format for this
 feature; the above is intended purely as an example of one possible
 approach.
+</p>
 
-</body></html>
 
+
+</body>
+</html>

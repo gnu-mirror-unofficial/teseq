@@ -1,79 +1,113 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Teseq, version 1.1.
+
+Copyright (C) 2008, 2013 Micah Cowan <micah@cowan.name>
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Output Format - GNU Teseq 1.0.0 Manual</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0.0 Manual">
-<meta name="generator" content="makeinfo 4.11">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Invoking-Teseq.html#Invoking-Teseq" title="Invoking Teseq">
-<link rel="next" href="Reseq.html#Reseq" title="Reseq">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<title>GNU Teseq 1.1 Manual: Output Format</title>
+
+<meta name="description" content="GNU Teseq 1.1 Manual: Output Format">
+<meta name="keywords" content="GNU Teseq 1.1 Manual: Output Format">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Text-Lines.html#Text-Lines" rel="next" title="Text Lines">
+<link href="Invoking-Teseq.html#Invoking-Teseq" rel="previous" title="Invoking Teseq">
+<style type="text/css">
 <!--
-This manual is for GNU Teseq, version 1.0.0.
-
-Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
-
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.2 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, no Front-Cover Texts, and
-     no Back-Cover Texts.  A copy of the license is included in the
-     section entitled ``GNU Free Documentation License''.
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
 -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
-</head>
-<body>
-<div class="node">
-<p>
-<a name="Output-Format"></a>
-Next:&nbsp;<a rel="next" accesskey="n" href="Reseq.html#Reseq">Reseq</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Invoking-Teseq.html#Invoking-Teseq">Invoking Teseq</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
-</div>
+</style>
 
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="Output-Format"></a>
+<div class="header">
+<p>
+Next: <a href="Color-Mode.html#Color-Mode" accesskey="n" rel="next">Color Mode</a>, Previous: <a href="Invoking-Teseq.html#Invoking-Teseq" accesskey="p" rel="previous">Invoking Teseq</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Output-Format-1"></a>
 <h2 class="chapter">3 Output Format</h2>
 
 <p>Teseq produces output that is primarily intended to be read by humans
 (from input that is usually not). For this reason, Teseq output
 follows the following principles:
-
-     <ul>
-<li>Displays for different sorts of characters and sequences are displayed
+</p>
+<ul>
+<li> Displays for different sorts of characters and sequences are displayed
 on distinct lines, and are easily distinguished by
-<a name="index-line-prefix-68"></a><a name="index-prefix_002c-line-69"></a>the initial character. 
-<li>Every input character should be unambiguously visible to the user in
+<a name="index-line-prefix-2"></a>
+<a name="index-prefix_002c-line-2"></a>
+the initial character.
+</li><li> Every input character should be unambiguously visible to the user in
 the output (except, of course, when the user explicitly asks not to
-see them, as with the <samp><span class="option">-E</span></samp> option). In particular, trailing
-space should be visible. 
-<li>Line lengths are limited to a maximum of 78 characters, so as to fit
-comfortably on most terminal displays. 
-<li>The output makes clear distinction between line breaks that occur due
+see them, as with the <samp>-E</samp> option). In particular, trailing
+space should be visible.
+</li><li> Line lengths are limited to a maximum of 78 characters, so as to fit
+comfortably on most terminal displays.
+</li><li> The output makes clear distinction between line breaks that occur due
 to line limits or intermixed character types, and those that actually
-occurred in the input. 
-</ul>
+occurred in the input.
+</li></ul>
 
-<p class="noindent">See <a href="Overview.html#Overview">Overview</a>, for an output example.
+<p>See <a href="Overview.html#Overview">Overview</a>, for an output example.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Text-Lines.html#Text-Lines" accesskey="1">Text Lines</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Control_002dCharacter-Lines.html#Control_002dCharacter-Lines" accesskey="2">Control-Character Lines</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines" accesskey="3">Escape-Sequence Lines</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Label-Lines.html#Label-Lines" accesskey="4">Label Lines</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Description-Lines.html#Description-Lines" accesskey="5">Description Lines</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Delay-Lines-and-Halt-Lines.html#Delay-Lines-and-Halt-Lines" accesskey="6">Delay Lines and Halt Lines</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
 
-<ul class="menu">
-<li><a accesskey="1" href="Text-Lines.html#Text-Lines">Text Lines</a>
-<li><a accesskey="2" href="Control_002dCharacter-Lines.html#Control_002dCharacter-Lines">Control-Character Lines</a>
-<li><a accesskey="3" href="Escape_002dSequence-Lines.html#Escape_002dSequence-Lines">Escape-Sequence Lines</a>
-<li><a accesskey="4" href="Label-Lines.html#Label-Lines">Label Lines</a>
-<li><a accesskey="5" href="Description-Lines.html#Description-Lines">Description Lines</a>
-<li><a accesskey="6" href="Delay-Lines.html#Delay-Lines">Delay Lines</a>
-</ul>
 
-</body></html>
 
+
+</body>
+</html>

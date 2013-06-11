@@ -1,138 +1,226 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Teseq, version 1.1.
+
+Copyright (C) 2008, 2013 Micah Cowan <micah@cowan.name>
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Reseq - GNU Teseq 1.0.0 Manual</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0.0 Manual">
-<meta name="generator" content="makeinfo 4.11">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Output-Format.html#Output-Format" title="Output Format">
-<link rel="next" href="Standards.html#Standards" title="Standards">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<title>GNU Teseq 1.1 Manual: Reseq</title>
+
+<meta name="description" content="GNU Teseq 1.1 Manual: Reseq">
+<meta name="keywords" content="GNU Teseq 1.1 Manual: Reseq">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Reserved-Line-Prefixes.html#Reserved-Line-Prefixes" rel="next" title="Reserved Line Prefixes">
+<link href="Color-Mode.html#Color-Mode" rel="previous" title="Color Mode">
+<style type="text/css">
 <!--
-This manual is for GNU Teseq, version 1.0.0.
-
-Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
-
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.2 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, no Front-Cover Texts, and
-     no Back-Cover Texts.  A copy of the license is included in the
-     section entitled ``GNU Free Documentation License''.
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
 -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+</style>
+
+
 </head>
-<body>
-<div class="node">
-<p>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 <a name="Reseq"></a>
-Next:&nbsp;<a rel="next" accesskey="n" href="Standards.html#Standards">Standards</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Output-Format.html#Output-Format">Output Format</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
+<div class="header">
+<p>
+Next: <a href="Standards.html#Standards" accesskey="n" rel="next">Standards</a>, Previous: <a href="Color-Mode.html#Color-Mode" accesskey="p" rel="previous">Color Mode</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
+<hr>
+<a name="The-Reseq-Command"></a>
+<h2 class="chapter">5 The Reseq Command</h2>
+<a name="index-reseq-3"></a>
+<a name="index-Reversing-the-output-of-teseq"></a>
+<a name="index-teseq_002c-reversing-the-output"></a>
 
-<h2 class="chapter">4 The Reseq Command</h2>
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">reseq [-t|--timings=<var>timings</var>] <var>input</var> <var>output</var>
+reseq --replay [-d <var>divisor</var>] <var>input</var> [<var>output</var>]
+reseq -h | --help
+reseq -V | --version
+</pre></div>
 
-<p><a name="index-g_t_0040command_007breseq_007d-147"></a><a name="index-Reversing-the-output-of-_0040command_007bteseq_007d-148"></a><a name="index-g_t_0040command_007bteseq_007d_002c-reversing-the-output-149"></a>
-Synopsis:
-
-<pre class="example">     reseq [-t|--timings=<var>timings</var>] <var>input</var> <var>output</var>
-     reseq --replay [-d <var>divisor</var>] <var>input</var> [<var>output</var>]
-     reseq -h | --help
-     reseq -V | --version
-</pre>
 <p>The <var>input</var> and <var>output</var> arguments are mandatory, but may be
-specified as &lsquo;<samp><span class="samp">-</span></samp>&rsquo; for standard input or output. Reseq doesn't let
+specified as &lsquo;<samp>-</samp>&rsquo; for standard input or output. Reseq doesn&rsquo;t let
 output default to standard output because, since it generates raw
 terminal codes, it is uncommon (and potentially unsafe) to send this
-directly to the terminal. The exception is when the <samp><span class="option">--replay</span></samp>
+directly to the terminal. The exception is when the <samp>--replay</samp>
 argument has been specified, which is only useful when output is going
 to the terminal; in that event, the <var>output</var> argument is optional.
-
-     <dl>
-<dt><samp><span class="option">-h</span></samp><dt><samp><span class="option">--help</span></samp><dd><a name="index-g_t_002d_002dhelp-_0028reseq_0029-150"></a><a name="index-g_t_002dh-_0028reseq_0029-151"></a>Print usage information on standard output and exit successfully.
-
-     <br><dt><samp><span class="option">-V</span></samp><dt><samp><span class="option">--version</span></samp><dd><a name="index-g_t_002d_002dversion-_0028reseq_0029-152"></a><a name="index-g_t_002dV-_0028reseq_0029-153"></a>Print the version number and licensing information of <code>hello</code> on
+</p>
+<dl compact="compact">
+<dt><samp>-h</samp></dt>
+<dt><samp>--help</samp></dt>
+<dd><a name="index-_002d_002dhelp-_0028reseq_0029"></a>
+<a name="index-_002dh-_0028reseq_0029"></a>
+<p>Print usage information on standard output and exit successfully.
+</p>
+</dd>
+<dt><samp>-V</samp></dt>
+<dt><samp>--version</samp></dt>
+<dd><a name="index-_002d_002dversion-_0028reseq_0029"></a>
+<a name="index-_002dV-_0028reseq_0029"></a>
+<p>Print the version number and licensing information of <code>hello</code> on
 standard output and then exit successfully.
-
-     <br><dt><samp><span class="option">--replay</span></samp><dd><a name="index-g_t_002d_002dreplay-_0028reseq_0029-154"></a>Honor delay lines in the input, pausing the specified amount of time
+</p>
+</dd>
+<dt><samp>--replay</samp></dt>
+<dd><a name="index-_002d_002dreplay-_0028reseq_0029-1"></a>
+<p>Honor delay lines in the input, pausing the specified amount of time
 before continuing to process the next line. This is useful for
 producing behavior equivalent to that of the
-<a name="index-g_t_0040command_007bscriptreplay_007d-155"></a><samp><span class="command">scriptreplay</span></samp> command (from
+<a name="index-scriptreplay"></a>
+<code>scriptreplay</code> command (from
 <a href="http://userweb.kernel.org/~kzak/util-linux-ng/">util-linux</a>),
 but using a Teseq output file as input, rather than a raw typescript
 file.
-
-     <br><dt><samp><span class="option">-d </span><var>divisor</var></samp><dd><a name="index-g_t_002dd-_0028reseq_0029-156"></a>Play back the script at <var>divisor</var> times the original speed
-(meaningless unless <samp><span class="option">--replay</span></samp> was also specified).
-
-     <br><dt><samp><span class="option">-t </span><var>timings</var></samp><dt><samp><span class="option">--timings </span><var>timings</var></samp><dd><a name="index-g_t_002dt-_0028reseq_0029-157"></a><a name="index-g_t_002d_002dtimings-_0028reseq_0029-158"></a>Produce timing information from delay lines, in the format generated
+</p>
+</dd>
+<dt><samp>--halts</samp></dt>
+<dd><a name="index-_002d_002dhalts-_0028reseq_0029-1"></a>
+<p>Only takes effect if &lsquo;<samp>--replay</samp>&rsquo; is also specified. In addition to
+honoring delay lines, also honors user-inserted &ldquo;halt&rdquo; lines (those
+beginning with &lsquo;<samp>@@@</samp>&rsquo;) in the input. These lines cause
+<code>reseq</code> to halt processing until the user presses a key.
+</p>
+<p>This halting action is not accompanied by any sort of indication that
+<code>reseq</code> is awaiting user action; it is up to the user to
+ensure that the input script to <code>reseq</code> has included some sort
+of appropriate indication.
+</p>
+<p>When &lsquo;<samp>--halts</samp>&rsquo; is in effect, <code>reseq</code> will turn off
+terminal echoing (so the user&rsquo;s keypress to continue the script is not
+shown), and switches the terminal over to unbuffered I/O, so that
+keypresses can be read as soon as they are typed.
+</p>
+</dd>
+<dt><samp>-t <var>timings</var></samp></dt>
+<dt><samp>--timings <var>timings</var></samp></dt>
+<dd><a name="index-_002dt-_0028reseq_0029"></a>
+<a name="index-_002d_002dtimings-_0028reseq_0029"></a>
+<p>Produce timing information from delay lines, in the format generated
 by
-<a name="index-g_t_0040command_007bscript_007d-159"></a><code>script -t</code>. This can be used to regenerate <samp><span class="command">script</span></samp>
+<a name="index-script-3"></a>
+<code>script -t</code>. This can be used to regenerate <code>script</code>
 typescript and timing files that were fed as the input to
 <code>teseq -t timings</code>. Note that the result will differ slightly
 from the output from <code>script -t</code>, in that the first delay will be
-zeroed out (<samp><span class="command">teseq</span></samp> always throws out the first delay value,
+zeroed out (<code>teseq</code> always throws out the first delay value,
 whose value from script is an arbitrary value between 0 and 1), and
 the last delay line will include all the remaining characters
-(<samp><span class="command">script</span></samp>'s timings don't count the final timestamp line). 
+(<code>script</code>&rsquo;s timings don&rsquo;t count the final timestamp line).
+</p></dd>
 </dl>
 
-<p class="noindent">The <samp><span class="command">reseq</span></samp> command essentially does the reverse of
-<samp><span class="command">teseq</span></samp>. If you feed it the output from <samp><span class="command">teseq</span></samp>, it
+<p>The <code>reseq</code> command essentially does the reverse of
+<code>teseq</code>. If you feed it the output from <code>teseq</code>, it
 will generate the corresponding escape sequences&mdash;that is, it will
-generate the same content that was fed to <samp><span class="command">teseq</span></samp> to produce
+generate the same content that was fed to <code>teseq</code> to produce
 that output. The shell command
+</p>
+<div class="example">
+<pre class="example">$ teseq foo | reseq - -
+</pre></div>
 
-<pre class="example">     $ teseq foo | reseq - -
-</pre>
-<p class="noindent">is roughly equivalent to
+<p>is roughly equivalent to
+</p>
+<div class="example">
+<pre class="example">$ cat foo
+</pre></div>
 
-<pre class="example">     $ cat foo
-</pre>
-<p class="noindent">The <samp><span class="command">reseq</span></samp> command is written in
-<a name="index-Perl-160"></a>Perl, unlike <samp><span class="command">teseq</span></samp>
+<p>The <code>reseq</code> command is written in
+<a name="index-Perl"></a>
+Perl, unlike <code>teseq</code>
 which is compiled from C-language sources, and so requires a Perl
 interpreter to be present in order to function.
+</p>
+<p>Of the various types of lines output by the <code>teseq</code> command,
+<code>reseq</code> only understands four;
+<a name="index-text-line-1"></a>
+text lines:
+</p>
+<div class="example">
+<pre class="example">|Hello, there|.
+|Here are|-
+-|some wrapped|-
+-|lines|.
+</pre></div>
 
-<p>Of the various types of lines output by the <samp><span class="command">teseq</span></samp> command,
-<samp><span class="command">reseq</span></samp> only understands four;
-<a name="index-text-line-161"></a>text lines:
+<a name="index-control_002dcharacter-line-2"></a>
+<p>control-character lines:
+</p>
+<div class="example">
+<pre class="example">. CR/^M LF/^J
+. CR LF
+</pre></div>
 
-<pre class="example">     |Hello, there|.
-     |Here are|-
-     -|some wrapped|-
-     -|lines|.
-</pre>
-<p class="noindent"><a name="index-control_002dcharacter-line-162"></a>control-character lines:
+<a name="index-escape_002dsequence-line-1"></a>
+<p>escape-sequence lines:
+</p>
+<div class="example">
+<pre class="example">: Esc [ 31 ; 3 m
+</pre></div>
 
-<pre class="example">     . CR/^M LF/^J
-     . CR LF
-</pre>
-<p class="noindent"><a name="index-escape_002dsequence-line-163"></a>escape-sequence lines:
+<p>And, of course,
+<a name="index-delay-line-2"></a>
+delay lines:
+</p>
+<div class="example">
+<pre class="example">@ 3.14159
+</pre></div>
 
-<pre class="example">     : Esc [ 31 ; 3 m
-</pre>
-<p class="noindent">And, of course,
-<a name="index-delay-line-164"></a>delay lines:
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Reserved-Line-Prefixes.html#Reserved-Line-Prefixes" accesskey="1">Reserved Line Prefixes</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
 
-<pre class="example">     @ 3.14159
-</pre>
-<ul class="menu">
-<li><a accesskey="1" href="Reserved-Line-Prefixes.html#Reserved-Line-Prefixes">Reserved Line Prefixes</a>
-</ul>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Standards.html#Standards" accesskey="n" rel="next">Standards</a>, Previous: <a href="Color-Mode.html#Color-Mode" accesskey="p" rel="previous">Color Mode</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-</body></html>
 
+
+</body>
+</html>

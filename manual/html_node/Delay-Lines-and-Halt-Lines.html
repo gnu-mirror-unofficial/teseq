@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Teseq, version 1.1.
+
+Copyright (C) 2008, 2013 Micah Cowan <micah@cowan.name>
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>GNU Teseq 1.1 Manual: Delay Lines and Halt Lines</title>
+
+<meta name="description" content="GNU Teseq 1.1 Manual: Delay Lines and Halt Lines">
+<meta name="keywords" content="GNU Teseq 1.1 Manual: Delay Lines and Halt Lines">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Output-Format.html#Output-Format" rel="up" title="Output Format">
+<link href="Color-Mode.html#Color-Mode" rel="next" title="Color Mode">
+<link href="Description-Lines.html#Description-Lines" rel="previous" title="Description Lines">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="Delay-Lines-and-Halt-Lines"></a>
+<div class="header">
+<p>
+Previous: <a href="Description-Lines.html#Description-Lines" accesskey="p" rel="previous">Description Lines</a>, Up: <a href="Output-Format.html#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Delay-Lines-and-Halt-Lines-1"></a>
+<h3 class="section">3.6 Delay Lines and Halt Lines</h3>
+<a name="index-delay-line-1"></a>
+<a name="index-halt-line"></a>
+<a name="index-_0040"></a>
+
+<p>A delay line begins with an &ldquo;at&rdquo; sign &lsquo;<samp>@</samp>&rsquo;, and contains a
+single numeric value; a number of seconds to pause before continuing
+on to process further lines. The
+<a name="index-reseq-2"></a>
+<code>reseq</code> program will obey these instructions only if it is
+given the <samp>--replay</samp> option.
+</p>
+<div class="example">
+<pre class="example">@ 3.0051
+</pre></div>
+
+<p>Delay lines are only issued by <code>teseq</code> when it has been given
+the <samp>-t</samp> option, which uses a timing file from
+<a name="index-script-2"></a>
+&lsquo;<samp>script -t</samp>&rsquo; to determine where to insert delays. Aside from that,
+delay lines can be useful for manual insertion into Teseq
+output, to introduce a delay at a particular point when using
+<a name="index-_002d_002dreplay-_0028reseq_0029"></a>
+&lsquo;<samp>reseq --replay</samp>&rsquo;, which can aid in giving the user time to more
+easily observe terminal behavior.
+</p>
+<p>If a line begins with three &ldquo;at&rdquo; signs together &lsquo;<samp>@@@</samp>&rsquo;, and
+<code>reseq</code> is invoked with both &lsquo;<samp>--replay</samp>&rsquo; <em>and</em>
+<a name="index-_002d_002dhalts-_0028reseq_0029"></a>
+&lsquo;<samp>--halts</samp>&rsquo;, then <code>reseq</code> will pause at this location
+until the user presses a key to indicate continuation. The remainder
+of the line will be ignored, so can be used for comments.
+</p>
+<p>Such a line will never be output by <code>teseq</code>; it must be
+inserted by the user. Since <code>reseq</code> does not give any
+indication to the user that it is awaiting input (as opposed to simply
+waiting on a length delay line), it is highly advisable to insert this
+&ldquo;halt&rdquo; line only after a spot in the recorded terminal script that
+already provides such an indication.
+</p>
+<p>The halt line can be useful for creating animated demonstrations of
+program usage, and similar sorts of presentation-oriented scripts.
+</p>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Description-Lines.html#Description-Lines" accesskey="p" rel="previous">Description Lines</a>, Up: <a href="Output-Format.html#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,121 +1,159 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Teseq, version 1.1.
+
+Copyright (C) 2008, 2013 Micah Cowan <micah@cowan.name>
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Escape-Sequence Lines - GNU Teseq 1.0.0 Manual</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0.0 Manual">
-<meta name="generator" content="makeinfo 4.11">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Output-Format.html#Output-Format" title="Output Format">
-<link rel="prev" href="Control_002dCharacter-Lines.html#Control_002dCharacter-Lines" title="Control-Character Lines">
-<link rel="next" href="Label-Lines.html#Label-Lines" title="Label Lines">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<title>GNU Teseq 1.1 Manual: Escape-Sequence Lines</title>
+
+<meta name="description" content="GNU Teseq 1.1 Manual: Escape-Sequence Lines">
+<meta name="keywords" content="GNU Teseq 1.1 Manual: Escape-Sequence Lines">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Output-Format.html#Output-Format" rel="up" title="Output Format">
+<link href="Escape-Sequence-Recognition.html#Escape-Sequence-Recognition" rel="next" title="Escape Sequence Recognition">
+<link href="Control_002dCharacter-Lines.html#Control_002dCharacter-Lines" rel="previous" title="Control-Character Lines">
+<style type="text/css">
 <!--
-This manual is for GNU Teseq, version 1.0.0.
-
-Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
-
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.2 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, no Front-Cover Texts, and
-     no Back-Cover Texts.  A copy of the license is included in the
-     section entitled ``GNU Free Documentation License''.
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
 -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+</style>
+
+
 </head>
-<body>
-<div class="node">
-<p>
-<a name="Escape-Sequence-Lines"></a>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 <a name="Escape_002dSequence-Lines"></a>
-Next:&nbsp;<a rel="next" accesskey="n" href="Label-Lines.html#Label-Lines">Label Lines</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Control_002dCharacter-Lines.html#Control_002dCharacter-Lines">Control-Character Lines</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Output-Format.html#Output-Format">Output Format</a>
-<hr>
+<div class="header">
+<p>
+Next: <a href="Label-Lines.html#Label-Lines" accesskey="n" rel="next">Label Lines</a>, Previous: <a href="Control_002dCharacter-Lines.html#Control_002dCharacter-Lines" accesskey="p" rel="previous">Control-Character Lines</a>, Up: <a href="Output-Format.html#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Escape_002dSequence-Lines-1"></a>
 <h3 class="section">3.3 Escape-Sequence Lines</h3>
+<a name="index-escape_002dsequence-lines"></a>
 
-<p><a name="index-escape_002dsequence-lines-97"></a>
-Escape-sequence lines, which begin with the colon, &lsquo;<samp><span class="samp">:</span></samp>&rsquo;, don't add
+<p>Escape-sequence lines, which begin with the colon, &lsquo;<samp>:</samp>&rsquo;, don&rsquo;t add
 any new semantics&mdash;any characters in an escape-sequence line could be
 represented on control-character and text lines (and, with just a
 one-character change in the escape sequence, would be). But they
 serve to set escape sequences apart from normal control-character or
 text lines, making it easier to see on one line all the characters
 that contribute to a single control function, rather than splitting
-them between control-character and text lines. 
-Here's an example with some intermixed escape-sequence and text lines
+them between control-character and text lines.
+Here&rsquo;s an example with some intermixed escape-sequence and text lines
 (without the usual label and description lines, which are described in
 later sections):
+</p>
+<div class="example">
+<pre class="example">|Well |
+: Esc [ 3 ; 31 m
+|Daniel|
+: Esc [ 23 ; 39 m
+| didn't do it...|.
+</pre></div>
 
-<pre class="example">     |Well |
-     : Esc [ 3 ; 31 m
-     |Daniel|
-     : Esc [ 23 ; 39 m
-     | didn't do it...|.
-</pre>
-<p class="noindent">The two escape-sequence lines represent, respectively, controls that
+<p>The two escape-sequence lines represent, respectively, controls that
 set text rendering to use italics in the color red, and to set normal
 font rendering in the default color (the actual interpretation of
 these controls may vary by application).
-
+</p>
 <p>Note that the escape-sequence lines include control characters (well,
-character, namely &lsquo;<samp><span class="samp">Esc</span></samp>&rsquo;) intermixed with normal text
+character, namely &lsquo;<samp>Esc</samp>&rsquo;) intermixed with normal text
 characters. So the above could have been written like:
+</p>
+<div class="example">
+<pre class="example">|Well |
+. ESC
+|[3;31mDaniel|
+. ESC
+|[23;39m didn't do it...|.
+</pre></div>
 
-<pre class="example">     |Well |
-     . ESC
-     |[3;31mDaniel|
-     . ESC
-     |[23;39m didn't do it...|.
-</pre>
-<p class="noindent">But this loses the separation between characters that, yes, happen to
+<p>But this loses the separation between characters that, yes, happen to
 be text characters, but really just contribute to some terminal
 control function invocation, and characters that are, really and
 truly, text.
+</p>
+<div class="example">
+<pre class="example">: Esc [ 3 ; 31 m
+</pre></div>
 
-<pre class="example">     : Esc [ 3 ; 31 m
-</pre>
-<p class="noindent">Some things to note. First, the escape key is noted as &lsquo;<samp><span class="samp">Esc</span></samp>&rsquo;, and
-not &lsquo;<samp><span class="samp">ESC</span></samp>&rsquo; as it would be in a control-character line. Don't ask
+<p>Some things to note. First, the escape key is noted as &lsquo;<samp>Esc</samp>&rsquo;, and
+not &lsquo;<samp>ESC</samp>&rsquo; as it would be in a control-character line. Don&rsquo;t ask
 me why; maybe I just felt it was one more thing to dilineate between
 escape-sequence lines and control-character lines.
-
+</p>
 <p>Also, each character is separated from its neighbors by a single
 space, except that strings of digits are lumped all together.
-
+</p>
 <p>Each character is represented by itself (including colon, as long as
-it's not at the start of the line), except the escape character, and
-the space character (represented as &lsquo;<samp><span class="samp">Spc</span></samp>&rsquo;). Control characters
+it&rsquo;s not at the start of the line), except the escape character, and
+the space character (represented as &lsquo;<samp>Spc</samp>&rsquo;). Control characters
 and high-value bytes are not currently represented on escape-sequence
 lines (they are not part of any escape sequences Teseq recognizes), but
 if they are in the future (say, as part of non-standardized escape
-sequences), they will most likely be represented as &lsquo;<samp><span class="samp">xXX</span></samp>&rsquo;
+sequences), they will most likely be represented as &lsquo;<samp>xXX</samp>&rsquo;
 hexadecimal strings (as high-value bytes are represented in
 control-character lines.
-
+</p>
 <p>If an escape sequence requires more than one output line, the
 continuing lines will also begin with a colon, followed by two spaces
 (instead of one). Lines will not be split in the middle of a number.
+</p>
+<div class="example">
+<pre class="example">: Esc [ 1 ; 2 ; 3 ; 4
+:  ; 5 ; 6 ; 7 m
+</pre></div>
 
-<pre class="example">     : Esc [ 1 ; 2 ; 3 ; 4
-     :  ; 5 ; 6 ; 7 m
-</pre>
-<ul class="menu">
-<li><a accesskey="1" href="Escape-Sequence-Recognition.html#Escape-Sequence-Recognition">Escape Sequence Recognition</a>
-</ul>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Escape-Sequence-Recognition.html#Escape-Sequence-Recognition" accesskey="1">Escape Sequence Recognition</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
 
-</body></html>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Label-Lines.html#Label-Lines" accesskey="n" rel="next">Label Lines</a>, Previous: <a href="Control_002dCharacter-Lines.html#Control_002dCharacter-Lines" accesskey="p" rel="previous">Control-Character Lines</a>, Up: <a href="Output-Format.html#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
+
+
+</body>
+</html>

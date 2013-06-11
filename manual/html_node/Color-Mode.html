@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Teseq, version 1.1.
+
+Copyright (C) 2008, 2013 Micah Cowan <micah@cowan.name>
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>GNU Teseq 1.1 Manual: Color Mode</title>
+
+<meta name="description" content="GNU Teseq 1.1 Manual: Color Mode">
+<meta name="keywords" content="GNU Teseq 1.1 Manual: Color Mode">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Reseq.html#Reseq" rel="next" title="Reseq">
+<link href="Delay-Lines-and-Halt-Lines.html#Delay-Lines-and-Halt-Lines" rel="previous" title="Delay Lines and Halt Lines">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="Color-Mode"></a>
+<div class="header">
+<p>
+Next: <a href="Reseq.html#Reseq" accesskey="n" rel="next">Reseq</a>, Previous: <a href="Output-Format.html#Output-Format" accesskey="p" rel="previous">Output Format</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Color-Mode-1"></a>
+<h2 class="chapter">4 Color Mode</h2>
+<a name="index-_002d_002dcolor-1"></a>
+<a name="index-_002d_002dcolour-1"></a>
+<a name="index-color"></a>
+<a name="index-colour"></a>
+<a name="index-TESEQ_005fCOLORS"></a>
+<p>Teseq can provide color formatting to its output. This feature is
+disabled by default, but can be activated via <samp>--color=auto</samp>
+or <samp>--color=always</samp>.
+If &lsquo;<samp>auto</samp>&rsquo; is used, then color will be added to the output only if
+the output is to a terminal; otherwise not.
+If &lsquo;<samp>always</samp>&rsquo; is specified, then color formatting codes will be
+provided for the output unconditionally. Note that such output may not
+be fed to <code>reseq</code>, which will not be able to handle these codes.
+</p>
+<p>The default colors used are suitable for use against a dark/black
+background, but may be less suitable for use on terminals with
+light-colored backgrounds.
+The colors used may be altered by setting the environment variable
+&lsquo;<samp>TESEQ_COLORS</samp>&rsquo;.
+It consists of comma-separated key=value pairs, where the key is usually
+the prefix character of the line to be colored, and the value consists
+of parameter values for the terminal SGR control.
+Any prefixes not specified in &lsquo;<samp>TESEQ_COLORS</samp>&rsquo; retain their default
+values.
+</p>
+<p>In the case of text lines, in which literal text is bracketed by pipe
+characters (&lsquo;<samp>|</samp>&rsquo;), color may be specified separately for the inner
+text, and for the bracketing pipes, including the &lsquo;<samp>|-</samp>&rsquo; and
+&lsquo;<samp>-|</samp>&rsquo; around formatting (non-literal) line breaks, and any final
+&lsquo;<samp>.</samp>&rsquo; signifying a literal line break.
+The inner text is specified by the key &lsquo;<samp>|&gt;</samp>&rsquo;, while the decorations
+are specified by the key &lsquo;<samp>|</samp>&rsquo;.
+Currently, no default color settings are made for the decorations; only
+the inner text.
+</p>
+<p>Here is an example setting for TESEQ_COLORS:
+</p>
+<div class="example">
+<pre class="example">TESEQ_COLORS='|&gt;=36;7,|=1,.=31,:=33,&amp;=35,&quot;=32,3=4'
+</pre></div>
+
+<p>This sets the literal text content of text lines to a cyan foreground,
+and then standout (reverse) mode, so that the result is a cyan
+background with a foreground of whatever the usual background would be
+(i.e., if the background is normally black, then the foreground will be
+black). The color of the text line decorations is not changed, but the
+decorations are displayed in bold. Control lines (&lsquo;<samp>.</samp>&rsquo;) are set to
+red, escape-sequence lines (&lsquo;<samp>:</samp>&rsquo;) are set to amber, label lines
+(&lsquo;<samp>&amp;</samp>&rsquo;) to violet, descriptions (&lsquo;<samp>&quot;</samp>&rsquo;) to green, and delay lines
+(&lsquo;<samp>@</samp>&rsquo;) to blue.
+</p>
+<p>Note that halt lines (lines consisting of exactly &lsquo;<samp>@@@</samp>&rsquo;), though
+recognized by reseq, are never emitted by teseq, and thus have no means
+of specification in &lsquo;<samp>TESEQ_COLORS</samp>&rsquo;.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Reseq.html#Reseq" accesskey="n" rel="next">Reseq</a>, Previous: <a href="Output-Format.html#Output-Format" accesskey="p" rel="previous">Output Format</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,90 +1,130 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual is for GNU Teseq, version 1.1.
+
+Copyright (C) 2008, 2013 Micah Cowan <micah@cowan.name>
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+"GNU Free Documentation License". -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>Reserved Line Prefixes - GNU Teseq 1.0.0 Manual</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="GNU Teseq 1.0.0 Manual">
-<meta name="generator" content="makeinfo 4.11">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Reseq.html#Reseq" title="Reseq">
-<link rel="prev" href="Reseq.html#Reseq" title="Reseq">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<title>GNU Teseq 1.1 Manual: Reserved Line Prefixes</title>
+
+<meta name="description" content="GNU Teseq 1.1 Manual: Reserved Line Prefixes">
+<meta name="keywords" content="GNU Teseq 1.1 Manual: Reserved Line Prefixes">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Index.html#Index" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Reseq.html#Reseq" rel="up" title="Reseq">
+<link href="Standards.html#Standards" rel="next" title="Standards">
+<link href="Reseq.html#Reseq" rel="previous" title="Reseq">
+<style type="text/css">
 <!--
-This manual is for GNU Teseq, version 1.0.0.
-
-Copyright (C) 2008 Micah Cowan <<micah@cowan.name>>
-
-     Permission is granted to copy, distribute and/or modify this
-     document under the terms of the GNU Free Documentation License,
-     Version 1.2 or any later version published by the Free Software
-     Foundation; with no Invariant Sections, no Front-Cover Texts, and
-     no Back-Cover Texts.  A copy of the license is included in the
-     section entitled ``GNU Free Documentation License''.
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
 -->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+</style>
+
+
 </head>
-<body>
-<div class="node">
-<p>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 <a name="Reserved-Line-Prefixes"></a>
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Reseq.html#Reseq">Reseq</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Reseq.html#Reseq">Reseq</a>
-<hr>
+<div class="header">
+<p>
+Previous: <a href="Reseq.html#Reseq" accesskey="p" rel="previous">Reseq</a>, Up: <a href="Reseq.html#Reseq" accesskey="u" rel="up">Reseq</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
 </div>
-
+<hr>
+<a name="Reserved-Line-Prefixes-1"></a>
 <h3 class="unnumberedsec">Reserved Line Prefixes</h3>
+<a name="index-reserved-line-prefixes"></a>
+<a name="index-line-prefix_002c-reserved"></a>
+<a name="index-line-prefix-3"></a>
+<a name="index-prefix_002c-line-3"></a>
 
-<p><a name="index-reserved-line-prefixes-165"></a><a name="index-line-prefix_002c-reserved-166"></a><a name="index-line-prefix-167"></a><a name="index-prefix_002c-line-168"></a>
-It's important for <samp><span class="command">reseq</span></samp> to be able to process its input
+<p>It&rsquo;s important for <code>reseq</code> to be able to process its input
 correctly, even if that output came from a different version of
-<samp><span class="command">teseq</span></samp> than <samp><span class="command">reseq</span></samp> is familiar with. So, it's
-important that <samp><span class="command">reseq</span></samp> should refuse to continue processing
-input if it encounters a line that it doesn't recognize, but which
+<code>teseq</code> than <code>reseq</code> is familiar with. So, it&rsquo;s
+important that <code>reseq</code> should refuse to continue processing
+input if it encounters a line that it doesn&rsquo;t recognize, but which
 might contain important semantic information that effects the output
-<samp><span class="command">reseq</span></samp> should produce.
-
-<p>At the same time, it'd be a shame for <samp><span class="command">reseq</span></samp> to refuse to
-process a line it doesn't understand, if that line contains
+<code>reseq</code> should produce.
+</p>
+<p>At the same time, it&rsquo;d be a shame for <code>reseq</code> to refuse to
+process a line it doesn&rsquo;t understand, if that line contains
 non-critical information. For example, consider delay lines (beginning
-with &lsquo;<samp><span class="samp">@</span></samp>&rsquo;. The delay line holds semantic information, to be sure;
-but not information that would affect <samp><span class="command">reseq</span></samp>'s normal
+with &lsquo;<samp>@</samp>&rsquo;). The delay line holds semantic information, to be sure;
+but not information that would affect <code>reseq</code>&rsquo;s normal
 operation (it only has meaning when one of the
-<a name="index-g_t_002dt-_0028reseq_0029-169"></a><a name="index-g_t_002d_002dtimings-_0028reseq_0029-170"></a><samp><span class="option">--timings</span></samp> or
-<a name="index-g_t_002d_002dreplay-_0028reseq_0029-171"></a><samp><span class="option">--replay</span></samp> options has been specified). So, if an older version
-of <samp><span class="command">reseq</span></samp> had existed that did not recognize them, it would
+<a name="index-_002dt-_0028reseq_0029-1"></a>
+<a name="index-_002d_002dtimings-_0028reseq_0029-1"></a>
+<samp>--timings</samp> or
+<a name="index-_002d_002dreplay-_0028reseq_0029-2"></a>
+<samp>--replay</samp> options has been specified). So, if an older version
+of <code>reseq</code> had existed that did not recognize them, it would
 have been a shame if its introduction in the newer release had caused
 the older version to refuse to process it.
-
-<p>To address both of these concerns, <samp><span class="command">reseq</span></samp> has taken the
+</p>
+<p>To address both of these concerns, <code>reseq</code> has taken the
 approach of reserving certain prefixes for use as &ldquo;semantically
 significant&rdquo; line prefixes, and others for use in lines that
-<samp><span class="command">reseq</span></samp> can safely ignore. A line that begins with any of the
-following characters, will cause <samp><span class="command">reseq</span></samp> to halt processing
+<code>reseq</code> can safely ignore. A line that begins with any of the
+following characters, will cause <code>reseq</code> to halt processing
 and exit with an error.
+</p>
+<div class="example">
+<pre class="example">!$+/=[\^{~
+</pre></div>
 
-<pre class="example">     !$+/=[\^{~
-</pre>
-<p class="noindent">The idea is that these prefixes are reserved for future use in lines
-that <samp><span class="command">reseq</span></samp> must understand in order to produce correct
+<p>The idea is that these prefixes are reserved for future use in lines
+that <code>reseq</code> must understand in order to produce correct
 results.
-
+</p>
 <p>This leaves all remaining characters free for use in specifying future
-<samp><span class="command">teseq</span></samp> output lines that do not affect processing for older
-<samp><span class="command">reseq</span></samp>s. Note that they are still reserved for
-<samp><span class="command">teseq</span></samp>, and are not intended for users to insert commentary
-or such. However, <samp><span class="command">teseq</span></samp> will never use a line beginning with
-the space character; and <samp><span class="command">reseq</span></samp> will always ignore such
+<code>teseq</code> output lines that do not affect processing for older
+<code>reseq</code>s. Note that they are still reserved for
+<code>teseq</code>, and are not intended for users to insert commentary
+or such. However, <code>teseq</code> will never use a line beginning with
+the space character; and <code>reseq</code> will always ignore such
 lines, so the space character may be used to indicate user comments.
+</p>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Reseq.html#Reseq" accesskey="p" rel="previous">Reseq</a>, Up: <a href="Reseq.html#Reseq" accesskey="u" rel="up">Reseq</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html#Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
-</body></html>
 
+
+</body>
+</html>
