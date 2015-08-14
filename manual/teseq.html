@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual is for GNU Teseq, version 1.1.
+<!-- This manual is for GNU Teseq, version 1.1.1.
 
 Copyright (C) 2008, 2013 Micah Cowan <micah@addictivecode.org>
 
@@ -10,12 +10,12 @@ or any later version published by the Free Software Foundation;
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
 Texts.  A copy of the license is included in the section entitled
 "GNU Free Documentation License". -->
-<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 6.0, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>GNU Teseq 1.1 Manual</title>
+<title>GNU Teseq 1.1.1 Manual</title>
 
-<meta name="description" content="GNU Teseq 1.1 Manual">
-<meta name="keywords" content="GNU Teseq 1.1 Manual">
+<meta name="description" content="GNU Teseq 1.1.1 Manual">
+<meta name="keywords" content="GNU Teseq 1.1.1 Manual">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -27,16 +27,16 @@ Texts.  A copy of the license is included in the section entitled
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
 blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.indentedblock {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
 div.smalldisplay {margin-left: 3.2em}
 div.smallexample {margin-left: 3.2em}
-div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
 div.smalllisp {margin-left: 3.2em}
-kbd {font-style:oblique}
+kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
@@ -45,10 +45,10 @@ pre.smalldisplay {font-family: inherit; font-size: smaller}
 pre.smallexample {font-size: smaller}
 pre.smallformat {font-family: inherit; font-size: smaller}
 pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:nowrap}
-span.nolinebreak {white-space:nowrap}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nocodebreak {white-space: nowrap}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: serif; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -56,8 +56,8 @@ ul.no-bullet {list-style: none}
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<h1 class="settitle" align="center">GNU Teseq 1.1 Manual</h1>
+<body lang="en">
+<h1 class="settitle" align="center">GNU Teseq 1.1.1 Manual</h1>
 
 
 
@@ -76,6 +76,7 @@ ul.no-bullet {list-style: none}
   <li><a name="toc-Overview-1" href="#Overview">1 Overview</a>
   <ul class="no-bullet">
     <li><a name="toc-A-Quick-Example" href="#A-Quick-Example">A Quick Example</a></li>
+    <li><a name="toc-Stripping-out-escapes" href="#Stripping-out-escapes">Stripping out escapes</a></li>
   </ul></li>
   <li><a name="toc-Invoking-Teseq-1" href="#Invoking-Teseq">2 Invoking Teseq</a>
   <ul class="no-bullet">
@@ -115,12 +116,12 @@ ul.no-bullet {list-style: none}
 <a name="Top"></a>
 <div class="header">
 <p>
-Next: <a href="#Overview" accesskey="n" rel="next">Overview</a>, Previous: <a href="dir.html#Top" accesskey="p" rel="previous">(dir)</a>, Up: <a href="dir.html#Top" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Overview" accesskey="n" rel="next">Overview</a>, Previous: <a href="dir.html#Top" accesskey="p" rel="prev">(dir)</a>, Up: <a href="dir.html#Top" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Teseq"></a>
 <h1 class="top">Teseq</h1>
 
-<p>This manual is for GNU Teseq, version 1.1.
+<p>This manual is for GNU Teseq, version 1.1.1.
 </p>
 <p>Copyright &copy; 2008, 2013 Micah Cowan <a href="mailto:micah@addictivecode.org">micah@addictivecode.org</a>
 </p>
@@ -154,7 +155,7 @@ Next: <a href="#Overview" accesskey="n" rel="next">Overview</a>, Previous: <a hr
 <a name="Overview"></a>
 <div class="header">
 <p>
-Next: <a href="#Invoking-Teseq" accesskey="n" rel="next">Invoking Teseq</a>, Previous: <a href="#Top" accesskey="p" rel="previous">Top</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Invoking-Teseq" accesskey="n" rel="next">Invoking Teseq</a>, Previous: <a href="#Top" accesskey="p" rel="prev">Top</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Overview-1"></a>
 <h2 class="chapter">1 Overview</h2>
@@ -170,14 +171,25 @@ readable English. It is intended to be useful for debugging terminal
 emulators, and programs that make heavy use of advanced terminal
 features such as cursor movement, coloring, and other effects.
 </p>
-<p>It is primarily targeted at individuals who possess a basic
-understanding of terminal control sequences, especially
-<a name="index-CSI"></a>
-<a name="index-Control-Sequence-Introducer"></a>
-<acronym><small>CSI</small></acronym> sequences; however, by default Teseq will try to
-identify and describe the sequences that it encounters, and the
-behavior they might produce in a terminal.
-</p>
+<p>Teseq is useful for:
+</p><ul>
+<li> creating animated, interactive demos to run on the terminal (see
+<a href="https://asciinema.org/a/7445">https://asciinema.org/a/7445</a> for a video on how to do this),
+</li><li> knowing the exact output of a program (Did it have spaces at the end of the line? Or maybe it contains invisible control characters?),
+</li><li> examining a text file&rsquo;s contents unambiguously, a la <code>cat -v</code> or
+the <code>ed</code> program&rsquo;s <code>l</code> command (but with much more information),
+</li><li> stripping control sequences from a text file, e.g. to produce a plain ascii
+text file from a
+<a name="index-typescript"></a>
+typescript file generated by the <code>script</code>
+command (see example below),
+</li><li> examining the invisible control sequences within a text file, that affect
+graphical formatting or character encoding, in order to understand how
+they work and where they appear in the file, or
+</li><li> debugging graphical terminal applications, and terminal emulators (its
+originally-intended purpose).
+</li></ul>
+
 <p>GNU Teseq is <a href="http://www.gnu.org/philosophy/free-sw.html">free
 software</a>. See <a href="#Copying">Copying</a>, for copying conditions.
 </p>
@@ -188,7 +200,9 @@ software</a>. See <a href="#Copying">Copying</a>, for copying conditions.
 <a name="index-Hello_002c-world_0021"></a>
 
 <p>You can&rsquo;t beat a short example to demonstrate what a program does, so
-here goes. Suppose you&rsquo;ve got a program that writes the following
+here goes (note: a video version of this example may be seen at
+<a href="http://www.gnu.org/software/teseq/">the main Teseq project page</a>,
+or at <a href="https://asciinema.org/a/7443">https://asciinema.org/a/7443</a>. Suppose you&rsquo;ve got a program that writes the following
 output to a terminal.
 </p>
 <div class="example">
@@ -271,11 +285,40 @@ after the closing pipe symbol; this indicates a following linefeed (or
 accepting the above input and printing out the original set of escape
 sequences that produced it. See <a href="#Reseq">Reseq</a>.
 </p>
+<a name="Stripping-out-escapes"></a>
+<h3 class="unnumberedsec">Stripping out escapes</h3>
+<a name="index-example"></a>
+<a name="index-strip"></a>
+<a name="index-stripping"></a>
+
+<p>The <code>teseq</code> command can be instructed to recognize, but not
+output, escapes encountered in the input. This is useful for stripping
+out the formatting strings that are invisible on display, but which get
+in the way during editing, or make the content inappropriate for
+inclusion in documentation, etc.
+</p>
+<p>To sanitize a
+<a name="index-typescript-1"></a>
+typescript file or other text file containing control sequences, try the
+following command:
+</p>
+<div class="example">
+<pre class="example">$ teseq -EDLC <var>your-file.txt</var> | reseq - - | col -b &gt; <var>new-file.txt</var>
+</pre></div>
+
+<p>The <code>-EDLC</code> options tell teseq not to output recognized escape
+sequences or identify them, and otherwise to abbreviate its output.
+Then, <code>reseq</code> takes the output from <code>teseq</code> and turns it
+back into raw text (minus the now elided escape sequences). Finally,
+<code>col -b</code> (a fairly standard Unix tool) interprets common control
+characters such as backspaces and carriage returns, resolving them into
+a text file that displays the same, but doesn&rsquo;t contain those controls.
+</p>
 <hr>
 <a name="Invoking-Teseq"></a>
 <div class="header">
 <p>
-Next: <a href="#Output-Format" accesskey="n" rel="next">Output Format</a>, Previous: <a href="#Overview" accesskey="p" rel="previous">Overview</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Output-Format" accesskey="n" rel="next">Output Format</a>, Previous: <a href="#Overview" accesskey="p" rel="prev">Overview</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Invoking-Teseq-1"></a>
 <h2 class="chapter">2 Invoking Teseq</h2>
@@ -482,7 +525,7 @@ this can result in much longer processing time overall. To force
 <a name="Output-Format"></a>
 <div class="header">
 <p>
-Next: <a href="#Color-Mode" accesskey="n" rel="next">Color Mode</a>, Previous: <a href="#Invoking-Teseq" accesskey="p" rel="previous">Invoking Teseq</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Color-Mode" accesskey="n" rel="next">Color Mode</a>, Previous: <a href="#Invoking-Teseq" accesskey="p" rel="prev">Invoking Teseq</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Output-Format-1"></a>
 <h2 class="chapter">3 Output Format</h2>
@@ -529,7 +572,7 @@ occurred in the input.
 <a name="Text-Lines"></a>
 <div class="header">
 <p>
-Next: <a href="#Control_002dCharacter-Lines" accesskey="n" rel="next">Control-Character Lines</a>, Previous: <a href="#Output-Format" accesskey="p" rel="previous">Output Format</a>, Up: <a href="#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Control_002dCharacter-Lines" accesskey="n" rel="next">Control-Character Lines</a>, Previous: <a href="#Output-Format" accesskey="p" rel="prev">Output Format</a>, Up: <a href="#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Text-Lines-1"></a>
 <h3 class="section">3.1 Text Lines</h3>
@@ -669,7 +712,7 @@ invoke that character set for use).
 <a name="Control_002dCharacter-Lines"></a>
 <div class="header">
 <p>
-Next: <a href="#Escape_002dSequence-Lines" accesskey="n" rel="next">Escape-Sequence Lines</a>, Previous: <a href="#Text-Lines" accesskey="p" rel="previous">Text Lines</a>, Up: <a href="#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Escape_002dSequence-Lines" accesskey="n" rel="next">Escape-Sequence Lines</a>, Previous: <a href="#Text-Lines" accesskey="p" rel="prev">Text Lines</a>, Up: <a href="#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Control_002dCharacter-Lines-1"></a>
 <h3 class="section">3.2 Control-Character Lines</h3>
@@ -760,7 +803,7 @@ Ecma-48&nbsp;/ ISO/IEC&nbsp;6429 (the control-key representation has been added)
 <a name="Escape_002dSequence-Lines"></a>
 <div class="header">
 <p>
-Next: <a href="#Label-Lines" accesskey="n" rel="next">Label Lines</a>, Previous: <a href="#Control_002dCharacter-Lines" accesskey="p" rel="previous">Control-Character Lines</a>, Up: <a href="#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Label-Lines" accesskey="n" rel="next">Label Lines</a>, Previous: <a href="#Control_002dCharacter-Lines" accesskey="p" rel="prev">Control-Character Lines</a>, Up: <a href="#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Escape_002dSequence-Lines-1"></a>
 <h3 class="section">3.3 Escape-Sequence Lines</h3>
@@ -848,7 +891,7 @@ continuing lines will also begin with a colon, followed by two spaces
 <a name="Escape-Sequence-Recognition"></a>
 <div class="header">
 <p>
-Previous: <a href="#Escape_002dSequence-Lines" accesskey="p" rel="previous">Escape-Sequence Lines</a>, Up: <a href="#Escape_002dSequence-Lines" accesskey="u" rel="up">Escape-Sequence Lines</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="#Escape_002dSequence-Lines" accesskey="p" rel="prev">Escape-Sequence Lines</a>, Up: <a href="#Escape_002dSequence-Lines" accesskey="u" rel="up">Escape-Sequence Lines</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Recognizing-Escape-Sequences"></a>
 <h4 class="unnumberedsubsec">Recognizing Escape Sequences</h4>
@@ -922,7 +965,7 @@ reaches the &lsquo;<samp>m</samp>&rsquo;?
 <p>The answer is that the escape sequence <em>does</em> end with the
 &lsquo;<samp>[</samp>&rsquo;; but the combination &lsquo;<samp>Esc [</samp>&rsquo; invokes a control named
 <code>CONTROL SEQUENCE INTRODUCER</code>
-<a name="index-CSI-1"></a>
+<a name="index-CSI"></a>
 (<small>CSI</small>). The <small>CSI</small> control
 marks the beginning of a different kind of sequence, called a
 <a name="index-control-sequence-1"></a>
@@ -1021,7 +1064,7 @@ interpretation.
 <a name="Label-Lines"></a>
 <div class="header">
 <p>
-Next: <a href="#Description-Lines" accesskey="n" rel="next">Description Lines</a>, Previous: <a href="#Escape_002dSequence-Lines" accesskey="p" rel="previous">Escape-Sequence Lines</a>, Up: <a href="#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Description-Lines" accesskey="n" rel="next">Description Lines</a>, Previous: <a href="#Escape_002dSequence-Lines" accesskey="p" rel="prev">Escape-Sequence Lines</a>, Up: <a href="#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Label-Lines-1"></a>
 <h3 class="section">3.4 Label Lines</h3>
@@ -1063,7 +1106,7 @@ applications.
 <a name="Description-Lines"></a>
 <div class="header">
 <p>
-Next: <a href="#Delay-Lines-and-Halt-Lines" accesskey="n" rel="next">Delay Lines and Halt Lines</a>, Previous: <a href="#Label-Lines" accesskey="p" rel="previous">Label Lines</a>, Up: <a href="#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Delay-Lines-and-Halt-Lines" accesskey="n" rel="next">Delay Lines and Halt Lines</a>, Previous: <a href="#Label-Lines" accesskey="p" rel="prev">Label Lines</a>, Up: <a href="#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Description-Lines-1"></a>
 <h3 class="section">3.5 Description Lines</h3>
@@ -1140,7 +1183,7 @@ designation for the function is known.
 <a name="Delay-Lines-and-Halt-Lines"></a>
 <div class="header">
 <p>
-Previous: <a href="#Description-Lines" accesskey="p" rel="previous">Description Lines</a>, Up: <a href="#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="#Description-Lines" accesskey="p" rel="prev">Description Lines</a>, Up: <a href="#Output-Format" accesskey="u" rel="up">Output Format</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Delay-Lines-and-Halt-Lines-1"></a>
 <h3 class="section">3.6 Delay Lines and Halt Lines</h3>
@@ -1190,7 +1233,7 @@ program usage, and similar sorts of presentation-oriented scripts.
 <a name="Color-Mode"></a>
 <div class="header">
 <p>
-Next: <a href="#Reseq" accesskey="n" rel="next">Reseq</a>, Previous: <a href="#Output-Format" accesskey="p" rel="previous">Output Format</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Reseq" accesskey="n" rel="next">Reseq</a>, Previous: <a href="#Output-Format" accesskey="p" rel="prev">Output Format</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Color-Mode-1"></a>
 <h2 class="chapter">4 Color Mode</h2>
@@ -1253,7 +1296,7 @@ of specification in &lsquo;<samp>TESEQ_COLORS</samp>&rsquo;.
 <a name="Reseq"></a>
 <div class="header">
 <p>
-Next: <a href="#Standards" accesskey="n" rel="next">Standards</a>, Previous: <a href="#Color-Mode" accesskey="p" rel="previous">Color Mode</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Standards" accesskey="n" rel="next">Standards</a>, Previous: <a href="#Color-Mode" accesskey="p" rel="prev">Color Mode</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="The-Reseq-Command"></a>
 <h2 class="chapter">5 The Reseq Command</h2>
@@ -1408,7 +1451,7 @@ delay lines:
 <a name="Reserved-Line-Prefixes"></a>
 <div class="header">
 <p>
-Previous: <a href="#Reseq" accesskey="p" rel="previous">Reseq</a>, Up: <a href="#Reseq" accesskey="u" rel="up">Reseq</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="#Reseq" accesskey="p" rel="prev">Reseq</a>, Up: <a href="#Reseq" accesskey="u" rel="up">Reseq</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Reserved-Line-Prefixes-1"></a>
 <h3 class="unnumberedsec">Reserved Line Prefixes</h3>
@@ -1467,7 +1510,7 @@ lines, so the space character may be used to indicate user comments.
 <a name="Standards"></a>
 <div class="header">
 <p>
-Next: <a href="#Future-Enhancements" accesskey="n" rel="next">Future Enhancements</a>, Previous: <a href="#Reseq" accesskey="p" rel="previous">Reseq</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Future-Enhancements" accesskey="n" rel="next">Future Enhancements</a>, Previous: <a href="#Reseq" accesskey="p" rel="prev">Reseq</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Standards-1"></a>
 <h2 class="chapter">6 Standards</h2>
@@ -1514,7 +1557,7 @@ describing these sequences, include:
 <a name="Future-Enhancements"></a>
 <div class="header">
 <p>
-Next: <a href="#Contact-and-Info" accesskey="n" rel="next">Contact and Info</a>, Previous: <a href="#Standards" accesskey="p" rel="previous">Standards</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Contact-and-Info" accesskey="n" rel="next">Contact and Info</a>, Previous: <a href="#Standards" accesskey="p" rel="prev">Standards</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Future-Enhancements-1"></a>
 <h2 class="chapter">7 Future Enhancements</h2>
@@ -1535,7 +1578,7 @@ Teseq.
 <a name="Localized-Messages"></a>
 <div class="header">
 <p>
-Next: <a href="#Stateful-Processing" accesskey="n" rel="next">Stateful Processing</a>, Previous: <a href="#Future-Enhancements" accesskey="p" rel="previous">Future Enhancements</a>, Up: <a href="#Future-Enhancements" accesskey="u" rel="up">Future Enhancements</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Stateful-Processing" accesskey="n" rel="next">Stateful Processing</a>, Previous: <a href="#Future-Enhancements" accesskey="p" rel="prev">Future Enhancements</a>, Up: <a href="#Future-Enhancements" accesskey="u" rel="up">Future Enhancements</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Localized-Messages-1"></a>
 <h3 class="section">7.1 Localized Messages</h3>
@@ -1568,7 +1611,7 @@ these requirements such as GBK, Big5, or Shift JIS.
 <a name="Stateful-Processing"></a>
 <div class="header">
 <p>
-Next: <a href="#Terminal-Databases" accesskey="n" rel="next">Terminal Databases</a>, Previous: <a href="#Localized-Messages" accesskey="p" rel="previous">Localized Messages</a>, Up: <a href="#Future-Enhancements" accesskey="u" rel="up">Future Enhancements</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Terminal-Databases" accesskey="n" rel="next">Terminal Databases</a>, Previous: <a href="#Localized-Messages" accesskey="p" rel="prev">Localized Messages</a>, Up: <a href="#Future-Enhancements" accesskey="u" rel="up">Future Enhancements</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Stateful-Processing-1"></a>
 <h3 class="section">7.2 Stateful Processing</h3>
@@ -1618,7 +1661,7 @@ byte values had been.
 <a name="Terminal-Databases"></a>
 <div class="header">
 <p>
-Previous: <a href="#Stateful-Processing" accesskey="p" rel="previous">Stateful Processing</a>, Up: <a href="#Future-Enhancements" accesskey="u" rel="up">Future Enhancements</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="#Stateful-Processing" accesskey="p" rel="prev">Stateful Processing</a>, Up: <a href="#Future-Enhancements" accesskey="u" rel="up">Future Enhancements</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Terminal-Database-Awareness"></a>
 <h3 class="section">7.3 Terminal Database Awareness</h3>
@@ -1659,7 +1702,7 @@ approach.
 <a name="Contact-and-Info"></a>
 <div class="header">
 <p>
-Next: <a href="#Copying" accesskey="n" rel="next">Copying</a>, Previous: <a href="#Future-Enhancements" accesskey="p" rel="previous">Future Enhancements</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Copying" accesskey="n" rel="next">Copying</a>, Previous: <a href="#Future-Enhancements" accesskey="p" rel="prev">Future Enhancements</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Contact-and-Information"></a>
 <h2 class="chapter">8 Contact and Information</h2>
@@ -1669,7 +1712,9 @@ please take advantage of the mailing list at
 <a href="mailto:bug-teseq@gnu.org">bug-teseq@gnu.org</a>. To subscribe, send an empty email with the
 Subject &ldquo;subscribe&rdquo; to <a href="mailto:bug-teseq-request@gnu.org">bug-teseq-request@gnu.org</a>; or use
 the web interface at
-<a href="http://lists.gnu.org/mailman/listinfo/bug-teseq">http://lists.gnu.org/mailman/listinfo/bug-teseq</a>.
+<a href="http://lists.gnu.org/mailman/listinfo/bug-teseq">http://lists.gnu.org/mailman/listinfo/bug-teseq</a>. You can also
+contact the author/maintainer directly at
+<a href="mailto:micah@addictivecode.org">micah@addictivecode.org</a>.
 </p>
 <p>The official website for GNU Teseq is at
 <a href="http://www.gnu.org/software/teseq/">http://www.gnu.org/software/teseq/</a>.  For the latest updates and
@@ -1680,13 +1725,11 @@ stay appraised by subscribing to the mailing list.
 development source repository in Mercurial:
 <a href="https://savannah.gnu.org/projects/teseq/">https://savannah.gnu.org/projects/teseq/</a>.
 </p>
-<p>There is also an IRC channel (<tt>#teseq</tt>), hosted on irc.freenode.net.
-</p>
 <hr>
 <a name="Copying"></a>
 <div class="header">
 <p>
-Next: <a href="#Index" accesskey="n" rel="next">Index</a>, Previous: <a href="#Contact-and-Info" accesskey="p" rel="previous">Contact and Info</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#Index" accesskey="n" rel="next">Index</a>, Previous: <a href="#Contact-and-Info" accesskey="p" rel="prev">Contact and Info</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Copying-1"></a>
 <h2 class="appendix">Appendix A Copying</h2>
@@ -2110,7 +2153,7 @@ to permit their use in free software.
 <a name="Index"></a>
 <div class="header">
 <p>
-Previous: <a href="#Copying" accesskey="p" rel="previous">Copying</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="#Copying" accesskey="p" rel="prev">Copying</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <a name="Index-1"></a>
 <h2 class="unnumbered">Index</h2>
@@ -2237,13 +2280,11 @@ Previous: <a href="#Copying" accesskey="p" rel="previous">Copying</a>, Up: <a hr
 <tr><td></td><td valign="top"><a href="#index-control-sequence">control sequence</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-control-sequence-1">control sequence</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-control-sequence-2">control sequence</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Standards">Standards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Control-Sequence-Introducer">Control Sequence Introducer</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-control-string">control string</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-control_002dcharacter-line">control-character line</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Teseq">Invoking Teseq</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-control_002dcharacter-line-1">control-character line</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Control_002dCharacter-Lines">Control-Character Lines</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-control_002dcharacter-line-2">control-character line</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Reseq">Reseq</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-CSI"><small>CSI</small></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-CSI-1"><small>CSI</small></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-CSI"><small>CSI</small></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Escape-Sequence-Recognition">Escape Sequence Recognition</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-D">D</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-delay-line">delay line</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Teseq">Invoking Teseq</a></td></tr>
@@ -2281,6 +2322,7 @@ Previous: <a href="#Copying" accesskey="p" rel="previous">Copying</a>, Up: <a hr
 <tr><td></td><td valign="top"><a href="#index-escape_002dsequence-line">escape-sequence line</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Teseq">Invoking Teseq</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-escape_002dsequence-line-1">escape-sequence line</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Reseq">Reseq</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-escape_002dsequence-lines">escape-sequence lines</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Escape_002dSequence-Lines">Escape-Sequence Lines</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-example">example</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-examples">examples</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-F">F</a></th><td></td><td></td></tr>
@@ -2378,6 +2420,8 @@ Previous: <a href="#Copying" accesskey="p" rel="previous">Copying</a>, Up: <a hr
 <tr><td></td><td valign="top"><a href="#index-standards-20">standards</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Stateful-Processing">Stateful Processing</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-standards-21">standards</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Stateful-Processing">Stateful Processing</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-standards-22">standards</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Terminal-Databases">Terminal Databases</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-strip">strip</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-stripping">stripping</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-T">T</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-table-of-control-characters">table of control characters</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Control_002dCharacter-Lines">Control-Character Lines</a></td></tr>
@@ -2393,6 +2437,8 @@ Previous: <a href="#Copying" accesskey="p" rel="previous">Copying</a>, Up: <a hr
 <tr><td></td><td valign="top"><a href="#index-text-line-1">text line</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Reseq">Reseq</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-text-line-2">text line</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Stateful-Processing">Stateful Processing</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-text-line-3">text line</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Stateful-Processing">Stateful Processing</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-typescript">typescript</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-typescript-1">typescript</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Index_cp_letter-U">U</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-usage">usage</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Invoking-Teseq">Invoking Teseq</a></td></tr>
